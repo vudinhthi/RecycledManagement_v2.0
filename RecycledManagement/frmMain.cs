@@ -16,26 +16,21 @@ namespace RecycledManagement
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        XtraUserControl shiftsUserControl;
-        XtraUserControl reasonsUserControl;
-        XtraUserControl operatorsUserControl;
-        XtraUserControl otherSourcesUserControl;
+        XtraUserControl shiftUserControl;
+        XtraUserControl reasonUserControl;
+        XtraUserControl operatorUserControl;
         XtraUserControl lossTypesUserControl;
+        XtraUserControl otherSourcesUserControl;
 
         public frmMain()
         {
-            InitializeComponent();
-            shiftsUserControl = CreateUserControl("Shifts");
-            reasonsUserControl = CreateUserControl("Reasons");
-            operatorsUserControl = CreateUserControl("Operators");
-            otherSourcesUserControl = CreateUserControl("Other Sources");
-            lossTypesUserControl = CreateUserControl("Loss Type");            
+            InitializeComponent();            
         }
         XtraUserControl CreateUserControl(string text)
         {
             XtraUserControl result = new XtraUserControl();
             result.Name = text.ToLower() + "UserControl";
-            result.Text = text;
+            result.Text = text;            
             LabelControl label = new LabelControl();
             label.Parent = result;
             label.Appearance.Font = new Font("Tahoma", 25.25F);
@@ -53,24 +48,34 @@ namespace RecycledManagement
             switch (e.Element.Text)
             {
                 case "Shifts":
-                    tabbedView.AddDocument(shiftsUserControl);
-                    tabbedView.ActivateDocument(shiftsUserControl);
+                    shiftUserControl = new userControlShifts();
+                    shiftUserControl.Text = "Shifts";
+                    tabbedView.AddDocument(shiftUserControl);
+                    tabbedView.ActivateDocument(shiftUserControl);                    
                     break;
                 case "Other Sources":
+                    otherSourcesUserControl = new userControlOtherSource();
+                    otherSourcesUserControl.Text = "Other Source";
                     tabbedView.AddDocument(otherSourcesUserControl);
                     tabbedView.ActivateDocument(otherSourcesUserControl);
                     break;
                 case "Reasons":
-                    tabbedView.AddDocument(reasonsUserControl);
-                    tabbedView.ActivateDocument(reasonsUserControl);
+                    reasonUserControl = new userControlReasons();
+                    reasonUserControl.Text = "Reason";
+                    tabbedView.AddDocument(reasonUserControl);
+                    tabbedView.ActivateDocument(reasonUserControl);
                     break;
                 case "Loss Type":
+                    lossTypesUserControl = new userControlLossType();
+                    lossTypesUserControl.Text = "Loss Type";
                     tabbedView.AddDocument(lossTypesUserControl);
                     tabbedView.ActivateDocument(lossTypesUserControl);
                     break;
                 case "Operators":
-                    tabbedView.AddDocument(operatorsUserControl);
-                    tabbedView.ActivateDocument(operatorsUserControl);
+                    operatorUserControl = new userControlOperator();
+                    operatorUserControl.Text = "Operator";
+                    tabbedView.AddDocument(operatorUserControl);
+                    tabbedView.ActivateDocument(operatorUserControl);
                     break;
             }            
         }
@@ -98,29 +103,7 @@ namespace RecycledManagement
         {
             //if (e.Document.Caption == "Employees") employeesUserControl = CreateUserControl("Employees");
             //else customersUserControl = CreateUserControl("Customers");
-            switch (e.Document.Caption)
-            {
-                case "Shifts":
-                    shiftsUserControl = CreateUserControl("Shifts");
-                    break;
-                case "Other Sources":
-                    otherSourcesUserControl = CreateUserControl("Other Sources");
-                    break;
-                case "Reasons":
-                    reasonsUserControl = CreateUserControl("Reasons");
-                    break;
-                case "Loss Type":
-                    lossTypesUserControl = CreateUserControl("Loss Type");
-                    break;
-                case "Operators":
-                    operatorsUserControl = CreateUserControl("Operators");
-                    break;
-            }
-        }
-
-        private void accordionControlElement1_Click(object sender, EventArgs e)
-        {
-
-        }
+           
+        }             
     }
 }

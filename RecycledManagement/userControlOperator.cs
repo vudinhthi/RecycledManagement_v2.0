@@ -11,11 +11,11 @@ using DevExpress.XtraEditors;
 
 namespace RecycledManagement
 {
-    public partial class userControlShifts : DevExpress.XtraEditors.XtraUserControl
+    public partial class userControlOperator : DevExpress.XtraEditors.XtraUserControl
     {
-        public userControlShifts()
+        public userControlOperator()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
     }
 }
