@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraBars.Docking2010.Views;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
+using RecycledManagement.Common;
 
 namespace RecycledManagement
 {
@@ -121,6 +122,13 @@ namespace RecycledManagement
         private void accordionControlElement1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        //sự kiện đóng form main, lưu lại thời gian user logout vào bảng HistoryLogin
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //lưu lại thời điểm logout cho User đăng login
+            DbHistoryLogin.Instance.UpdateCmd($"logoutDate='{DateTime.Now}'", $"userId='{GlobalVariable.userId}' and loginDate='{GlobalVariable.loginDate}'");
         }
     }
 }
