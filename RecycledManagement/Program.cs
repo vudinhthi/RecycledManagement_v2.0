@@ -18,7 +18,7 @@ namespace RecycledManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmConfigFirstInstall());
+            Application.Run(new frmMain());
         }
     }
 }

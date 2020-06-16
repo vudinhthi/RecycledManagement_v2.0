@@ -61,14 +61,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DataProvider.cs" />
+    <Compile Include="Common\DbAccount.cs" />
+    <Compile Include="Common\DbHistoryLogin.cs" />
+    <Compile Include="Common\DbOperatorRole.cs" />
+    <Compile Include="Common\Encryptor.cs" />
+    <Compile Include="Common\GlobalVariable.cs" />
+    <Compile Include="frmConfigFirstInstall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfigFirstInstall.designer.cs">
+      <DependentUpon>frmConfigFirstInstall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProcessing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProcessing.designer.cs">
+      <DependentUpon>frmProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\HistoryLoginModel.cs" />
+    <Compile Include="Models\OperatroRoleModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="userControlBookingOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="userControlBookingOrder.Designer.cs">
+      <DependentUpon>userControlBookingOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="userControlLossType.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +119,48 @@
     </Compile>
     <Compile Include="userControlOtherSource.Designer.cs">
       <DependentUpon>userControlOtherSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="userControlReasons_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="userControlReasons_List.Designer.cs">
+      <DependentUpon>userControlReasons_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="userControlOtherSources_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="userControlOtherSources_List.Designer.cs">
+      <DependentUpon>userControlOtherSources_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="userControlLossTypes_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="userControlLossTypes_List.Designer.cs">
+      <DependentUpon>userControlLossTypes_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="userControlBookingOrders_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="userControlBookingOrders_List.Designer.cs">
+      <DependentUpon>userControlBookingOrders_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="userControlMixings_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="userControlMixings_List.Designer.cs">
+      <DependentUpon>userControlMixings_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="userControlOperators_List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="userControlOperators_List.Designer.cs">
+      <DependentUpon>userControlOperators_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="userControlMixing.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="userControlMixing.Designer.cs">
+      <DependentUpon>userControlMixing.cs</DependentUpon>
     </Compile>
     <Compile Include="userControlShifts_List.cs">
       <SubType>UserControl</SubType>
@@ -105,9 +180,26 @@
     <Compile Include="userControlShifts.Designer.cs">
       <DependentUpon>userControlShifts.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmConfigFirstInstall.resx">
+      <DependentUpon>frmConfigFirstInstall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmProcessing.resx">
+      <DependentUpon>frmProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\RecycledManagement.frmMain.resources" />
+    <EmbeddedResource Include="obj\Debug\RecycledManagement.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Debug\RecycledManagement.userControlLossType.resources" />
+    <EmbeddedResource Include="obj\Debug\RecycledManagement.userControlOperator.resources" />
+    <EmbeddedResource Include="obj\Debug\RecycledManagement.userControlOtherSource.resources" />
+    <EmbeddedResource Include="obj\Debug\RecycledManagement.userControlReasons.resources" />
+    <EmbeddedResource Include="obj\Debug\RecycledManagement.userControlShifts.resources" />
+    <EmbeddedResource Include="obj\Debug\RecycledManagement.userControlShifts_List.resources" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -119,6 +211,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="userControlBookingOrder.resx">
+      <DependentUpon>userControlBookingOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="userControlLossType.resx">
       <DependentUpon>userControlLossType.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +222,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="userControlOtherSource.resx">
       <DependentUpon>userControlOtherSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userControlReasons_List.resx">
+      <DependentUpon>userControlReasons_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userControlOtherSources_List.resx">
+      <DependentUpon>userControlOtherSources_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userControlLossTypes_List.resx">
+      <DependentUpon>userControlLossTypes_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userControlBookingOrders_List.resx">
+      <DependentUpon>userControlBookingOrders_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userControlMixings_List.resx">
+      <DependentUpon>userControlMixings_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userControlOperators_List.resx">
+      <DependentUpon>userControlOperators_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="userControlMixing.resx">
+      <DependentUpon>userControlMixing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="userControlShifts_List.resx">
       <DependentUpon>userControlShifts_List.cs</DependentUpon>
@@ -138,6 +254,13 @@
       <DependentUpon>userControlShifts.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="bin\Debug\RecycledManagement.exe.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\RecycledManagement.csproj.CopyComplete" />
+    <None Include="obj\Debug\RecycledManagement.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\RecycledManagement.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\RecycledManagement.csprojAssemblyReference.cache" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -149,7 +272,103 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\DevExpress.BonusSkins.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.Data.Desktop.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.Data.Desktop.v20.1.xml" />
+    <Content Include="bin\Debug\DevExpress.Data.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.Data.v20.1.xml" />
+    <Content Include="bin\Debug\DevExpress.Images.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.Office.v20.1.Core.dll" />
+    <Content Include="bin\Debug\DevExpress.Office.v20.1.Core.xml" />
+    <Content Include="bin\Debug\DevExpress.Pdf.v20.1.Core.dll" />
+    <Content Include="bin\Debug\DevExpress.Pdf.v20.1.Core.xml" />
+    <Content Include="bin\Debug\DevExpress.Pdf.v20.1.Drawing.dll" />
+    <Content Include="bin\Debug\DevExpress.Pdf.v20.1.Drawing.xml" />
+    <Content Include="bin\Debug\DevExpress.Printing.v20.1.Core.dll" />
+    <Content Include="bin\Debug\DevExpress.Printing.v20.1.Core.xml" />
+    <Content Include="bin\Debug\DevExpress.RichEdit.v20.1.Core.dll" />
+    <Content Include="bin\Debug\DevExpress.RichEdit.v20.1.Core.xml" />
+    <Content Include="bin\Debug\DevExpress.Sparkline.v20.1.Core.dll" />
+    <Content Include="bin\Debug\DevExpress.Sparkline.v20.1.Core.xml" />
+    <Content Include="bin\Debug\DevExpress.Utils.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.Utils.v20.1.xml" />
+    <Content Include="bin\Debug\DevExpress.XtraBars.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.XtraBars.v20.1.xml" />
+    <Content Include="bin\Debug\DevExpress.XtraEditors.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.XtraEditors.v20.1.xml" />
+    <Content Include="bin\Debug\DevExpress.XtraGrid.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.XtraGrid.v20.1.xml" />
+    <Content Include="bin\Debug\DevExpress.XtraLayout.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.XtraLayout.v20.1.xml" />
+    <Content Include="bin\Debug\DevExpress.XtraPrinting.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.XtraPrinting.v20.1.xml" />
+    <Content Include="bin\Debug\DevExpress.XtraTreeList.v20.1.dll" />
+    <Content Include="bin\Debug\DevExpress.XtraTreeList.v20.1.xml" />
+    <Content Include="bin\Debug\de\DevExpress.Data.v20.1.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.Office.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.Pdf.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.Printing.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.RichEdit.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.Sparkline.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.Utils.v20.1.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.XtraBars.v20.1.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.XtraEditors.v20.1.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.XtraGrid.v20.1.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.XtraLayout.v20.1.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.XtraPrinting.v20.1.resources.dll" />
+    <Content Include="bin\Debug\de\DevExpress.XtraTreeList.v20.1.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.Data.v20.1.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.Office.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.Pdf.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.Printing.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.RichEdit.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.Sparkline.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.Utils.v20.1.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.XtraBars.v20.1.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.XtraEditors.v20.1.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.XtraGrid.v20.1.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.XtraLayout.v20.1.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.XtraPrinting.v20.1.resources.dll" />
+    <Content Include="bin\Debug\es\DevExpress.XtraTreeList.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.Data.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.Office.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.Pdf.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.Printing.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.RichEdit.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.Sparkline.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.Utils.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.XtraBars.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.XtraEditors.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.XtraGrid.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.XtraLayout.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.XtraPrinting.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ja\DevExpress.XtraTreeList.v20.1.resources.dll" />
+    <Content Include="bin\Debug\RecycledManagement.exe" />
+    <Content Include="bin\Debug\RecycledManagement.pdb" />
+    <Content Include="bin\Debug\ru\DevExpress.Data.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.Office.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.Pdf.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.Printing.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.RichEdit.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.Sparkline.v20.1.Core.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.Utils.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.XtraBars.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.XtraEditors.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.XtraGrid.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.XtraLayout.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.XtraPrinting.v20.1.resources.dll" />
+    <Content Include="bin\Debug\ru\DevExpress.XtraTreeList.v20.1.resources.dll" />
     <Content Include="framas.ico" />
+    <Content Include="obj\Debug\RecycledManagement.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\RecycledManagement.exe" />
+    <Content Include="obj\Debug\recycledmanagement.exe.licenses" />
+    <Content Include="obj\Debug\RecycledManagement.pdb" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="Resources\framas mini %28black%29.png" />
+    <Content Include="Resources\framas_Wallpaper_021.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

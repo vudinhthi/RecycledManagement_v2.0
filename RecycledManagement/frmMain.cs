@@ -21,6 +21,13 @@ namespace RecycledManagement
         XtraUserControl operatorUserControl;
         XtraUserControl lossTypesUserControl;
         XtraUserControl otherSourcesUserControl;
+        XtraUserControl bookingOrderUserControl;
+        XtraUserControl shiftListUserControl;
+        XtraUserControl reasonListUserControl;
+        XtraUserControl operatorListUserControl;
+        XtraUserControl lossTypesListUserControl;
+        XtraUserControl otherSourcesListUserControl;
+        XtraUserControl bookingOrderListUserControl;
 
         public frmMain()
         {
@@ -48,34 +55,40 @@ namespace RecycledManagement
             switch (e.Element.Text)
             {
                 case "Shifts":
-                    shiftUserControl = new userControlShifts();
-                    shiftUserControl.Text = "Shifts";
-                    tabbedView.AddDocument(shiftUserControl);
-                    tabbedView.ActivateDocument(shiftUserControl);                    
+                    shiftListUserControl = new userControlShifts_List();
+                    shiftListUserControl.Text = "Shifts";
+                    tabbedView.AddDocument(shiftListUserControl);
+                    tabbedView.ActivateDocument(shiftListUserControl);                    
                     break;
                 case "Other Sources":
-                    otherSourcesUserControl = new userControlOtherSource();
-                    otherSourcesUserControl.Text = "Other Source";
-                    tabbedView.AddDocument(otherSourcesUserControl);
-                    tabbedView.ActivateDocument(otherSourcesUserControl);
+                    otherSourcesListUserControl = new userControlOtherSources_List();
+                    otherSourcesListUserControl.Text = "Other Source";
+                    tabbedView.AddDocument(otherSourcesListUserControl);
+                    tabbedView.ActivateDocument(otherSourcesListUserControl);
                     break;
                 case "Reasons":
-                    reasonUserControl = new userControlReasons();
-                    reasonUserControl.Text = "Reason";
-                    tabbedView.AddDocument(reasonUserControl);
-                    tabbedView.ActivateDocument(reasonUserControl);
+                    reasonListUserControl = new userControlReasons_List();
+                    reasonListUserControl.Text = "Reason";
+                    tabbedView.AddDocument(reasonListUserControl);
+                    tabbedView.ActivateDocument(reasonListUserControl);
                     break;
                 case "Loss Type":
-                    lossTypesUserControl = new userControlLossType();
-                    lossTypesUserControl.Text = "Loss Type";
-                    tabbedView.AddDocument(lossTypesUserControl);
-                    tabbedView.ActivateDocument(lossTypesUserControl);
+                    lossTypesListUserControl = new userControlLossTypes_List();
+                    lossTypesListUserControl.Text = "Loss Type";
+                    tabbedView.AddDocument(lossTypesListUserControl);
+                    tabbedView.ActivateDocument(lossTypesListUserControl);
                     break;
                 case "Operators":
-                    operatorUserControl = new userControlOperator();
-                    operatorUserControl.Text = "Operator";
-                    tabbedView.AddDocument(operatorUserControl);
-                    tabbedView.ActivateDocument(operatorUserControl);
+                    operatorListUserControl = new userControlOperators_List();
+                    operatorListUserControl.Text = "Operator";
+                    tabbedView.AddDocument(operatorListUserControl);
+                    tabbedView.ActivateDocument(operatorListUserControl);
+                    break;
+                case "Booking Materials":
+                    bookingOrderListUserControl = new userControlBookingOrders_List();
+                    bookingOrderListUserControl.Text = "Booking Material";
+                    tabbedView.AddDocument(bookingOrderListUserControl);
+                    tabbedView.ActivateDocument(bookingOrderListUserControl);
                     break;
             }            
         }
