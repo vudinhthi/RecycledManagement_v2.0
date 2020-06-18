@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.textEdit9 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit8 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit7 = new DevExpress.XtraEditors.TextEdit();
+            this.tedColorName = new DevExpress.XtraEditors.TextEdit();
             this.tedLeftover = new DevExpress.XtraEditors.TextEdit();
             this.lueLeftover = new DevExpress.XtraEditors.LookUpEdit();
             this.tedWeightFramapur = new DevExpress.XtraEditors.TextEdit();
@@ -83,11 +84,12 @@
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tedColorName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedLeftover.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueLeftover.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedWeightFramapur.Properties)).BeginInit();
@@ -139,13 +141,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.textEdit9);
             this.layoutControl1.Controls.Add(this.textEdit8);
-            this.layoutControl1.Controls.Add(this.textEdit7);
+            this.layoutControl1.Controls.Add(this.tedColorName);
             this.layoutControl1.Controls.Add(this.tedLeftover);
             this.layoutControl1.Controls.Add(this.lueLeftover);
             this.layoutControl1.Controls.Add(this.tedWeightFramapur);
@@ -192,14 +195,14 @@
             this.textEdit8.StyleController = this.layoutControl1;
             this.textEdit8.TabIndex = 25;
             // 
-            // textEdit7
+            // tedColorName
             // 
-            this.textEdit7.Location = new System.Drawing.Point(179, 101);
-            this.textEdit7.Name = "textEdit7";
-            this.textEdit7.Properties.ReadOnly = true;
-            this.textEdit7.Size = new System.Drawing.Size(1289, 24);
-            this.textEdit7.StyleController = this.layoutControl1;
-            this.textEdit7.TabIndex = 24;
+            this.tedColorName.Location = new System.Drawing.Point(179, 101);
+            this.tedColorName.Name = "tedColorName";
+            this.tedColorName.Properties.ReadOnly = true;
+            this.tedColorName.Size = new System.Drawing.Size(1289, 24);
+            this.tedColorName.StyleController = this.layoutControl1;
+            this.tedColorName.TabIndex = 24;
             // 
             // tedLeftover
             // 
@@ -216,6 +219,7 @@
             this.lueLeftover.Name = "lueLeftover";
             this.lueLeftover.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueLeftover.Properties.NullText = "Select an item";
             this.lueLeftover.Size = new System.Drawing.Size(326, 24);
             this.lueLeftover.StyleController = this.layoutControl1;
             this.lueLeftover.TabIndex = 22;
@@ -235,6 +239,7 @@
             this.lueFramapur.Name = "lueFramapur";
             this.lueFramapur.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueFramapur.Properties.NullText = "Select an item";
             this.lueFramapur.Size = new System.Drawing.Size(326, 24);
             this.lueFramapur.StyleController = this.layoutControl1;
             this.lueFramapur.TabIndex = 20;
@@ -254,6 +259,7 @@
             this.lueClearRecycled.Name = "lueClearRecycled";
             this.lueClearRecycled.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueClearRecycled.Properties.NullText = "Select an item";
             this.lueClearRecycled.Size = new System.Drawing.Size(326, 24);
             this.lueClearRecycled.StyleController = this.layoutControl1;
             this.lueClearRecycled.TabIndex = 18;
@@ -273,6 +279,7 @@
             this.lueCompound.Name = "lueCompound";
             this.lueCompound.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueCompound.Properties.NullText = "Select an item";
             this.lueCompound.Size = new System.Drawing.Size(326, 24);
             this.lueCompound.StyleController = this.layoutControl1;
             this.lueCompound.TabIndex = 16;
@@ -292,6 +299,7 @@
             this.lueRecycled2.Name = "lueRecycled2";
             this.lueRecycled2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueRecycled2.Properties.NullText = "Select an item";
             this.lueRecycled2.Size = new System.Drawing.Size(326, 24);
             this.lueRecycled2.StyleController = this.layoutControl1;
             this.lueRecycled2.TabIndex = 14;
@@ -315,6 +323,7 @@
             this.lueReasonMixing.Name = "lueReasonMixing";
             this.lueReasonMixing.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueReasonMixing.Properties.NullText = "Select an item";
             this.lueReasonMixing.Size = new System.Drawing.Size(663, 24);
             this.lueReasonMixing.StyleController = this.layoutControl1;
             this.lueReasonMixing.TabIndex = 12;
@@ -335,6 +344,7 @@
             this.lueRecycled1.Name = "lueRecycled1";
             this.lueRecycled1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueRecycled1.Properties.NullText = "Select an item";
             this.lueRecycled1.Size = new System.Drawing.Size(326, 24);
             this.lueRecycled1.StyleController = this.layoutControl1;
             this.lueRecycled1.TabIndex = 10;
@@ -380,6 +390,7 @@
             this.lueOrderId.Name = "lueOrderId";
             this.lueOrderId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueOrderId.Properties.DropDownRows = 15;
             this.lueOrderId.Properties.NullText = "Select Order Id";
             this.lueOrderId.Size = new System.Drawing.Size(1289, 24);
             this.lueOrderId.StyleController = this.layoutControl1;
@@ -464,7 +475,7 @@
             // 
             // layoutControlItem21
             // 
-            this.layoutControlItem21.Control = this.textEdit7;
+            this.layoutControlItem21.Control = this.tedColorName;
             this.layoutControlItem21.Location = new System.Drawing.Point(0, 56);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Size = new System.Drawing.Size(1448, 28);
@@ -715,7 +726,7 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.textEdit9.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit8.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit7.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tedColorName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedLeftover.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueLeftover.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tedWeightFramapur.Properties)).EndInit();
@@ -767,6 +778,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -821,12 +833,13 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
-        private DevExpress.XtraEditors.TextEdit textEdit7;
+        private DevExpress.XtraEditors.TextEdit tedColorName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
         private DevExpress.XtraEditors.TextEdit textEdit9;
         private DevExpress.XtraEditors.TextEdit textEdit8;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
     }
 }
