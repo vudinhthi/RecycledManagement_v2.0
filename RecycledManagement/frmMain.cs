@@ -22,16 +22,19 @@ namespace RecycledManagement
         XtraUserControl lossTypesUserControl;
         XtraUserControl otherSourcesUserControl;
         XtraUserControl bookingOrderUserControl;
+        XtraUserControl mixingUserControl;
         XtraUserControl shiftListUserControl;
         XtraUserControl reasonListUserControl;
         XtraUserControl operatorListUserControl;
         XtraUserControl lossTypesListUserControl;
         XtraUserControl otherSourcesListUserControl;
         XtraUserControl bookingOrderListUserControl;
+        XtraUserControl mixingListUserControl;
 
         public frmMain()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            accordionControl.SelectedElement = mixingControlElement1;
         }
         XtraUserControl CreateUserControl(string text)
         {
@@ -90,6 +93,12 @@ namespace RecycledManagement
                     tabbedView.AddDocument(bookingOrderListUserControl);
                     tabbedView.ActivateDocument(bookingOrderListUserControl);
                     break;
+                case "Mixing":
+                    mixingListUserControl = new userControlMixing_List();
+                    mixingListUserControl.Text = "Mixing";
+                    tabbedView.AddDocument(mixingListUserControl);
+                    tabbedView.ActivateDocument(mixingListUserControl);
+                    break;
             }            
         }
         void barButtonNavigation_ItemClick(object sender, ItemClickEventArgs e)
@@ -99,24 +108,31 @@ namespace RecycledManagement
         }
         void tabbedView_DocumentClosed(object sender, DocumentEventArgs e)
         {
-            RecreateUserControls(e);
             SetAccordionSelectedElement(e);
         }
         void SetAccordionSelectedElement(DocumentEventArgs e)
         {
             if (tabbedView.Documents.Count != 0)
             {
+                accordionControl.SelectedElement = mixingControlElement1;
             }
             else
             {
                 accordionControl.SelectedElement = null;
             }
         }
-        void RecreateUserControls(DocumentEventArgs e)
+        private void barButtonAddNew_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //if (e.Document.Caption == "Employees") employeesUserControl = CreateUserControl("Employees");
-            //else customersUserControl = CreateUserControl("Customers");
-           
-        }             
+            if (accordionControl.SelectedElement == null) return;            
+            switch (accordionControl.SelectedElement.Text)
+            {
+                case "Mixing":
+                    mixingUserControl = new userControlMixing();
+                    mixingUserControl.Text = "Add new Mixing";
+                    tabbedView.AddDocument(mixingUserControl);
+                    tabbedView.ActivateDocument(mixingUserControl);
+                    break;
+            }
+        }
     }
 }

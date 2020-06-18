@@ -282,7 +282,6 @@
             // pictureEdit1
             // 
             this.pictureEdit1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureEdit1.EditValue = global::RecycledManagement.Properties.Resources.framas_Wallpaper_02;
             this.pictureEdit1.Location = new System.Drawing.Point(-1, -1);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
@@ -338,7 +337,6 @@
             this.Controls.Add(this.layoutControl1);
             this.Font = new System.Drawing.Font("Arial Unicode MS", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.IconOptions.Image = global::RecycledManagement.Properties.Resources.framas_mini__black_;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";

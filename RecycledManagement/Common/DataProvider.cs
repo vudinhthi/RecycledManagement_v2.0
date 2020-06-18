@@ -13,7 +13,7 @@ namespace RecycledManagement.Common
     public class DataProvider
     {
         //connection string kết nối DB server
-        public string connectionStr = "";//$"Data Source={RecycledManagement.Properties.Settings.Default.serverName};Database={RecycledManagement.Properties.Settings.Default.dbName}" +
+        public string connectionStr = "Data Source=server210;Initial Catalog=colormixtest;Persist Security Info=false;User ID=cltest;Password=CLtest1";//$"Data Source={RecycledManagement.Properties.Settings.Default.serverName};Database={RecycledManagement.Properties.Settings.Default.dbName}" +
             //$";UID={RecycledManagement.Properties.Settings.Default.userName};Password={RecycledManagement.Properties.Settings.Default.password}; Min Pool Size=0;Max Pool Size=1000;Pooling=true; Connect Timeout=65535;";        
 
         #region tạo Degin Parttern Singleton

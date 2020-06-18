@@ -209,7 +209,6 @@
             this.ClientSize = new System.Drawing.Size(473, 266);
             this.Controls.Add(this.layoutControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.IconOptions.Image = global::RecycledManagement.Properties.Resources.framas_mini__black_;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
