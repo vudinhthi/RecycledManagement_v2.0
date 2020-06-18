@@ -67,7 +67,10 @@ namespace RecycledManagement.Common
             #endregion
 
             //chuyển đổi passwrod sang mã MD5
-            string _pass = Encryptor.MD5Hash(password);
+            //string _pass = Encryptor.MD5Hash(password);//1 cach ma hoa MD5 ko có pass
+            string _pass = EncodeMD5.EncryptString(password, "ITFramasBDVN");//mã hóa MD5 có pass
+
+            //string giaiMa = EncodeMD5.DecryptString("Lf13NE5F4Iw=", "ITFramasBDVN");//giả mã
 
             //gọi methos truy vấn Db từ lớp chung DataProvider
             //trả về DataTable

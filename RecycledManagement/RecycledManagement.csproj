@@ -64,7 +64,14 @@
     <Compile Include="Common\DataProvider.cs" />
     <Compile Include="Common\DbAccount.cs" />
     <Compile Include="Common\DbHistoryLogin.cs" />
+    <Compile Include="Common\DbLossType.cs" />
+    <Compile Include="Common\DbOperator.cs" />
+    <Compile Include="Common\DbReasons.cs" />
+    <Compile Include="Common\DbUserAction.cs" />
     <Compile Include="Common\DbOperatorRole.cs" />
+    <Compile Include="Common\DbOtherSource.cs" />
+    <Compile Include="Common\DbShift.cs" />
+    <Compile Include="Common\EncodeMD5.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\GlobalVariable.cs" />
     <Compile Include="frmConfigFirstInstall.cs">
@@ -93,7 +100,13 @@
     </Compile>
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\HistoryLoginModel.cs" />
+    <Compile Include="Models\LossTypeModel.cs" />
+    <Compile Include="Models\OperatorModel.cs" />
     <Compile Include="Models\OperatroRoleModel.cs" />
+    <Compile Include="Models\OtherSourceModel.cs" />
+    <Compile Include="Models\Reasons.cs" />
+    <Compile Include="Models\ShiftModel.cs" />
+    <Compile Include="Models\UserActionModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="userControlBookingOrder.cs">
@@ -364,8 +377,8 @@
     <Content Include="obj\Debug\recycledmanagement.exe.licenses" />
     <Content Include="obj\Debug\RecycledManagement.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
-    <Content Include="Resources\framas mini %28black%29.png" />
-    <Content Include="Resources\framas_Wallpaper_021.png" />
+    <None Include="Resources\framas mini %28black%29.png" />
+    <None Include="Resources\framas_Wallpaper_02.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

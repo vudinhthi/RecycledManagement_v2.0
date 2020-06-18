@@ -70,10 +70,12 @@
             // 
             // txtPasswrod
             // 
+            this.txtPasswrod.EditValue = "11111";
             this.txtPasswrod.Location = new System.Drawing.Point(12, 84);
             this.txtPasswrod.Name = "txtPasswrod";
             this.txtPasswrod.Properties.Appearance.Font = new System.Drawing.Font("Arial Unicode MS", 10F, System.Drawing.FontStyle.Bold);
             this.txtPasswrod.Properties.Appearance.Options.UseFont = true;
+            this.txtPasswrod.Properties.PasswordChar = '*';
             this.txtPasswrod.Size = new System.Drawing.Size(343, 24);
             this.txtPasswrod.StyleController = this.layoutControl1;
             this.txtPasswrod.TabIndex = 2;
@@ -162,11 +164,12 @@
             this.btnLogin.Size = new System.Drawing.Size(343, 36);
             this.btnLogin.StyleController = this.layoutControl1;
             this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "SUBMIT";
+            this.btnLogin.Text = "LOGIN";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtUserName
             // 
+            this.txtUserName.EditValue = "operator";
             this.txtUserName.Location = new System.Drawing.Point(12, 34);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Arial Unicode MS", 10F, System.Drawing.FontStyle.Bold);
