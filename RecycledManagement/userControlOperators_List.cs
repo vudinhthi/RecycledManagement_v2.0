@@ -24,7 +24,7 @@ namespace RecycledManagement
         private void userControlOperators_List_Load(object sender, EventArgs e)
         {
             // Display a New Item Row to add rows to the View.
-            grvOperator.OptionsBehavior.EditingMode = GridEditingMode.EditForm;
+            grvOperator.OptionsBehavior.EditingMode = GridEditingMode.EditFormInplace;
             //grvOperator.OptionsEditForm.CustomEditFormLayout = new userControlShifts();
 
             grvOperator.OptionsView.NewItemRowPosition = NewItemRowPosition.Top; // Available modes: Top, Bottom, None

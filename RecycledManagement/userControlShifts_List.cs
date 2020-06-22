@@ -28,7 +28,7 @@ namespace RecycledManagement
             try
             {
                 // Display a New Item Row to add rows to the View.
-                gridViewShift.OptionsBehavior.EditingMode = GridEditingMode.EditForm;
+                gridViewShift.OptionsBehavior.EditingMode = GridEditingMode.EditFormInplace;
                 //gridViewShift.OptionsEditForm.CustomEditFormLayout = new userControlShifts();
 
                 gridViewShift.OptionsView.NewItemRowPosition = NewItemRowPosition.Top; // Available modes: Top, Bottom, None

@@ -24,7 +24,7 @@ namespace RecycledManagement
         private void userControlOtherSources_List_Load(object sender, EventArgs e)
         {
             // Display a New Item Row to add rows to the View.
-            grvOtherSource.OptionsBehavior.EditingMode = GridEditingMode.EditForm;
+            grvOtherSource.OptionsBehavior.EditingMode = GridEditingMode.EditFormInplace;
             //grvOtherSource.OptionsEditForm.CustomEditFormLayout = new userControlShifts();
 
             grvOtherSource.OptionsView.NewItemRowPosition = NewItemRowPosition.Top; // Available modes: Top, Bottom, None
@@ -48,6 +48,7 @@ namespace RecycledManagement
                         {
                             //log action vao tblLoginAction
                             DbUserAction.Instance.InsertData(GlobalVariable.userId, GlobalVariable.loginDate, $"Update OtherSource Name {o.BindableControls["SourceName"].Text}");
+                           
                         }
                         else
                         {
@@ -81,7 +82,6 @@ namespace RecycledManagement
                 }
             };
             #endregion
-
             //fill dada into dataGridView from dataTable
             grcOtherSource.DataSource = DbOtherSource.Instance.SelectAll();
 

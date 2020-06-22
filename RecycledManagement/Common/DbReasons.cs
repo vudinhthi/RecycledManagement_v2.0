@@ -32,6 +32,12 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("exec sp_getReasons");
         }
 
+        //get all tblReason where reasontype
+        public DataTable GetReasonType(int reasonType)
+        {
+            return DataProvider.Instance.ExecuteQuery("exec sp_getReasonType @ReasonType", new object[] { reasonType });
+        }
+
         //Insert data
         public int InsertData(string reasonName, string reasonType, bool isActive, string createBy)
         {

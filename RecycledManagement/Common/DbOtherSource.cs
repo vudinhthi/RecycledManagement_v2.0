@@ -44,5 +44,10 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteNonQuery("exec sp_updateOtherSource @SourceId , @SourceName , @IsActived , @CreatedBy",
                 new object[] { sourceId, sourceName, isActive, createBy });
         }
+
+        public DataTable GetAllIncoming()
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_getOtherSourcesIncoming");
+        }
     }
 }

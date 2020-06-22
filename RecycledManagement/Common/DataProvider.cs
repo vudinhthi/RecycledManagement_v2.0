@@ -46,7 +46,7 @@ namespace RecycledManagement.Common
         {
             DataTable res = new DataTable();
             
-            try
+            //try
             {
                 using (SqlConnection connection = new SqlConnection(connectionStr))
                 {
@@ -79,7 +79,7 @@ namespace RecycledManagement.Common
                     connection.Dispose();
                 }
             }
-            catch { }
+            //catch { }
 
             return res;
         }
@@ -95,7 +95,7 @@ namespace RecycledManagement.Common
         {
             int res = 0;
 
-            try
+            //try
             {
                 using (SqlConnection connection = new SqlConnection(connectionStr))
                 {
@@ -123,7 +123,7 @@ namespace RecycledManagement.Common
                     connection.Dispose();
                 }
             }
-            catch { }
+            //catch { }
 
             return res;
         }

@@ -63,8 +63,11 @@
   <ItemGroup>
     <Compile Include="Common\DataProvider.cs" />
     <Compile Include="Common\DbAccount.cs" />
+    <Compile Include="Common\DbBookingOrder.cs" />
     <Compile Include="Common\DbHistoryLogin.cs" />
+    <Compile Include="Common\DbIncomingCrush.cs" />
     <Compile Include="Common\DbLossType.cs" />
+    <Compile Include="Common\DbMixCode.cs" />
     <Compile Include="Common\DbOperator.cs" />
     <Compile Include="Common\DbReasons.cs" />
     <Compile Include="Common\DbUserAction.cs" />
@@ -97,6 +100,18 @@
     </Compile>
     <Compile Include="frmProcessing.designer.cs">
       <DependentUpon>frmProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IncomingListUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IncomingListUserControl.Designer.cs">
+      <DependentUpon>IncomingListUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IncomingUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IncomingUserControl.Designer.cs">
+      <DependentUpon>IncomingUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\HistoryLoginModel.cs" />
@@ -204,6 +219,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProcessing.resx">
       <DependentUpon>frmProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncomingListUserControl.resx">
+      <DependentUpon>IncomingListUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncomingUserControl.resx">
+      <DependentUpon>IncomingUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\RecycledManagement.frmMain.resources" />
     <EmbeddedResource Include="obj\Debug\RecycledManagement.Properties.Resources.resources" />

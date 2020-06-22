@@ -24,7 +24,7 @@ namespace RecycledManagement
         private void userControlLossTypes_List_Load(object sender, EventArgs e)
         {
             // Display a New Item Row to add rows to the View.
-            grvLossType.OptionsBehavior.EditingMode = GridEditingMode.EditForm;
+            grvLossType.OptionsBehavior.EditingMode = GridEditingMode.EditFormInplace;
             //grvLossType.OptionsEditForm.CustomEditFormLayout = new userControlShifts();
 
             grvLossType.OptionsView.NewItemRowPosition = NewItemRowPosition.Top; // Available modes: Top, Bottom, None

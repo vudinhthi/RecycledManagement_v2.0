@@ -12,6 +12,7 @@ using RecycledManagement.Common;
 using DevExpress.XtraSplashScreen;
 using System.Threading;
 using RecycledManagement.Common;
+using System.Globalization;
 
 namespace RecycledManagement
 {

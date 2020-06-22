@@ -32,6 +32,12 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("exec sp_getLossTypes");
         }
 
+        //get LossTypeName
+        public DataTable GetLossTypeName(int lossTypeFrom)
+        {
+            return DataProvider.Instance.ExecuteQuery("exec sp_getLossTypeFrom @LossTypeForm", new object[] { lossTypeFrom });
+        }
+
         //Insert data
         public int InsertData(string lossTypeName, string lossTypeForm, bool isActive, string createBy)
         {

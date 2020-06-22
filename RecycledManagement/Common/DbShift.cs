@@ -35,6 +35,12 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("exec sp_getShifts");
         }
 
+        //incoming
+        public DataTable GetShiftComming()
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_getShiftsIncoming");
+        }
+
         public int InsertData(string shiftName, bool isActive, string createBy)
         {
             return DataProvider.Instance.ExecuteNonQuery("exec sp_insertShift @shiftName , @isActived , @createBy", new object[] { shiftName, isActive, createBy }); ;

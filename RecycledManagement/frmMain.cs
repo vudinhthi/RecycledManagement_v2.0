@@ -24,12 +24,15 @@ namespace RecycledManagement
         XtraUserControl lossTypesUserControl;
         XtraUserControl otherSourcesUserControl;
         XtraUserControl bookingOrderUserControl;
+        XtraUserControl incomingUserControl;
+
         XtraUserControl shiftListUserControl;
         XtraUserControl reasonListUserControl;
         XtraUserControl operatorListUserControl;
         XtraUserControl lossTypesListUserControl;
         XtraUserControl otherSourcesListUserControl;
         XtraUserControl bookingOrderListUserControl;
+        XtraUserControl incomingListUserControl;
 
         public frmMain()
         {
@@ -97,6 +100,13 @@ namespace RecycledManagement
                     bookingOrderListUserControl.Text = "Booking Material";
                     tabbedView.AddDocument(bookingOrderListUserControl);
                     tabbedView.ActivateDocument(bookingOrderListUserControl);
+                    break;
+                case "Incoming":
+                    barBtnAddNew.Enabled = true;
+                    incomingListUserControl = new IncomingListUserControl();
+                    incomingListUserControl.Text = "Incoming";
+                    tabbedView.AddDocument(incomingListUserControl);
+                    tabbedView.ActivateDocument(incomingListUserControl);
                     break;
             }            
         }

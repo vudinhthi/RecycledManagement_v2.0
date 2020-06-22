@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Configuration;
 using System.IO;
 using System.Reflection;
+using System.Globalization;
 
 namespace RecycledManagement
 {
