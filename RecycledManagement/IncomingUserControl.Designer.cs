@@ -29,14 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule8 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule5 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule6 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule7 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.lookUpShift = new DevExpress.XtraEditors.LookUpEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtNetWeight = new DevExpress.XtraEditors.TextEdit();
@@ -61,6 +57,7 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lookUpShift.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -99,9 +96,10 @@
             this.lookUpShift.Size = new System.Drawing.Size(868, 24);
             this.lookUpShift.StyleController = this.layoutControl1;
             this.lookUpShift.TabIndex = 1;
-            conditionValidationRule8.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule8.ErrorText = "This value is not blank";
-            this.dxValidationProvider1.SetValidationRule(this.lookUpShift, conditionValidationRule8);
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "This value is not blank";
+            this.dxValidationProvider1.SetValidationRule(this.lookUpShift, conditionValidationRule4);
+            this.lookUpShift.EditValueChanged += new System.EventHandler(this.txtWeight_TextChanged);
             // 
             // layoutControl1
             // 
@@ -126,14 +124,14 @@
             // 
             this.SetBoundPropertyName(this.txtNetWeight, "");
             this.txtNetWeight.EditValue = "0";
-            this.txtNetWeight.Location = new System.Drawing.Point(653, 268);
+            this.txtNetWeight.Location = new System.Drawing.Point(667, 268);
             this.txtNetWeight.Name = "txtNetWeight";
             this.txtNetWeight.Properties.Appearance.Options.UseTextOptions = true;
             this.txtNetWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtNetWeight.Properties.Mask.EditMask = "n2";
             this.txtNetWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtNetWeight.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtNetWeight.Size = new System.Drawing.Size(368, 24);
+            this.txtNetWeight.Size = new System.Drawing.Size(354, 24);
             this.txtNetWeight.StyleController = this.layoutControl1;
             this.txtNetWeight.TabIndex = 8;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -149,7 +147,7 @@
             this.txtWeight.Properties.Appearance.Options.UseTextOptions = true;
             this.txtWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtWeight.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtWeight.Size = new System.Drawing.Size(367, 24);
+            this.txtWeight.Size = new System.Drawing.Size(381, 24);
             this.txtWeight.StyleController = this.layoutControl1;
             this.txtWeight.TabIndex = 7;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
@@ -161,33 +159,27 @@
             // 
             this.SetBoundPropertyName(this.lookUpReason, "");
             this.lookUpReason.Enabled = false;
-            this.lookUpReason.Location = new System.Drawing.Point(715, 195);
+            this.lookUpReason.Location = new System.Drawing.Point(678, 195);
             this.lookUpReason.Name = "lookUpReason";
             this.lookUpReason.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpReason.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpReason.Size = new System.Drawing.Size(306, 24);
+            this.lookUpReason.Size = new System.Drawing.Size(343, 24);
             this.lookUpReason.StyleController = this.layoutControl1;
             this.lookUpReason.TabIndex = 6;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "This value is not blank";
-            this.dxValidationProvider1.SetValidationRule(this.lookUpReason, conditionValidationRule3);
             // 
             // lookUpOtherSource
             // 
             this.SetBoundPropertyName(this.lookUpOtherSource, "");
             this.lookUpOtherSource.Enabled = false;
-            this.lookUpOtherSource.Location = new System.Drawing.Point(715, 167);
+            this.lookUpOtherSource.Location = new System.Drawing.Point(678, 167);
             this.lookUpOtherSource.Name = "lookUpOtherSource";
             this.lookUpOtherSource.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpOtherSource.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpOtherSource.Size = new System.Drawing.Size(306, 24);
+            this.lookUpOtherSource.Size = new System.Drawing.Size(343, 24);
             this.lookUpOtherSource.StyleController = this.layoutControl1;
             this.lookUpOtherSource.TabIndex = 5;
-            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule4.ErrorText = "This value is not blank";
-            this.dxValidationProvider1.SetValidationRule(this.lookUpOtherSource, conditionValidationRule4);
             // 
             // lookUpMaterial
             // 
@@ -198,12 +190,9 @@
             this.lookUpMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpMaterial.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpMaterial.Size = new System.Drawing.Size(405, 24);
+            this.lookUpMaterial.Size = new System.Drawing.Size(368, 24);
             this.lookUpMaterial.StyleController = this.layoutControl1;
             this.lookUpMaterial.TabIndex = 4;
-            conditionValidationRule5.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule5.ErrorText = "This value is not blank";
-            this.dxValidationProvider1.SetValidationRule(this.lookUpMaterial, conditionValidationRule5);
             // 
             // lookUpMixCode
             // 
@@ -214,12 +203,9 @@
             this.lookUpMixCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpMixCode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpMixCode.Size = new System.Drawing.Size(405, 24);
+            this.lookUpMixCode.Size = new System.Drawing.Size(368, 24);
             this.lookUpMixCode.StyleController = this.layoutControl1;
             this.lookUpMixCode.TabIndex = 3;
-            conditionValidationRule6.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule6.ErrorText = "This value is not blank";
-            this.dxValidationProvider1.SetValidationRule(this.lookUpMixCode, conditionValidationRule6);
             // 
             // radLossType
             // 
@@ -229,9 +215,9 @@
             this.radLossType.Size = new System.Drawing.Size(868, 45);
             this.radLossType.StyleController = this.layoutControl1;
             this.radLossType.TabIndex = 2;
-            conditionValidationRule7.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule7.ErrorText = "This value is not blank";
-            this.dxValidationProvider1.SetValidationRule(this.radLossType, conditionValidationRule7);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "This value is not blank";
+            this.dxValidationProvider1.SetValidationRule(this.radLossType, conditionValidationRule3);
             this.radLossType.SelectedIndexChanged += new System.EventHandler(this.radLossType_SelectedIndexChanged);
             // 
             // Root
@@ -291,7 +277,7 @@
             this.layoutControlItem4});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 122);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(562, 101);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(525, 101);
             this.layoutControlGroup2.Text = "From Booking Order";
             // 
             // layoutControlItem3
@@ -299,7 +285,7 @@
             this.layoutControlItem3.Control = this.lookUpMixCode;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(538, 28);
+            this.layoutControlItem3.Size = new System.Drawing.Size(501, 28);
             this.layoutControlItem3.Text = "MixCode";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(126, 18);
             // 
@@ -308,7 +294,7 @@
             this.layoutControlItem4.Control = this.lookUpMaterial;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 28);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(538, 28);
+            this.layoutControlItem4.Size = new System.Drawing.Size(501, 28);
             this.layoutControlItem4.Text = "Material Code";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(126, 18);
             // 
@@ -327,16 +313,16 @@
             this.layoutControlItem7.Control = this.txtWeight;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(500, 28);
+            this.layoutControlItem7.Size = new System.Drawing.Size(514, 28);
             this.layoutControlItem7.Text = "Weight Recycled (Kg)";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(126, 18);
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.txtNetWeight;
-            this.layoutControlItem8.Location = new System.Drawing.Point(500, 0);
+            this.layoutControlItem8.Location = new System.Drawing.Point(514, 0);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(501, 28);
+            this.layoutControlItem8.Size = new System.Drawing.Size(487, 28);
             this.layoutControlItem8.Text = "Net Weight (-2.1966)";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(126, 18);
             // 
@@ -345,9 +331,9 @@
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem5,
             this.layoutControlItem6});
-            this.layoutControlGroup3.Location = new System.Drawing.Point(562, 122);
+            this.layoutControlGroup3.Location = new System.Drawing.Point(525, 122);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(463, 101);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(500, 101);
             this.layoutControlGroup3.Text = "Other Source And Reason";
             // 
             // layoutControlItem5
@@ -355,7 +341,7 @@
             this.layoutControlItem5.Control = this.lookUpOtherSource;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(439, 28);
+            this.layoutControlItem5.Size = new System.Drawing.Size(476, 28);
             this.layoutControlItem5.Text = "Other Source";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(126, 18);
             // 
@@ -364,13 +350,17 @@
             this.layoutControlItem6.Control = this.lookUpReason;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 28);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(439, 28);
+            this.layoutControlItem6.Size = new System.Drawing.Size(476, 28);
             this.layoutControlItem6.Text = "Reason";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(126, 18);
             // 
             // dxValidationProvider1
             // 
             this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Auto;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // IncomingUserControl
             // 
@@ -435,5 +425,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

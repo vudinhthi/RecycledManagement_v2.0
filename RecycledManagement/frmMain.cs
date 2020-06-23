@@ -33,6 +33,7 @@ namespace RecycledManagement
         XtraUserControl otherSourcesListUserControl;
         XtraUserControl bookingOrderListUserControl;
         XtraUserControl incomingListUserControl;
+        XtraUserControl crushListUserControl;
 
         public frmMain()
         {
@@ -108,6 +109,13 @@ namespace RecycledManagement
                     tabbedView.AddDocument(incomingListUserControl);
                     tabbedView.ActivateDocument(incomingListUserControl);
                     break;
+                case "Crushing":
+                    barBtnAddNew.Enabled = true;
+                    crushListUserControl = new CrushListUserControl();
+                    crushListUserControl.Text = "Crushing";
+                    tabbedView.AddDocument(crushListUserControl);
+                    tabbedView.ActivateDocument(crushListUserControl);
+                    break;
             }            
         }
         void barButtonNavigation_ItemClick(object sender, ItemClickEventArgs e)
@@ -182,6 +190,11 @@ namespace RecycledManagement
         private void frmMain_Load(object sender, EventArgs e)
         {
             barBtnAddNew.Enabled = false;
+        }
+
+        private void barbtnScale_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            GlobalVariable.scale = 100;
         }
     }
 }

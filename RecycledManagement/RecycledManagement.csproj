@@ -64,6 +64,7 @@
     <Compile Include="Common\DataProvider.cs" />
     <Compile Include="Common\DbAccount.cs" />
     <Compile Include="Common\DbBookingOrder.cs" />
+    <Compile Include="Common\DbCrushing.cs" />
     <Compile Include="Common\DbHistoryLogin.cs" />
     <Compile Include="Common\DbIncomingCrush.cs" />
     <Compile Include="Common\DbLossType.cs" />
@@ -77,6 +78,18 @@
     <Compile Include="Common\EncodeMD5.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\GlobalVariable.cs" />
+    <Compile Include="CrushListUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrushListUserControl.Designer.cs">
+      <DependentUpon>CrushListUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrushUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrushUserControl.Designer.cs">
+      <DependentUpon>CrushUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConfigFirstInstall.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +221,12 @@
     <Compile Include="userControlShifts.Designer.cs">
       <DependentUpon>userControlShifts.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CrushListUserControl.resx">
+      <DependentUpon>CrushListUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrushUserControl.resx">
+      <DependentUpon>CrushUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmConfigFirstInstall.resx">
       <DependentUpon>frmConfigFirstInstall.cs</DependentUpon>
     </EmbeddedResource>

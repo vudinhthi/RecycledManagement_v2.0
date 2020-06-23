@@ -54,22 +54,51 @@ namespace RecycledManagement
                         Debug.WriteLine("insert data");
                         int incomingId = DbIncomingCrush.Instance.GetMaxIncomingId() + 1;//get gia tri Incoming lon nhat
 
+                        #region get cac data để insert vào DB
+                        #region lấy thông tin từ EditForm trả về
                         string weightIncoming = o.BindableControls["WeightIncoming"].Text;
-
-                        string materialName = o.BindableControls["MaterialCode"].Text;//lookupEdit  trả về text
+                        //string materialName = o.BindableControls["MaterialCode"].Text;//lookupEdit  trả về text
                         string lossTypeId = o.BindableControls["LossTypeId"].Text;//radioControl trả về Value
+                        #endregion
 
-                        DataTable idCacBang = DbIncomingCrush.Instance.GetIdCacBang(o.BindableControls["MixId"].Text, o.BindableControls["ShiftId"].Text,
+                        string mixId = null, shiftId = null, sourceId = null, reasonId = null, materialCode = null, materialName = null;
+                        #region lấy ID của các dữ liệu
+                        DataTable dataIdCacBang = DbIncomingCrush.Instance.GetIdCacBang(o.BindableControls["MixId"].Text, o.BindableControls["ShiftId"].Text,
                             o.BindableControls["SourceId"].Text, o.BindableControls["ReasonId"].Text, o.BindableControls["MaterialCode"].Text);
 
-                        Debug.WriteLine($"ID cac bang: {idCacBang.Rows[0][0].ToString()}|{idCacBang.Rows[0][1].ToString()}|{idCacBang.Rows[0][2].ToString()}|{idCacBang.Rows[0][3].ToString()}|{idCacBang.Rows[0][4].ToString()}");
+                        if (dataIdCacBang!=null && dataIdCacBang.Rows.Count>0)
+                        {
+                            //LossType chon Runner/Defect/Contaminated
+                            if (dataIdCacBang.Columns.Count==2)
+                            {
+                                mixId = dataIdCacBang.Rows[0][0].ToString();
+                                shiftId = dataIdCacBang.Rows[0][1].ToString();
+                            }
+                            //LossType chọn Leftover
+                            else if (dataIdCacBang.Columns.Count == 3)
+                            {
+                                mixId = dataIdCacBang.Rows[0][0].ToString();
+                                shiftId = dataIdCacBang.Rows[0][1].ToString();
+                                reasonId = dataIdCacBang.Rows[0][2].ToString();
+                            }
+                            //LossType chọn OtherSource
+                            else if (dataIdCacBang.Columns.Count == 4)
+                            {
+                                shiftId = dataIdCacBang.Rows[0][0].ToString();
+                                sourceId = dataIdCacBang.Rows[0][1].ToString();
+                                materialCode = dataIdCacBang.Rows[0][2].ToString();
+                                materialName = dataIdCacBang.Rows[0][3].ToString();
+                            }
+                        }
+
+
+                        Debug.WriteLine($"ID cac bang: ShiftId={shiftId}|MixId:{mixId}|SourceId:{sourceId}|ReasonId:{reasonId}|MaterialCode:{materialCode}");
+                        #endregion
+                        #endregion
 
                         //goi method Insert tblIncomingCrush
-                        //Debug.WriteLine(DbIncomingCrush.Instance.InsertData(idCacBang.Rows[0][0].ToString(), idCacBang.Rows[0][1].ToString(), lossTypeId, idCacBang.Rows[0][2].ToString(), idCacBang.Rows[0][3].ToString(), idCacBang.Rows[0][4].ToString(),
-                        //    materialName, grvIncoming.GetRowCellValue(grvIncoming.FocusedRowHandle, "WeightIncoming").ToString(), GlobalVariable.userId.ToString(), $"LE-ORCODE-{DateTime.Now.ToString("yyyyMMdd")}{incomingId}"));
-                        
-                    DbIncomingCrush.Instance.InsertData(idCacBang.Rows[0][0].ToString(), idCacBang.Rows[0][1].ToString(),lossTypeId, idCacBang.Rows[0][2].ToString(), idCacBang.Rows[0][3].ToString()
-                        , idCacBang.Rows[0][4].ToString(),materialName, weightIncoming, GlobalVariable.userId.ToString(), $"LE-ORCODE-{DateTime.Now.ToString("yyyyMMdd")}{incomingId}");
+                        DbIncomingCrush.Instance.InsertData(mixId, shiftId, lossTypeId, sourceId, reasonId, materialCode, materialName, weightIncoming,
+                            GlobalVariable.userId.ToString(), $"LE-ORCODE-{DateTime.Now.ToString("yyyyMMdd")}{incomingId}");
                     }
 
                     grcIncoming.RefreshDataSource();

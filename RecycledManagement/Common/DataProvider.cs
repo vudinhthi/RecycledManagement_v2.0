@@ -64,7 +64,14 @@ namespace RecycledManagement.Common
                         {
                             if (item.Contains("@"))
                             {
-                                command.Parameters.AddWithValue(item, parametter[i]);
+                                if (parametter[i] != null)
+                                {
+                                    command.Parameters.AddWithValue(item, parametter[i]);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue(item, DBNull.Value);
+                                }
                                 i++;
                             }
 
@@ -111,7 +118,14 @@ namespace RecycledManagement.Common
                         {
                             if (item.Contains("@"))
                             {
-                                command.Parameters.AddWithValue(item, parametter[i]);
+                                if (parametter[i]!=null)
+                                {
+                                    command.Parameters.AddWithValue(item, parametter[i]);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue(item, DBNull.Value);
+                                }
                                 i++;
                             }
                         }
@@ -151,7 +165,14 @@ namespace RecycledManagement.Common
                         {
                             if (item.Contains("@"))
                             {
-                                command.Parameters.AddWithValue(item, parametter[i]);
+                                if (parametter[i] != null)
+                                {
+                                    command.Parameters.AddWithValue(item, parametter[i]);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue(item, DBNull.Value);
+                                }
                                 i++;
                             }
                         }

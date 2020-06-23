@@ -63,15 +63,20 @@ namespace RecycledManagement.Common
         //get max IncomingId
         public int GetMaxIncomingId()
         {
-            var result = DataProvider.Instance.ExecuteQuery("sp_IncomingCrushGetMaxIncomingId").Rows[0][0];
-            return (int)result;
+            int result = 0;
+            DataTable data = DataProvider.Instance.ExecuteQuery("sp_IncomingCrushGetMaxIncomingId");
+            if (data.Rows[0][0]!=DBNull.Value)//xet truong hop bang tra ve null, bang trong
+            {
+                result = (int)data.Rows[0][0];
+            }
+            return result;
         }
 
         //get ve MaterialCode từ điều kiện materialName
-        public DataTable GetIdCacBang(string mixCode, string shiftName, string sourceName, string reasonName, string materialId)
+        public DataTable GetIdCacBang(string mixCode, string shiftName, string sourceName, string reasonName, string materialName)
         {
             return DataProvider.Instance.ExecuteQuery("sp_IncomingCrushGetIdCacBang @MixName , @ShiftName , @SourceName , @ReasonName , @MaterialName"
-                , new object[] { mixCode, shiftName, sourceName, reasonName, materialId });
+                , new object[] { mixCode, shiftName, sourceName, reasonName, materialName });
         }
     }
 }

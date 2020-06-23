@@ -17,15 +17,9 @@ namespace RecycledManagement
 {
     public partial class IncomingUserControl : EditFormUserControl
     {
-        public int radioValue
-        { set => this.radLossType.EditValue = value; }
-
         public IncomingUserControl()
         {
             InitializeComponent();
-
-            //this.SetBoundFieldName(this.radLossType, "LossTypeId");
-            //this.SetBoundPropertyName(this.radLossType, "EditValue");
 
             this.SetBoundFieldName(this.lookUpMixCode, "MixId");
             this.SetBoundPropertyName(this.lookUpMixCode, "EditValue");
@@ -114,6 +108,8 @@ namespace RecycledManagement
             lookUpMaterial.Properties.ValueMember = "materialcode";
             lookUpMaterial.Properties.DisplayMember = "materialname";
             #endregion
+
+            timer1.Enabled = true;
         }
 
 
@@ -168,5 +164,27 @@ namespace RecycledManagement
             //    txtNetWeight.Text = "0";
             //}
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            if (txtWeight.ContainsFocus)
+            {
+                txtWeight.Text = GlobalVariable.scale.ToString();
+            }
+
+            //if (txttest.ContainsFocus)
+            //{
+            //    txttest.Text = GlobalVariable.scale.ToString();
+            //}
+            //Debug.WriteLine($"CheckFocus txtTest: {txttest.ContainsFocus}");//get focus cua control
+            
+            timer1.Enabled = true;
+        }
+
+        //private void lookUpShift_EditValueChanged(object sender, EventArgs e)
+        //{
+        //    //Debug.WriteLine($"Lookup Shift Selct: {lookUpShift.EditValue.ToString()}");//get value cua lookupEdit
+        //}
     }
 }

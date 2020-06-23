@@ -46,7 +46,7 @@
             this.barBtnSave = new DevExpress.XtraBars.BarButtonItem();
             this.barBtnCancel = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            this.barbtnScale = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
@@ -122,7 +122,7 @@
             this.barBtnSave,
             this.barBtnCancel,
             this.barButtonItem13,
-            this.barButtonItem11,
+            this.barbtnScale,
             this.barSubItem1,
             this.barButtonItem9,
             this.barButtonItem10,
@@ -260,13 +260,14 @@
             this.barButtonItem13.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem13.ImageOptions.LargeImage")));
             this.barButtonItem13.Name = "barButtonItem13";
             // 
-            // barButtonItem11
+            // barbtnScale
             // 
-            this.barButtonItem11.Caption = "Scale";
-            this.barButtonItem11.Id = 61;
-            this.barButtonItem11.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem11.ImageOptions.Image")));
-            this.barButtonItem11.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem11.ImageOptions.LargeImage")));
-            this.barButtonItem11.Name = "barButtonItem11";
+            this.barbtnScale.Caption = "Scale";
+            this.barbtnScale.Id = 61;
+            this.barbtnScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem11.ImageOptions.Image")));
+            this.barbtnScale.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem11.ImageOptions.LargeImage")));
+            this.barbtnScale.Name = "barbtnScale";
+            this.barbtnScale.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnScale_ItemClick);
             // 
             // barSubItem1
             // 
@@ -379,7 +380,7 @@
             // 
             // ribbonPageGroup5
             // 
-            this.ribbonPageGroup5.ItemLinks.Add(this.barButtonItem11);
+            this.ribbonPageGroup5.ItemLinks.Add(this.barbtnScale);
             this.ribbonPageGroup5.ItemLinks.Add(this.barSubItem2);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "Actions";
@@ -690,7 +691,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem13;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private DevExpress.XtraBars.BarButtonItem barbtnScale;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarSubItem barSubItem1;

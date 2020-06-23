@@ -11,5 +11,7 @@ namespace RecycledManagement.Common
         public static int role = 0;
         public static int userId;
         public static DateTime loginDate;
+
+        public static int scale = 0;
     }
 }
