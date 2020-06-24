@@ -65,7 +65,7 @@ namespace RecycledManagement
                             mixId = null;
                         }
 
-                        //goi method Update tblIncomingCrush
+                        //goi method Update tblCrushed
                         Debug.WriteLine($"Update Crushing: {DbCrushing.Instance.Update(crushId, shiftId, operatorId, mixId, machine, materialCode, materialName, weightCrush, GlobalVariable.userId.ToString(), crushedCode, crushType)}");
                     }
                     else//new
@@ -114,6 +114,7 @@ namespace RecycledManagement
                         }
                         #endregion
 
+                        //insert data vao tblCrushed
                         Debug.WriteLine($"Insrt Crushing: {DbCrushing.Instance.Insert(shiftId,operatorid,mixId,machine,materialCode,materialName,weightCrush,GlobalVariable.userId.ToString(),crushedCode,crushType)}");
 
                         grcCrush.RefreshDataSource();

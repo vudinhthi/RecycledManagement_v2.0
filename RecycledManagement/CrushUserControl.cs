@@ -161,9 +161,5 @@ namespace RecycledManagement
         }
         #endregion
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            simpleButton1.Text = lookUpMixCode.Text;
-        }
     }
 }
