@@ -35,6 +35,9 @@ namespace RecycledManagement
 
             this.SetBoundFieldName(this.radType, "CrushedType");
             this.SetBoundPropertyName(this.radType, "EditValue");
+
+            this.SetBoundFieldName(this.txtCrushMachine, "Machine");
+            this.SetBoundFieldName(this.txtNetWeight, "WeightCrushed");
         }
 
         #region PageLoad
@@ -50,6 +53,7 @@ namespace RecycledManagement
             lookUpMaterial.Enabled = false;
             labMaterialCode.Enabled = false;
 
+
             #region add item for radio
             RadioGroupItem radioItem;
             radioItem = new RadioGroupItem(0, "Recycle Material");
@@ -59,7 +63,7 @@ namespace RecycledManagement
             //radioItem = new RadioGroupItem(index, "Other Source");
             //radLossType.Properties.Items.Add(radioItem);
 
-            radType.SelectedIndex = 0;//chọn mặc định hiển thị radio ban đầu
+            //radType.SelectedIndex = 0;//chọn mặc định hiển thị radio ban đầu
             radType.BorderStyle = BorderStyles.Style3D;
             //radType.BackColor = Color.Green;
             #endregion
@@ -100,10 +104,12 @@ namespace RecycledManagement
                 //var rowIndex = lookUpMixCode.GetColumnValue("OrderId");
                 //var s = lookUpMixCode.Properties.GetDataSourceValue("OrderId", 3);
                 //Debug.WriteLine($"Mix: {s}");
-
-                DataTable _data = DbBookingOrder.Instance.GetOrderCrush(lookUpMixCode.GetColumnValue("OrderId").ToString());
-                labItemName.Text = _data.Rows[0][0].ToString();
-                labColorName.Text = _data.Rows[0][1].ToString();
+                if (!string.IsNullOrEmpty(lookUpMixCode.Text) &&lookUpMixCode.Text!= "[EditValue is null]")
+                {
+                    DataTable _data = DbBookingOrder.Instance.GetOrderCrush(lookUpMixCode.GetColumnValue("OrderId").ToString());
+                    labItemName.Text = _data.Rows[0][0].ToString();
+                    labColorName.Text = _data.Rows[0][1].ToString();
+                }                
                 labMaterialCode.Text = "-----";
             }
             catch
@@ -116,7 +122,10 @@ namespace RecycledManagement
         {
             try
             {
-                labMaterialCode.Text = lookUpMaterial.GetColumnValue("materialcode").ToString();
+                if (!string.IsNullOrEmpty(lookUpMaterial.Text) && lookUpMaterial.Text != "[EditValue is null]")
+                {
+                    labMaterialCode.Text = lookUpMaterial.GetColumnValue("materialcode").ToString();
+                }
                 labItemName.Text = "-----";
                 labColorName.Text = "-----";
             }
@@ -151,5 +160,10 @@ namespace RecycledManagement
             }
         }
         #endregion
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            simpleButton1.Text = lookUpMixCode.Text;
+        }
     }
 }
