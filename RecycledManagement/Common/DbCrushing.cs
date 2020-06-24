@@ -34,5 +34,10 @@ namespace RecycledManagement.Common
         {
             return DataProvider.Instance.ExecuteQuery("sp_CrushingGetLienBang");
         }
+
+        public DataTable GetOperators()
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_CrushingGetOperator");
+        }
     }
 }

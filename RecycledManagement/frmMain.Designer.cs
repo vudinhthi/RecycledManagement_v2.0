@@ -264,8 +264,8 @@
             // 
             this.barbtnScale.Caption = "Scale";
             this.barbtnScale.Id = 61;
-            this.barbtnScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem11.ImageOptions.Image")));
-            this.barbtnScale.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem11.ImageOptions.LargeImage")));
+            this.barbtnScale.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barbtnScale.ImageOptions.Image")));
+            this.barbtnScale.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnScale.ImageOptions.LargeImage")));
             this.barbtnScale.Name = "barbtnScale";
             this.barbtnScale.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnScale_ItemClick);
             // 
@@ -493,6 +493,8 @@
             this.lossTypeControlElement1,
             this.operatorsControlElement1});
             this.categoriesControlElement1.Expanded = true;
+            this.categoriesControlElement1.ImageOptions.ImageLayoutMode = DevExpress.XtraBars.Navigation.ImageLayoutMode.Squeeze;
+            this.categoriesControlElement1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("categoriesControlElement1.ImageOptions.SvgImage")));
             this.categoriesControlElement1.Name = "categoriesControlElement1";
             this.categoriesControlElement1.Text = "Categories";
             // 
@@ -535,6 +537,8 @@
             this.incomingControlElement1,
             this.crushingControlElement1});
             this.stationsControlElement1.Expanded = true;
+            this.stationsControlElement1.ImageOptions.ImageLayoutMode = DevExpress.XtraBars.Navigation.ImageLayoutMode.Squeeze;
+            this.stationsControlElement1.ImageOptions.ImageUri.Uri = "business%20objects/bo_order";
             this.stationsControlElement1.Name = "stationsControlElement1";
             this.stationsControlElement1.Text = "Stations";
             // 
@@ -569,6 +573,8 @@
             this.accordionControlElement3,
             this.accordionControlElement4});
             this.accordionControlElement1.Expanded = true;
+            this.accordionControlElement1.ImageOptions.ImageLayoutMode = DevExpress.XtraBars.Navigation.ImageLayoutMode.Squeeze;
+            this.accordionControlElement1.ImageOptions.ImageUri.Uri = "scheduling/viewsettings";
             this.accordionControlElement1.Name = "accordionControlElement1";
             this.accordionControlElement1.Text = "Settings";
             // 

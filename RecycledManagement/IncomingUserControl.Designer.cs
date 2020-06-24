@@ -146,6 +146,8 @@
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Properties.Appearance.Options.UseTextOptions = true;
             this.txtWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtWeight.Properties.Mask.EditMask = "n2";
+            this.txtWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWeight.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtWeight.Size = new System.Drawing.Size(381, 24);
             this.txtWeight.StyleController = this.layoutControl1;

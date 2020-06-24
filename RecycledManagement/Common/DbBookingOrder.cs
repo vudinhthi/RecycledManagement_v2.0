@@ -59,9 +59,15 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("sp_getFullOrders");
         }
 
+        
         public DataTable GetAllInsoming()
         {
             return DataProvider.Instance.ExecuteQuery("sp_getOrdersIncoming");
+        }
+
+         public DataTable GetOrderCrush(string orderId)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_getOrderCrush @OrderId", new object[] { orderId });
         }
     }
 }

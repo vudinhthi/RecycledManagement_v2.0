@@ -82,6 +82,7 @@ namespace RecycledManagement
                     grvCrush.Columns["OperatorId"].Visible = false;
                     grvCrush.Columns["MixId"].Visible = false;
                     grvCrush.Columns["CreatedBy"].Visible = false;
+                    grvCrush.Columns["CrushedType"].Visible = false;
                 }
             };
             #endregion
@@ -94,6 +95,7 @@ namespace RecycledManagement
             grvCrush.Columns["OperatorId"].Visible = false;
             grvCrush.Columns["MixId"].Visible = false;
             grvCrush.Columns["CreatedBy"].Visible = false;
+            grvCrush.Columns["CrushedType"].Visible = false;
 
 
         }
