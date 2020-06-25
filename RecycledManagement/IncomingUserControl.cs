@@ -109,7 +109,14 @@ namespace RecycledManagement
             lookUpMaterial.Properties.DisplayMember = "materialname";
             #endregion
 
-            timer1.Enabled = true;
+            //Đăng ký sự kiện scaleValueChanged
+            GlobalVariable.myEvent.ScaleValueChanged += (s, o) => {
+                Debug.WriteLine($"Incoming Event write: {o.ScaleValue}");
+                if (txtWeight.ContainsFocus)
+                {
+                    txtWeight.Text = o.ScaleValue.ToString();
+                }
+            };
         }
 
 
@@ -165,26 +172,28 @@ namespace RecycledManagement
             //}
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            timer1.Enabled = false;
-            if (txtWeight.ContainsFocus)
-            {
-                txtWeight.Text = GlobalVariable.scale.ToString();
-            }
+        #region test
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    timer1.Enabled = false;
+        //    if (txtWeight.ContainsFocus)
+        //    {
+        //        txtWeight.Text = GlobalVariable.scale.ToString();
+        //    }
 
-            //if (txttest.ContainsFocus)
-            //{
-            //    txttest.Text = GlobalVariable.scale.ToString();
-            //}
-            //Debug.WriteLine($"CheckFocus txtTest: {txttest.ContainsFocus}");//get focus cua control
-            
-            timer1.Enabled = true;
-        }
+        //    //if (txttest.ContainsFocus)
+        //    //{
+        //    //    txttest.Text = GlobalVariable.scale.ToString();
+        //    //}
+        //    //Debug.WriteLine($"CheckFocus txtTest: {txttest.ContainsFocus}");//get focus cua control
+
+        //    timer1.Enabled = true;
+        //}
 
         //private void lookUpShift_EditValueChanged(object sender, EventArgs e)
         //{
         //    //Debug.WriteLine($"Lookup Shift Selct: {lookUpShift.EditValue.ToString()}");//get value cua lookupEdit
         //}
+        #endregion
     }
 }

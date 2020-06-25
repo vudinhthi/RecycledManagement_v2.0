@@ -360,10 +360,6 @@
             // 
             this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Auto;
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // IncomingUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);

@@ -12,6 +12,6 @@ namespace RecycledManagement.Common
         public static int userId;
         public static DateTime loginDate;
 
-        public static int scale = 0;
+        public static GlobalEvent myEvent = new GlobalEvent();
     }
 }

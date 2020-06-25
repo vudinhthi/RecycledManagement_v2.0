@@ -18,6 +18,8 @@ namespace RecycledManagement
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        int value = 10;
+
         XtraUserControl shiftUserControl;
         XtraUserControl reasonUserControl;
         XtraUserControl operatorUserControl;
@@ -167,10 +169,10 @@ namespace RecycledManagement
             switch (tabbedView.ActiveDocument.Caption)
             {
                 case "Shifts":
-                    shiftUserControl = new userControlShifts();
-                    shiftUserControl.Text = "Add New Shifts";
-                    tabbedView.AddDocument(shiftUserControl);
-                    tabbedView.ActivateDocument(shiftUserControl);
+                    //shiftUserControl = new userControlShifts();
+                    //shiftUserControl.Text = "Add New Shifts";
+                    //tabbedView.AddDocument(shiftUserControl);
+                    //tabbedView.ActivateDocument(shiftUserControl);
                     break;
                 case "Other Sources":
                     break;
@@ -194,7 +196,9 @@ namespace RecycledManagement
 
         private void barbtnScale_ItemClick(object sender, ItemClickEventArgs e)
         {
-            GlobalVariable.scale = 100;
+            value = value + 1;
+            GlobalVariable.myEvent.ScaleValue = value;
+            Debug.WriteLine($"Main write ScaleValue={GlobalVariable.myEvent.ScaleValue}");
         }
     }
 }

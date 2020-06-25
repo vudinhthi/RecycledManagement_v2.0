@@ -92,6 +92,15 @@ namespace RecycledManagement
             lookUpMaterial.Properties.ValueMember = "materialcode";
             lookUpMaterial.Properties.DisplayMember = "materialname";
             #endregion
+
+            //đang ký sự kiện scaleValueChanged
+            GlobalVariable.myEvent.ScaleValueChanged += (s, o) => {
+                Debug.WriteLine($"Crushing event write: {o.ScaleValue}");
+                if (txtWeight.ContainsFocus)
+                {
+                    txtWeight.Text = o.ScaleValue.ToString();
+                }
+            };
         }
         #endregion
 
@@ -161,9 +170,15 @@ namespace RecycledManagement
         }
         #endregion
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+
+        private void txtWeight_TextChanged(object sender, EventArgs e)
         {
-            simpleButton1.Text = lookUpMixCode.Text;
+            if (txtWeight.Text.Trim() != "0")
+            {
+                float item = 0;
+                float.TryParse(txtWeight.Text.Trim(), out item);
+                txtNetWeight.Text = (item - 1.14).ToString("0.00");
+            }
         }
     }
 }
