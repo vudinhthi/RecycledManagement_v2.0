@@ -18,6 +18,9 @@ namespace RecycledManagement
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        GlobalEvent myEvent = new GlobalEvent();
+
+        #region khai bao cac form
         XtraUserControl shiftUserControl;
         XtraUserControl reasonUserControl;
         XtraUserControl operatorUserControl;
@@ -34,11 +37,14 @@ namespace RecycledManagement
         XtraUserControl bookingOrderListUserControl;
         XtraUserControl incomingListUserControl;
         XtraUserControl crushListUserControl;
+        #endregion
 
         public frmMain()
         {
             InitializeComponent();            
         }
+
+        #region cac su kien
         XtraUserControl CreateUserControl(string text)
         {
             XtraUserControl result = new XtraUserControl();
@@ -187,14 +193,18 @@ namespace RecycledManagement
             }
         }
 
+        #endregion
+
         private void frmMain_Load(object sender, EventArgs e)
         {
+            //myEvent.ScaleValueChanged += (s, o) => { Debug.WriteLine($"Main Event ghi ScaleValue= {o.ScaleValue}"); };
             barBtnAddNew.Enabled = false;
         }
 
         private void barbtnScale_ItemClick(object sender, ItemClickEventArgs e)
         {
-            GlobalVariable.scale = 100;
+            myEvent.ScaleValue = 100;
+            Debug.WriteLine($"Main ghi ScaleValue= {myEvent.ScaleValue}");
         }
     }
 }

@@ -17,6 +17,7 @@ namespace RecycledManagement
 {
     public partial class IncomingUserControl : EditFormUserControl
     {
+        GlobalEvent myEvent = new GlobalEvent();
         public IncomingUserControl()
         {
             InitializeComponent();
@@ -109,8 +110,14 @@ namespace RecycledManagement
             lookUpMaterial.Properties.DisplayMember = "materialname";
             #endregion
 
-            timer1.Enabled = true;
+
+            myEvent.ScaleValueChanged += (s, o) =>
+            {
+                Debug.WriteLine($"Incoming Event Write: {o.ScaleValue}");
+            };
         }
+
+        
 
 
         #region Event
@@ -158,33 +165,38 @@ namespace RecycledManagement
                 float item = 0;
                 float.TryParse(txtWeight.Text.Trim(), out item);
                 txtNetWeight.Text = (item - 2.1966).ToString("0.00");
+
+                myEvent.ScaleValue = (int)item;
             }
             //else
             //{
             //    txtNetWeight.Text = "0";
             //}
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            timer1.Enabled = false;
-            if (txtWeight.ContainsFocus)
-            {
-                txtWeight.Text = GlobalVariable.scale.ToString();
-            }
-
-            //if (txttest.ContainsFocus)
-            //{
-            //    txttest.Text = GlobalVariable.scale.ToString();
-            //}
-            //Debug.WriteLine($"CheckFocus txtTest: {txttest.ContainsFocus}");//get focus cua control
             
-            timer1.Enabled = true;
         }
+
+        #region Test
+        //private void timer1_Tick(object sender, EventArgs e)
+        //{
+        //    timer1.Enabled = false;
+        //    if (txtWeight.ContainsFocus)
+        //    {
+        //        txtWeight.Text = GlobalVariable.Scale.ToString();
+        //    }
+
+        //    //if (txttest.ContainsFocus)
+        //    //{
+        //    //    txttest.Text = GlobalVariable.scale.ToString();
+        //    //}
+        //    //Debug.WriteLine($"CheckFocus txtTest: {txttest.ContainsFocus}");//get focus cua control
+
+        //    timer1.Enabled = true;
+        //}
 
         //private void lookUpShift_EditValueChanged(object sender, EventArgs e)
         //{
         //    //Debug.WriteLine($"Lookup Shift Selct: {lookUpShift.EditValue.ToString()}");//get value cua lookupEdit
         //}
+        #endregion
     }
 }

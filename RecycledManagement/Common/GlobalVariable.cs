@@ -12,6 +12,12 @@ namespace RecycledManagement.Common
         public static int userId;
         public static DateTime loginDate;
 
-        public static int scale = 0;
+        private static int scale;
+
+        public static int Scale
+        {
+            get => scale;
+            set { scale = value; }
+        }
     }
 }
