@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecycledManagement.Common
 {
-    class GlobalEvent
+    public class GlobalEvent
     {
         private int scaleValue;
 
@@ -49,7 +49,7 @@ namespace RecycledManagement.Common
 
     //private void event_ScaleValueChanged(object sender, NameChangedEventArgs e)Ơ }
     //tao lass chua cac du lieu tra ve owr doi so EventArgs
-    class ScaleValueChangedEventArgs : EventArgs
+    public class ScaleValueChangedEventArgs : EventArgs
     {
         private int scaleValue;
 

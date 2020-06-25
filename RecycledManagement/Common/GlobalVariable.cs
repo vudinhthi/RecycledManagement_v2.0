@@ -19,5 +19,7 @@ namespace RecycledManagement.Common
             get => scale;
             set { scale = value; }
         }
+
+        public static GlobalEvent myEvent = new GlobalEvent();
     }
 }

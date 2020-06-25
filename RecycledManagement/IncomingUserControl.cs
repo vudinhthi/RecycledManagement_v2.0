@@ -17,7 +17,6 @@ namespace RecycledManagement
 {
     public partial class IncomingUserControl : EditFormUserControl
     {
-        GlobalEvent myEvent = new GlobalEvent();
         public IncomingUserControl()
         {
             InitializeComponent();
@@ -73,7 +72,7 @@ namespace RecycledManagement
                 //radLossType.EditValue = data.Rows[0][0];//gắn cho chọn ở item nào
                 radLossType.BorderStyle = BorderStyles.Style3D;
 
-                
+
 
                 //var a=   radLossType.Properties.Items.GetItemByValue(3);//lấy ra text theo value
             }
@@ -111,14 +110,20 @@ namespace RecycledManagement
             #endregion
 
 
-            myEvent.ScaleValueChanged += (s, o) =>
+            //myEvent.ScaleValueChanged += (s, o) =>
+            //{
+            //    Debug.WriteLine($"Incoming Event Write: {o.ScaleValue}");
+            //};
+
+            GlobalVariable.myEvent.ScaleValueChanged += (s, o) =>
             {
-                Debug.WriteLine($"Incoming Event Write: {o.ScaleValue}");
+                Debug.WriteLine($"Incoming Event write: {o.ScaleValue}");
+                if (txtWeight.ContainsFocus)
+                {
+                    txtWeight.Text = o.ScaleValue.ToString();
+                }
             };
         }
-
-        
-
 
         #region Event
         //sự kiện radioGroup Select
@@ -138,7 +143,7 @@ namespace RecycledManagement
                     lookUpReason.Enabled = true;
                 }
             }
-            else if(edit.SelectedIndex==4)//Other Source
+            else if (edit.SelectedIndex == 4)//Other Source
             {
                 lookUpMixCode.Enabled = false;
                 lookUpMaterial.Enabled = true;
@@ -160,19 +165,17 @@ namespace RecycledManagement
         //su kien txtWeight khi co sự thay đổi cân thì nó sẽ vào tru voi so lượng rồi fill vào txtNetWeight
         private void txtWeight_TextChanged(object sender, EventArgs e)
         {
-            if (txtWeight.Text.Trim()!="0")
+            if (txtWeight.Text.Trim() != "0")
             {
                 float item = 0;
                 float.TryParse(txtWeight.Text.Trim(), out item);
                 txtNetWeight.Text = (item - 2.1966).ToString("0.00");
-
-                myEvent.ScaleValue = (int)item;
             }
             //else
             //{
             //    txtNetWeight.Text = "0";
             //}
-            
+
         }
 
         #region Test
