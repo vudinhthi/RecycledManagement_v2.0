@@ -47,7 +47,6 @@
             this.barBtnCancel = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnScale = new DevExpress.XtraBars.BarButtonItem();
-            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
@@ -91,6 +90,7 @@
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.barBtnPrintLables = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
             this.dockPanel.SuspendLayout();
@@ -123,7 +123,6 @@
             this.barBtnCancel,
             this.barButtonItem13,
             this.barbtnScale,
-            this.barSubItem1,
             this.barButtonItem9,
             this.barButtonItem10,
             this.barButtonItem12,
@@ -134,10 +133,11 @@
             this.barButtonItem18,
             this.barSubItem2,
             this.barButtonItem19,
-            this.barButtonItem20});
+            this.barButtonItem20,
+            this.barBtnPrintLables});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonControl.MaxItemId = 75;
+            this.ribbonControl.MaxItemId = 76;
             this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -269,23 +269,6 @@
             this.barbtnScale.Name = "barbtnScale";
             this.barbtnScale.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnScale_ItemClick);
             // 
-            // barSubItem1
-            // 
-            this.barSubItem1.Caption = "Print Labels";
-            this.barSubItem1.Id = 63;
-            this.barSubItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barSubItem1.ImageOptions.Image")));
-            this.barSubItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barSubItem1.ImageOptions.LargeImage")));
-            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem12),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem14),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem15),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem16),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem18),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem17)});
-            this.barSubItem1.Name = "barSubItem1";
-            // 
             // barButtonItem9
             // 
             this.barButtonItem9.Caption = "Booking";
@@ -387,7 +370,7 @@
             // 
             // ribbonPageGroup3
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.barSubItem1);
+            this.ribbonPageGroup3.ItemLinks.Add(this.barBtnPrintLables);
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem13);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Print - Export";
@@ -621,6 +604,15 @@
             this.popupMenu1.Name = "popupMenu1";
             this.popupMenu1.Ribbon = this.ribbonControl;
             // 
+            // barBtnPrintLables
+            // 
+            this.barBtnPrintLables.Caption = "Print Lables";
+            this.barBtnPrintLables.Id = 75;
+            this.barBtnPrintLables.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barBtnPrintLables.ImageOptions.Image")));
+            this.barBtnPrintLables.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barBtnPrintLables.ImageOptions.LargeImage")));
+            this.barBtnPrintLables.Name = "barBtnPrintLables";
+            this.barBtnPrintLables.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnPrintLables_ItemClick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -700,7 +692,6 @@
         private DevExpress.XtraBars.BarButtonItem barbtnScale;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
-        private DevExpress.XtraBars.BarSubItem barSubItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
         private DevExpress.XtraBars.BarButtonItem barButtonItem12;
@@ -713,5 +704,6 @@
         private DevExpress.XtraBars.BarSubItem barSubItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem19;
         private DevExpress.XtraBars.BarButtonItem barButtonItem20;
+        private DevExpress.XtraBars.BarButtonItem barBtnPrintLables;
     }
 }

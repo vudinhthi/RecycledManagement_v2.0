@@ -17,6 +17,8 @@ namespace RecycledManagement
 {
     public partial class IncomingUserControl : EditFormUserControl
     {
+        public GridView view;//dung cho EditFormInplace
+
         public IncomingUserControl()
         {
             InitializeComponent();
@@ -45,6 +47,8 @@ namespace RecycledManagement
 
         private void IncomingUserControl_Load(object sender, EventArgs e)
         {
+            timer1.Enabled = true;
+
             lookUpMixCode.Enabled = true;
             lookUpMaterial.Enabled = true;
             lookUpOtherSource.Enabled = true;
@@ -72,7 +76,7 @@ namespace RecycledManagement
                 //radLossType.EditValue = data.Rows[0][0];//gắn cho chọn ở item nào
                 radLossType.BorderStyle = BorderStyles.Style3D;
 
-                
+
 
                 //var a=   radLossType.Properties.Items.GetItemByValue(3);//lấy ra text theo value
             }
@@ -110,7 +114,8 @@ namespace RecycledManagement
             #endregion
 
             //Đăng ký sự kiện scaleValueChanged
-            GlobalVariable.myEvent.ScaleValueChanged += (s, o) => {
+            GlobalVariable.myEvent.ScaleValueChanged += (s, o) =>
+            {
                 Debug.WriteLine($"Incoming Event write: {o.ScaleValue}");
                 if (txtWeight.ContainsFocus)
                 {
@@ -138,7 +143,7 @@ namespace RecycledManagement
                     lookUpReason.Enabled = true;
                 }
             }
-            else if(edit.SelectedIndex==4)//Other Source
+            else if (edit.SelectedIndex == 4)//Other Source
             {
                 lookUpMixCode.Enabled = false;
                 lookUpMaterial.Enabled = true;
@@ -160,7 +165,7 @@ namespace RecycledManagement
         //su kien txtWeight khi co sự thay đổi cân thì nó sẽ vào tru voi so lượng rồi fill vào txtNetWeight
         private void txtWeight_TextChanged(object sender, EventArgs e)
         {
-            if (txtWeight.Text.Trim()!="0")
+            if (txtWeight.Text.Trim() != "0")
             {
                 float item = 0;
                 float.TryParse(txtWeight.Text.Trim(), out item);
@@ -195,5 +200,81 @@ namespace RecycledManagement
         //    //Debug.WriteLine($"Lookup Shift Selct: {lookUpShift.EditValue.ToString()}");//get value cua lookupEdit
         //}
         #endregion
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            #region xu ly khi add new hay xem order
+            //add new order
+            if (GlobalVariable.newOrUpdateIncoming == true && GlobalVariable.enableFlagIncoming == true)
+            {
+                lookUpShift.ReadOnly = false;
+                lookUpMaterial.ReadOnly = false;
+                lookUpReason.ReadOnly = false;
+                lookUpOtherSource.ReadOnly = false;
+                lookUpMaterial.ReadOnly = false;
+                txtWeight.ReadOnly = false;
+                txtNetWeight.ReadOnly = false;
+                radLossType.ReadOnly = false;
+
+                btnSave.Enabled = true;
+
+                GlobalVariable.enableFlagIncoming = false;
+            }
+            else if (GlobalVariable.newOrUpdateIncoming == false && GlobalVariable.enableFlagIncoming == false)
+            {
+                lookUpShift.ReadOnly = true;
+                lookUpMaterial.ReadOnly = true;
+                lookUpReason.ReadOnly = true;
+                lookUpOtherSource.ReadOnly = true;
+                lookUpMaterial.ReadOnly = true;
+                txtWeight.ReadOnly = true;
+                txtNetWeight.ReadOnly = true;
+                radLossType.ReadOnly = true;
+
+
+                btnSave.Enabled = false;
+
+                GlobalVariable.enableFlagIncoming = true;
+            }
+            #endregion
+            timer1.Enabled = true;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string mixId = null, shiftId = null, sourceId = null, reasonId = null, materialCode = null, materialName = null;
+            int incomingId = DbIncomingCrush.Instance.GetMaxIncomingId();//get gia tri Incoming lon nhat
+            string weightIncoming = txtNetWeight.Text;
+            string lossTypeId = radLossType.EditValue.ToString();
+            shiftId = lookUpShift.EditValue.ToString();
+
+            //LossType chon Runner/Defect/Contaminated
+            if (lookUpMixCode.Enabled == true && lookUpMaterial.Enabled == false && lookUpReason.Enabled == false && lookUpOtherSource.Enabled == false)
+            {
+                mixId = lookUpMixCode.EditValue.ToString();
+            }
+            //LossType chọn Leftover
+            else if (lookUpMixCode.Enabled == true && lookUpMaterial.Enabled == false && lookUpReason.Enabled == true && lookUpOtherSource.Enabled == false)
+            {
+                mixId = lookUpMixCode.EditValue.ToString();
+                reasonId = lookUpReason.EditValue.ToString();
+            }
+            //LossType chọn OtherSource
+            else if (lookUpMixCode.Enabled == false && lookUpMaterial.Enabled == true && lookUpReason.Enabled == false && lookUpOtherSource.Enabled == true)
+            {
+                sourceId = lookUpOtherSource.EditValue.ToString();
+                materialCode = lookUpMaterial.EditValue.ToString();
+                materialName = lookUpMaterial.Text;
+            }
+
+            Debug.WriteLine($"ID cac bang: ShiftId={shiftId}|MixId:{mixId}|SourceId:{sourceId}|ReasonId:{reasonId}|MaterialCode:{materialCode}");
+
+            //goi method Insert tblIncomingCrush
+            DbIncomingCrush.Instance.InsertData(mixId, shiftId, lossTypeId, sourceId, reasonId, materialCode, materialName, weightIncoming,
+                GlobalVariable.userId.ToString(), $"LE-ORCODE-{DateTime.Now.ToString("yyyyMMdd")}{incomingId}");
+
+            view.CloseEditForm();
+        }
     }
 }

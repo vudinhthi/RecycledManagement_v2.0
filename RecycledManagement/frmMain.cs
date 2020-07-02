@@ -13,6 +13,7 @@ using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
 using RecycledManagement.Common;
 using System.Diagnostics;
+using DevExpress.XtraReports.UI;
 
 namespace RecycledManagement
 {
@@ -165,6 +166,7 @@ namespace RecycledManagement
 
         private void barBtnAddNew_ItemClick(object sender, ItemClickEventArgs e)
         {
+            Debug.WriteLine($"Element : {tabbedView.ActiveDocument.Caption}");
             //get tên cua form đang được mở trên tableView
             switch (tabbedView.ActiveDocument.Caption)
             {
@@ -191,7 +193,7 @@ namespace RecycledManagement
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            barBtnAddNew.Enabled = false;
+            //barBtnAddNew.Enabled = false;
         }
 
         private void barbtnScale_ItemClick(object sender, ItemClickEventArgs e)
@@ -199,6 +201,50 @@ namespace RecycledManagement
             value = value + 1;
             GlobalVariable.myEvent.ScaleValue = value;
             Debug.WriteLine($"Main write ScaleValue={GlobalVariable.myEvent.ScaleValue}");
+        }
+
+
+        //button Print Lables Event
+        private void barBtnPrintLables_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                Debug.WriteLine($"Element : {tabbedView.ActiveDocument.Caption}");//get caption Element
+                if (tabbedView.ActiveDocument.Caption=="Incoming")
+                {
+                    DataTable ds = new DataTable();
+
+                    //ds = DbCrushing.Instance.GetLable("6");
+                    //var rptRe = new rptCrushed();
+
+                    ds = DbCrushing.Instance.GetLable(GlobalVariable.idSelect.ToString());
+                    var rptRe = new rptRunner();
+
+                    rptRe.DataSource = ds;
+                    rptRe.CreateDocument();
+                    ReportPrintTool printToolCrush = new ReportPrintTool(rptRe);
+                    printToolCrush.PrintDialog();
+                }
+                else if (tabbedView.ActiveDocument.Caption == "Crushing")
+                {
+                    DataTable ds = new DataTable();
+
+                    //ds = DbCrushing.Instance.GetLable("6");
+                    //var rptRe = new rptCrushed();
+
+                    ds = DbCrushing.Instance.GetLable(GlobalVariable.idSelect.ToString());
+                    var rptRe = new rptCrushed();
+
+                    rptRe.DataSource = ds;
+                    rptRe.CreateDocument();
+                    ReportPrintTool printToolCrush = new ReportPrintTool(rptRe);
+                    printToolCrush.PrintDialog();
+                }
+            }
+            catch { }
+
+
+            
         }
     }
 }
