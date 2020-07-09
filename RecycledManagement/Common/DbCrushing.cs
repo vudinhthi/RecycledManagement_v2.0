@@ -30,9 +30,16 @@ namespace RecycledManagement.Common
         }
         #endregion
 
+        //get toan bộ các recode trong bang tblCrushed kết hợp thêm các data liên kết
         public DataTable GetDataGridView()
         {
             return DataProvider.Instance.ExecuteQuery("sp_CrushingGetLienBang");
+        }
+
+        //get 1 dong data theo cruchedId
+        public DataTable GetLable(string crushedId)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_CrushingGetLable @CrushedId", new object[] { crushedId });
         }
 
         public DataTable GetOperators()
@@ -58,13 +65,7 @@ namespace RecycledManagement.Common
 
         public int GetMaxId()
         {
-            int result = 0;
-            DataTable data = DataProvider.Instance.ExecuteQuery("sp_CrushGetMaxCrushId");
-            if (data.Rows[0][0] != DBNull.Value)//xet truong hop bang tra ve null, bang trong
-            {
-                result = (int)data.Rows[0][0];
-            }
-            return result;
+            return DataProvider.Instance.ExecuteNonQuery_GetIdIdentity("sp_CrushGetMaxCrushId");
         }
     }
 }

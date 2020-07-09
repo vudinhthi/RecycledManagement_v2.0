@@ -188,6 +188,36 @@ namespace RecycledManagement.Common
             return res;
         }
 
+        /// <summary>
+        /// Method dung de get  ra ID identity.
+        /// </summary>
+        /// <param name="queryStoreProcedure"></param>
+        /// <returns></returns>
+        public int ExecuteNonQuery_GetIdIdentity(string queryStoreProcedure)
+        {
+            int result = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionStr))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(queryStoreProcedure, connection);
+                    command.CommandType = CommandType.StoredProcedure;
 
+                    SqlParameter returnParameter = new SqlParameter("@LastIdentity", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.ReturnValue;
+                    command.Parameters.Add(returnParameter);
+                    
+                    command.ExecuteNonQuery();
+
+                    result = (int)command.Parameters["@LastIdentity"].Value;
+                    
+                    connection.Close();
+                    connection.Dispose();
+                }
+            }
+            catch { }
+            return result;
+        }
     }
 }

@@ -38,6 +38,13 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("sp_IncomingCrushGetLienBang");
         }
 
+        //get 1 dong data theo cruchedId
+        public DataTable GetLable(string incomingId)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_IncomingGetLable @IncomingId", new object[] { incomingId });
+        }
+
+
         //Insert data
         public int InsertData(string MixId, string ShiftId, string LossTypeId, string SourceId, string reasonId, string MaterialCode, string MaterialName, string WeightIncoming, string CeratesBy, string IncomingCode)
         {
@@ -63,13 +70,7 @@ namespace RecycledManagement.Common
         //get max IncomingId
         public int GetMaxIncomingId()
         {
-            int result = 0;
-            DataTable data = DataProvider.Instance.ExecuteQuery("sp_IncomingCrushGetMaxIncomingId");
-            if (data.Rows[0][0]!=DBNull.Value)//xet truong hop bang tra ve null, bang trong
-            {
-                result = (int)data.Rows[0][0];
-            }
-            return result;
+            return DataProvider.Instance.ExecuteNonQuery_GetIdIdentity("sp_IncomingCrushGetMaxIncomingId");
         }
 
         //get ve MaterialCode từ điều kiện materialName

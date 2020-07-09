@@ -17,6 +17,8 @@ namespace RecycledManagement
 {
     public partial class CrushUserControl : EditFormUserControl
     {
+        public GridView view;//dung cho EditFormInplace
+
         public CrushUserControl()
         {
             InitializeComponent();
@@ -38,13 +40,18 @@ namespace RecycledManagement
 
             this.SetBoundFieldName(this.txtCrushMachine, "Machine");
             this.SetBoundFieldName(this.txtNetWeight, "WeightCrushed");
+
+            this.SetBoundFieldName(this.labItemName, "ItemName");
+            this.SetBoundFieldName(this.labColorName, "ColorName");
+            this.SetBoundFieldName(this.labMaterialCode, "MaterialCode");
+
+
         }
 
         #region PageLoad
         private void CrushUserControl_Load(object sender, EventArgs e)
         {
-
-
+            timer1.Enabled = true;
 
             lookUpMixCode.Enabled = false;
             labItemName.Enabled = false;
@@ -52,7 +59,6 @@ namespace RecycledManagement
 
             lookUpMaterial.Enabled = false;
             labMaterialCode.Enabled = false;
-
 
             #region add item for radio
             RadioGroupItem radioItem;
@@ -92,6 +98,35 @@ namespace RecycledManagement
             lookUpMaterial.Properties.ValueMember = "materialcode";
             lookUpMaterial.Properties.DisplayMember = "materialname";
             #endregion
+
+            //đang ký sự kiện scaleValueChanged
+            GlobalVariable.myEvent.ScaleValueChanged += (s, o) =>
+            {
+                Debug.WriteLine($"Crushing event write: {o.ScaleValue}");
+                if (txtWeight.ContainsFocus)
+                {
+                    txtWeight.Text = o.ScaleValue.ToString();
+                }
+            };
+
+            #region check role Import
+            if (GlobalVariable.importCrush == false)
+            {
+                lookUpShift.ReadOnly = true;
+                lookUpOperator.ReadOnly = true;
+                txtCrushMachine.ReadOnly = true;
+                lookUpMixCode.ReadOnly = true;
+                lookUpMaterial.ReadOnly = true;
+                txtWeight.ReadOnly = true;
+                txtNetWeight.ReadOnly = true;
+                radType.ReadOnly = true;
+
+                labItemName.Enabled = false;
+                labColorName.Enabled = false;
+                labMaterialCode.Enabled = false;
+                btnSave.Enabled = false;
+            }
+            #endregion
         }
         #endregion
 
@@ -104,13 +139,14 @@ namespace RecycledManagement
                 //var rowIndex = lookUpMixCode.GetColumnValue("OrderId");
                 //var s = lookUpMixCode.Properties.GetDataSourceValue("OrderId", 3);
                 //Debug.WriteLine($"Mix: {s}");
-                if (!string.IsNullOrEmpty(lookUpMixCode.Text) &&lookUpMixCode.Text!= "[EditValue is null]")
+                if (!string.IsNullOrEmpty(lookUpMixCode.Text) && lookUpMixCode.Text != "[EditValue is null]")
                 {
                     DataTable _data = DbBookingOrder.Instance.GetOrderCrush(lookUpMixCode.GetColumnValue("OrderId").ToString());
                     labItemName.Text = _data.Rows[0][0].ToString();
                     labColorName.Text = _data.Rows[0][1].ToString();
-                }                
-                labMaterialCode.Text = "-----";
+                    labMaterialCode.Text = "-----";
+                }
+                //labMaterialCode.Text = "-----";
             }
             catch
             {
@@ -125,9 +161,11 @@ namespace RecycledManagement
                 if (!string.IsNullOrEmpty(lookUpMaterial.Text) && lookUpMaterial.Text != "[EditValue is null]")
                 {
                     labMaterialCode.Text = lookUpMaterial.GetColumnValue("materialcode").ToString();
+                    labItemName.Text = "-----";
+                    labColorName.Text = "-----";
                 }
-                labItemName.Text = "-----";
-                labColorName.Text = "-----";
+                //labItemName.Text = "-----";
+                //labColorName.Text = "-----";
             }
             catch
             {
@@ -161,5 +199,95 @@ namespace RecycledManagement
         }
         #endregion
 
+
+        private void txtWeight_TextChanged(object sender, EventArgs e)
+        {
+            if (txtWeight.Text.Trim() != "0")
+            {
+                float item = 0;
+                float.TryParse(txtWeight.Text.Trim(), out item);
+                txtNetWeight.Text = (item - 1.14).ToString("0.00");
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string crushedCode = null;
+            string mixId = null, shiftId = null, operatorId = null, materialCode = null, materialName = null;
+
+            //chung
+            shiftId = lookUpShift.EditValue.ToString();
+            operatorId = lookUpOperator.EditValue.ToString();
+            string machine = txtCrushMachine.Text;
+            int crushId = DbCrushing.Instance.GetMaxId() + 1;//get gia tri crushId lon nhat
+
+            string weightCrush = txtNetWeight.Text;
+            string crushType = radType.EditValue.ToString();//radioControl trả về Value
+
+            //rieng            
+            if (crushType == "0")//Recycle Material
+            {
+                mixId = lookUpMixCode.EditValue.ToString();
+
+                crushedCode = $"RE-BOM-{DateTime.Now.ToString("yyyyMMdd")}{crushId}";
+            }
+            else
+            {
+                materialCode = lookUpMaterial.EditValue.ToString();
+                materialName = lookUpMaterial.Text;
+                crushedCode = $"RE-{materialCode}-{DateTime.Now.ToString("yyyyMMdd")}{crushId}";
+            }
+
+            Debug.WriteLine($"Insrt Crushing: {DbCrushing.Instance.Insert(shiftId, operatorId, mixId, machine, materialCode, materialName, weightCrush, GlobalVariable.userId.ToString(), crushedCode, crushType)}");
+            view.CloseEditForm();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            #region xu ly khi add new hay xem order
+            //add new order
+            if (GlobalVariable.newOrUpdateCrushed == true && GlobalVariable.enableFlagCrushed == true)
+            {
+                //check quyen nhap
+                if (GlobalVariable.importCrush == true)
+                {
+                    lookUpShift.ReadOnly = false;
+                    lookUpOperator.ReadOnly = false;
+                    txtCrushMachine.ReadOnly = false;
+                    lookUpMixCode.ReadOnly = false;
+                    lookUpMaterial.ReadOnly = false;
+                    txtWeight.ReadOnly = false;
+                    txtNetWeight.ReadOnly = false;
+                    radType.ReadOnly = false;
+
+                    labItemName.Enabled = true;
+                    labColorName.Enabled = true;
+                    labMaterialCode.Enabled = true;
+                    btnSave.Enabled = true;
+                }
+                GlobalVariable.enableFlagCrushed = false;
+            }
+            else if (GlobalVariable.newOrUpdateCrushed == false && GlobalVariable.enableFlagCrushed == false)
+            {
+                lookUpShift.ReadOnly = true;
+                lookUpOperator.ReadOnly = true;
+                txtCrushMachine.ReadOnly = true;
+                lookUpMixCode.ReadOnly = true;
+                lookUpMaterial.ReadOnly = true;
+                txtWeight.ReadOnly = true;
+                txtNetWeight.ReadOnly = true;
+                radType.ReadOnly = true;
+
+                labItemName.Enabled = false;
+                labColorName.Enabled = false;
+                labMaterialCode.Enabled = false;
+                btnSave.Enabled = false;
+
+                GlobalVariable.enableFlagCrushed = true;
+            }
+            #endregion
+            timer1.Enabled = true;
+        }
     }
 }

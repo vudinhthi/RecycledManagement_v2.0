@@ -47,20 +47,23 @@
             this.barBtnCancel = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnScale = new DevExpress.XtraBars.BarButtonItem();
-            this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem20 = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnPrintLables = new DevExpress.XtraBars.BarButtonItem();
+            this.barHeaderItem1 = new DevExpress.XtraBars.BarHeaderItem();
+            this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemHypertextLabel1 = new DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel();
+            this.barHeaderIStatus = new DevExpress.XtraBars.BarHeaderItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -68,37 +71,33 @@
             this.ribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.dockPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.accordionControl = new DevExpress.XtraBars.Navigation.AccordionControl();
-            this.mainAccordionGroup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.categoriesControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.shiftsControlElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.otherSourcesControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.reasonsControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.lossTypeControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.operatorsControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.stationsControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.bookingMaterialsControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.mixingControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.incomingControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.crushingControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.navBarMain = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroupSettings = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemDatabase = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemAddNewUser = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemProfile = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroupStation = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemBookOrder = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemMixing = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemIncoming = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemCrush = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroupCategories = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemShifts = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemOtherSource = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemReason = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemLossType = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemOperator = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
-            this.dockPanel.SuspendLayout();
-            this.dockPanel_Container.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarMain)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl
@@ -123,7 +122,6 @@
             this.barBtnCancel,
             this.barButtonItem13,
             this.barbtnScale,
-            this.barSubItem1,
             this.barButtonItem9,
             this.barButtonItem10,
             this.barButtonItem12,
@@ -134,18 +132,24 @@
             this.barButtonItem18,
             this.barSubItem2,
             this.barButtonItem19,
-            this.barButtonItem20});
+            this.barButtonItem20,
+            this.barBtnPrintLables,
+            this.barHeaderItem1,
+            this.barEditItem1,
+            this.barHeaderIStatus});
             this.ribbonControl.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonControl.MaxItemId = 75;
+            this.ribbonControl.MaxItemId = 79;
             this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             this.ribbonControl.Name = "ribbonControl";
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage});
+            this.ribbonControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemHypertextLabel1});
             this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
             this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(1096, 174);
+            this.ribbonControl.Size = new System.Drawing.Size(1109, 174);
             this.ribbonControl.StatusBar = this.ribbonStatusBar;
             this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -171,14 +175,12 @@
             this.employeesBarButtonItem.Caption = "Booking Materials";
             this.employeesBarButtonItem.Id = 46;
             this.employeesBarButtonItem.Name = "employeesBarButtonItem";
-            this.employeesBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
             // 
             // customersBarButtonItem
             // 
             this.customersBarButtonItem.Caption = "Mixing";
             this.customersBarButtonItem.Id = 47;
             this.customersBarButtonItem.Name = "customersBarButtonItem";
-            this.customersBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
             // 
             // barButtonItem1
             // 
@@ -234,7 +236,6 @@
             this.barBtnAddNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barBtnAddNew.ImageOptions.Image")));
             this.barBtnAddNew.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barBtnAddNew.ImageOptions.LargeImage")));
             this.barBtnAddNew.Name = "barBtnAddNew";
-            this.barBtnAddNew.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnAddNew_ItemClick);
             // 
             // barBtnSave
             // 
@@ -268,23 +269,6 @@
             this.barbtnScale.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barbtnScale.ImageOptions.LargeImage")));
             this.barbtnScale.Name = "barbtnScale";
             this.barbtnScale.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnScale_ItemClick);
-            // 
-            // barSubItem1
-            // 
-            this.barSubItem1.Caption = "Print Labels";
-            this.barSubItem1.Id = 63;
-            this.barSubItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barSubItem1.ImageOptions.Image")));
-            this.barSubItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barSubItem1.ImageOptions.LargeImage")));
-            this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem12),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem14),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem15),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem16),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem18),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem17)});
-            this.barSubItem1.Name = "barSubItem1";
             // 
             // barButtonItem9
             // 
@@ -322,17 +306,17 @@
             this.barButtonItem16.Id = 69;
             this.barButtonItem16.Name = "barButtonItem16";
             // 
-            // barButtonItem18
-            // 
-            this.barButtonItem18.Caption = "Incoming Set";
-            this.barButtonItem18.Id = 71;
-            this.barButtonItem18.Name = "barButtonItem18";
-            // 
             // barButtonItem17
             // 
             this.barButtonItem17.Caption = "Crushing";
             this.barButtonItem17.Id = 70;
             this.barButtonItem17.Name = "barButtonItem17";
+            // 
+            // barButtonItem18
+            // 
+            this.barButtonItem18.Caption = "Incoming Set";
+            this.barButtonItem18.Id = 71;
+            this.barButtonItem18.Name = "barButtonItem18";
             // 
             // barSubItem2
             // 
@@ -361,22 +345,45 @@
             this.barButtonItem20.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem20.ImageOptions.LargeImage")));
             this.barButtonItem20.Name = "barButtonItem20";
             // 
+            // barBtnPrintLables
+            // 
+            this.barBtnPrintLables.Caption = "Print Lables";
+            this.barBtnPrintLables.Id = 75;
+            this.barBtnPrintLables.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barBtnPrintLables.ImageOptions.Image")));
+            this.barBtnPrintLables.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barBtnPrintLables.ImageOptions.LargeImage")));
+            this.barBtnPrintLables.Name = "barBtnPrintLables";
+            this.barBtnPrintLables.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnPrintLables_ItemClick);
+            // 
+            // barHeaderItem1
+            // 
+            this.barHeaderItem1.Caption = "barHeaderItem1";
+            this.barHeaderItem1.Id = 76;
+            this.barHeaderItem1.Name = "barHeaderItem1";
+            // 
+            // barEditItem1
+            // 
+            this.barEditItem1.Caption = "barEditItem1";
+            this.barEditItem1.Edit = this.repositoryItemHypertextLabel1;
+            this.barEditItem1.Id = 77;
+            this.barEditItem1.Name = "barEditItem1";
+            // 
+            // repositoryItemHypertextLabel1
+            // 
+            this.repositoryItemHypertextLabel1.Name = "repositoryItemHypertextLabel1";
+            // 
+            // barHeaderIStatus
+            // 
+            this.barHeaderIStatus.Caption = "Status";
+            this.barHeaderIStatus.Id = 78;
+            this.barHeaderIStatus.Name = "barHeaderIStatus";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup2,
             this.ribbonPageGroup5,
             this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Home";
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.barBtnAddNew);
-            this.ribbonPageGroup2.ItemLinks.Add(this.barBtnSave);
-            this.ribbonPageGroup2.ItemLinks.Add(this.barBtnCancel);
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "Records";
             // 
             // ribbonPageGroup5
             // 
@@ -387,7 +394,7 @@
             // 
             // ribbonPageGroup3
             // 
-            this.ribbonPageGroup3.ItemLinks.Add(this.barSubItem1);
+            this.ribbonPageGroup3.ItemLinks.Add(this.barBtnPrintLables);
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem13);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Print - Export";
@@ -417,17 +424,16 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 803);
+            this.ribbonStatusBar.ItemLinks.Add(this.barHeaderIStatus);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 686);
             this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1096, 26);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1109, 26);
             // 
             // dockManager
             // 
             this.dockManager.Form = this;
-            this.dockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
-            this.dockPanel});
             this.dockManager.TopZIndexControls.AddRange(new string[] {
             "DevExpress.XtraBars.BarDockControl",
             "DevExpress.XtraBars.StandaloneBarDockControl",
@@ -439,170 +445,9 @@
             "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
             "DevExpress.XtraBars.Navigation.TileNavPane"});
             // 
-            // dockPanel
-            // 
-            this.dockPanel.Controls.Add(this.dockPanel_Container);
-            this.dockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
-            this.dockPanel.ID = new System.Guid("a045df26-1503-4d9a-99c1-a531310af22b");
-            this.dockPanel.Location = new System.Drawing.Point(0, 174);
-            this.dockPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.dockPanel.Name = "dockPanel";
-            this.dockPanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.dockPanel.Size = new System.Drawing.Size(200, 629);
-            this.dockPanel.Text = "Navigation";
-            // 
-            // dockPanel_Container
-            // 
-            this.dockPanel_Container.Controls.Add(this.accordionControl);
-            this.dockPanel_Container.Location = new System.Drawing.Point(3, 26);
-            this.dockPanel_Container.Margin = new System.Windows.Forms.Padding(4);
-            this.dockPanel_Container.Name = "dockPanel_Container";
-            this.dockPanel_Container.Size = new System.Drawing.Size(193, 600);
-            this.dockPanel_Container.TabIndex = 0;
-            // 
-            // accordionControl
-            // 
-            this.accordionControl.AllowItemSelection = true;
-            this.accordionControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.accordionControl.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.mainAccordionGroup,
-            this.categoriesControlElement1,
-            this.stationsControlElement1,
-            this.accordionControlElement1});
-            this.accordionControl.Location = new System.Drawing.Point(0, 0);
-            this.accordionControl.Margin = new System.Windows.Forms.Padding(4);
-            this.accordionControl.Name = "accordionControl";
-            this.accordionControl.Size = new System.Drawing.Size(193, 600);
-            this.accordionControl.TabIndex = 0;
-            this.accordionControl.Text = "accordionControl";
-            this.accordionControl.SelectedElementChanged += new DevExpress.XtraBars.Navigation.SelectedElementChangedEventHandler(this.accordionControl_SelectedElementChanged);
-            // 
-            // mainAccordionGroup
-            // 
-            this.mainAccordionGroup.Expanded = true;
-            this.mainAccordionGroup.HeaderVisible = false;
-            this.mainAccordionGroup.Name = "mainAccordionGroup";
-            this.mainAccordionGroup.Text = "mainGroup";
-            // 
-            // categoriesControlElement1
-            // 
-            this.categoriesControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.shiftsControlElement,
-            this.otherSourcesControlElement1,
-            this.reasonsControlElement1,
-            this.lossTypeControlElement1,
-            this.operatorsControlElement1});
-            this.categoriesControlElement1.Expanded = true;
-            this.categoriesControlElement1.ImageOptions.ImageLayoutMode = DevExpress.XtraBars.Navigation.ImageLayoutMode.Squeeze;
-            this.categoriesControlElement1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("categoriesControlElement1.ImageOptions.SvgImage")));
-            this.categoriesControlElement1.Name = "categoriesControlElement1";
-            this.categoriesControlElement1.Text = "Categories";
-            // 
-            // shiftsControlElement
-            // 
-            this.shiftsControlElement.Name = "shiftsControlElement";
-            this.shiftsControlElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.shiftsControlElement.Text = "Shifts";
-            this.shiftsControlElement.Click += new System.EventHandler(this.shiftsControlElement_Click);
-            // 
-            // otherSourcesControlElement1
-            // 
-            this.otherSourcesControlElement1.Name = "otherSourcesControlElement1";
-            this.otherSourcesControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.otherSourcesControlElement1.Text = "Other Sources";
-            // 
-            // reasonsControlElement1
-            // 
-            this.reasonsControlElement1.Name = "reasonsControlElement1";
-            this.reasonsControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.reasonsControlElement1.Text = "Reasons";
-            // 
-            // lossTypeControlElement1
-            // 
-            this.lossTypeControlElement1.Name = "lossTypeControlElement1";
-            this.lossTypeControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.lossTypeControlElement1.Text = "Loss Type";
-            // 
-            // operatorsControlElement1
-            // 
-            this.operatorsControlElement1.Name = "operatorsControlElement1";
-            this.operatorsControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.operatorsControlElement1.Text = "Operators";
-            // 
-            // stationsControlElement1
-            // 
-            this.stationsControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.bookingMaterialsControlElement1,
-            this.mixingControlElement1,
-            this.incomingControlElement1,
-            this.crushingControlElement1});
-            this.stationsControlElement1.Expanded = true;
-            this.stationsControlElement1.ImageOptions.ImageLayoutMode = DevExpress.XtraBars.Navigation.ImageLayoutMode.Squeeze;
-            this.stationsControlElement1.ImageOptions.ImageUri.Uri = "business%20objects/bo_order";
-            this.stationsControlElement1.Name = "stationsControlElement1";
-            this.stationsControlElement1.Text = "Stations";
-            // 
-            // bookingMaterialsControlElement1
-            // 
-            this.bookingMaterialsControlElement1.Name = "bookingMaterialsControlElement1";
-            this.bookingMaterialsControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.bookingMaterialsControlElement1.Text = "Booking Materials";
-            // 
-            // mixingControlElement1
-            // 
-            this.mixingControlElement1.Name = "mixingControlElement1";
-            this.mixingControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.mixingControlElement1.Text = "Mixing";
-            // 
-            // incomingControlElement1
-            // 
-            this.incomingControlElement1.Name = "incomingControlElement1";
-            this.incomingControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.incomingControlElement1.Text = "Incoming";
-            // 
-            // crushingControlElement1
-            // 
-            this.crushingControlElement1.Name = "crushingControlElement1";
-            this.crushingControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.crushingControlElement1.Text = "Crushing";
-            // 
-            // accordionControlElement1
-            // 
-            this.accordionControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionControlElement2,
-            this.accordionControlElement3,
-            this.accordionControlElement4});
-            this.accordionControlElement1.Expanded = true;
-            this.accordionControlElement1.ImageOptions.ImageLayoutMode = DevExpress.XtraBars.Navigation.ImageLayoutMode.Squeeze;
-            this.accordionControlElement1.ImageOptions.ImageUri.Uri = "scheduling/viewsettings";
-            this.accordionControlElement1.Name = "accordionControlElement1";
-            this.accordionControlElement1.Text = "Settings";
-            // 
-            // accordionControlElement2
-            // 
-            this.accordionControlElement2.Name = "accordionControlElement2";
-            this.accordionControlElement2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement2.Text = "Database";
-            // 
-            // accordionControlElement3
-            // 
-            this.accordionControlElement3.Name = "accordionControlElement3";
-            this.accordionControlElement3.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement3.Text = "User Role";
-            // 
-            // accordionControlElement4
-            // 
-            this.accordionControlElement4.Name = "accordionControlElement4";
-            this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement4.Text = "User List";
-            // 
-            // tabbedView
-            // 
-            this.tabbedView.DocumentClosed += new DevExpress.XtraBars.Docking2010.Views.DocumentEventHandler(this.tabbedView_DocumentClosed);
-            // 
             // documentManager
             // 
-            this.documentManager.ContainerControl = this;
+            this.documentManager.MdiParent = this;
             this.documentManager.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
             this.documentManager.View = this.tabbedView;
             this.documentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
@@ -621,31 +466,193 @@
             this.popupMenu1.Name = "popupMenu1";
             this.popupMenu1.Ribbon = this.ribbonControl;
             // 
+            // navBarMain
+            // 
+            this.navBarMain.ActiveGroup = this.navBarGroupSettings;
+            this.navBarMain.Dock = System.Windows.Forms.DockStyle.Left;
+            this.navBarMain.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
+            this.navBarGroupStation,
+            this.navBarGroupCategories,
+            this.navBarGroupSettings});
+            this.navBarMain.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
+            this.navBarItemShifts,
+            this.navBarItemOtherSource,
+            this.navBarItemReason,
+            this.navBarItemLossType,
+            this.navBarItemOperator,
+            this.navBarItemBookOrder,
+            this.navBarItemMixing,
+            this.navBarItemIncoming,
+            this.navBarItemCrush,
+            this.navBarItemDatabase,
+            this.navBarItemAddNewUser,
+            this.navBarItemProfile});
+            this.navBarMain.Location = new System.Drawing.Point(0, 174);
+            this.navBarMain.Name = "navBarMain";
+            this.navBarMain.OptionsNavPane.ExpandedWidth = 152;
+            this.navBarMain.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
+            this.navBarMain.Size = new System.Drawing.Size(152, 512);
+            this.navBarMain.TabIndex = 4;
+            this.navBarMain.Text = "navBarControl1";
+            // 
+            // navBarGroupSettings
+            // 
+            this.navBarGroupSettings.Caption = "Settings";
+            this.navBarGroupSettings.Expanded = true;
+            this.navBarGroupSettings.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("navBarGroupSettings.ImageOptions.SvgImage")));
+            this.navBarGroupSettings.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDatabase),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemAddNewUser),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemProfile)});
+            this.navBarGroupSettings.Name = "navBarGroupSettings";
+            // 
+            // navBarItemDatabase
+            // 
+            this.navBarItemDatabase.Caption = "Database";
+            this.navBarItemDatabase.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemDatabase.ImageOptions.LargeImage")));
+            this.navBarItemDatabase.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemDatabase.ImageOptions.SmallImage")));
+            this.navBarItemDatabase.Name = "navBarItemDatabase";
+            this.navBarItemDatabase.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDatabase_LinkClicked);
+            // 
+            // navBarItemAddNewUser
+            // 
+            this.navBarItemAddNewUser.Caption = "Add New User";
+            this.navBarItemAddNewUser.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemAddNewUser.ImageOptions.LargeImage")));
+            this.navBarItemAddNewUser.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemAddNewUser.ImageOptions.SmallImage")));
+            this.navBarItemAddNewUser.Name = "navBarItemAddNewUser";
+            this.navBarItemAddNewUser.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemAddNewUser_LinkClicked);
+            // 
+            // navBarItemProfile
+            // 
+            this.navBarItemProfile.Caption = "Profile";
+            this.navBarItemProfile.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemProfile.ImageOptions.LargeImage")));
+            this.navBarItemProfile.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemProfile.ImageOptions.SmallImage")));
+            this.navBarItemProfile.Name = "navBarItemProfile";
+            this.navBarItemProfile.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemProfile_LinkClicked);
+            // 
+            // navBarGroupStation
+            // 
+            this.navBarGroupStation.Caption = "Stations";
+            this.navBarGroupStation.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("navBarGroupStation.ImageOptions.SvgImage")));
+            this.navBarGroupStation.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBookOrder),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemMixing),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemIncoming),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemCrush)});
+            this.navBarGroupStation.Name = "navBarGroupStation";
+            // 
+            // navBarItemBookOrder
+            // 
+            this.navBarItemBookOrder.Caption = "Booking Materials";
+            this.navBarItemBookOrder.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemBookOrder.ImageOptions.LargeImage")));
+            this.navBarItemBookOrder.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemBookOrder.ImageOptions.SmallImage")));
+            this.navBarItemBookOrder.Name = "navBarItemBookOrder";
+            this.navBarItemBookOrder.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBookOrder_LinkClicked);
+            // 
+            // navBarItemMixing
+            // 
+            this.navBarItemMixing.Caption = "Mixing";
+            this.navBarItemMixing.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemMixing.ImageOptions.LargeImage")));
+            this.navBarItemMixing.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemMixing.ImageOptions.SmallImage")));
+            this.navBarItemMixing.Name = "navBarItemMixing";
+            this.navBarItemMixing.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemMixing_LinkClicked);
+            // 
+            // navBarItemIncoming
+            // 
+            this.navBarItemIncoming.Caption = "Incoming";
+            this.navBarItemIncoming.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemIncoming.ImageOptions.LargeImage")));
+            this.navBarItemIncoming.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemIncoming.ImageOptions.SmallImage")));
+            this.navBarItemIncoming.Name = "navBarItemIncoming";
+            this.navBarItemIncoming.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemIncoming_LinkClicked);
+            // 
+            // navBarItemCrush
+            // 
+            this.navBarItemCrush.Caption = "Crushing";
+            this.navBarItemCrush.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemCrush.ImageOptions.LargeImage")));
+            this.navBarItemCrush.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemCrush.ImageOptions.SmallImage")));
+            this.navBarItemCrush.Name = "navBarItemCrush";
+            this.navBarItemCrush.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemCrush_LinkClicked);
+            // 
+            // navBarGroupCategories
+            // 
+            this.navBarGroupCategories.Caption = "Categories";
+            this.navBarGroupCategories.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("navBarGroupCategories.ImageOptions.SvgImage")));
+            this.navBarGroupCategories.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemShifts),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOtherSource),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReason),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemLossType),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOperator)});
+            this.navBarGroupCategories.Name = "navBarGroupCategories";
+            // 
+            // navBarItemShifts
+            // 
+            this.navBarItemShifts.Caption = "Shifts";
+            this.navBarItemShifts.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemShifts.ImageOptions.LargeImage")));
+            this.navBarItemShifts.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemShifts.ImageOptions.SmallImage")));
+            this.navBarItemShifts.Name = "navBarItemShifts";
+            this.navBarItemShifts.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemShifts_LinkClicked);
+            // 
+            // navBarItemOtherSource
+            // 
+            this.navBarItemOtherSource.Caption = "Other Sources";
+            this.navBarItemOtherSource.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemOtherSource.ImageOptions.LargeImage")));
+            this.navBarItemOtherSource.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemOtherSource.ImageOptions.SmallImage")));
+            this.navBarItemOtherSource.Name = "navBarItemOtherSource";
+            this.navBarItemOtherSource.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOtherSource_LinkClicked);
+            // 
+            // navBarItemReason
+            // 
+            this.navBarItemReason.Caption = "Reasons";
+            this.navBarItemReason.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemReason.ImageOptions.LargeImage")));
+            this.navBarItemReason.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemReason.ImageOptions.SmallImage")));
+            this.navBarItemReason.Name = "navBarItemReason";
+            this.navBarItemReason.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReason_LinkClicked);
+            // 
+            // navBarItemLossType
+            // 
+            this.navBarItemLossType.Caption = "Loss Type";
+            this.navBarItemLossType.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemLossType.ImageOptions.LargeImage")));
+            this.navBarItemLossType.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemLossType.ImageOptions.SmallImage")));
+            this.navBarItemLossType.Name = "navBarItemLossType";
+            this.navBarItemLossType.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemLossType_LinkClicked);
+            // 
+            // navBarItemOperator
+            // 
+            this.navBarItemOperator.Caption = "Operators";
+            this.navBarItemOperator.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarItemOperator.ImageOptions.LargeImage")));
+            this.navBarItemOperator.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItemOperator.ImageOptions.SmallImage")));
+            this.navBarItemOperator.Name = "navBarItemOperator";
+            this.navBarItemOperator.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOperator_LinkClicked);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1096, 829);
-            this.Controls.Add(this.dockPanel);
+            this.ClientSize = new System.Drawing.Size(1109, 712);
+            this.Controls.Add(this.navBarMain);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbonControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IconOptions.Image = global::RecycledManagement.Properties.Resources.framas;
+            this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Ribbon = this.ribbonControl;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHypertextLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
-            this.dockPanel.ResumeLayout(false);
-            this.dockPanel_Container.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -658,35 +665,16 @@
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem;
         private DevExpress.XtraBars.Docking.DockManager dockManager;
-        private DevExpress.XtraBars.Docking.DockPanel dockPanel;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanel_Container;
-        private DevExpress.XtraBars.Navigation.AccordionControl accordionControl;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupNavigation;
         private DevExpress.XtraBars.BarButtonItem employeesBarButtonItem;
         private DevExpress.XtraBars.BarButtonItem customersBarButtonItem;
         private DevExpress.XtraBars.BarSubItem barSubItemNavigation;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement mainAccordionGroup;
         private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView;
         private DevExpress.XtraBars.Docking2010.DocumentManager documentManager;
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem;
         private DevExpress.XtraBars.SkinPaletteRibbonGalleryBarItem skinPaletteRibbonGalleryBarItem;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement categoriesControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement shiftsControlElement;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement otherSourcesControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement reasonsControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement lossTypeControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement operatorsControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement stationsControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement bookingMaterialsControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement mixingControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement incomingControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement crushingControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
@@ -694,13 +682,11 @@
         private DevExpress.XtraBars.BarButtonItem barBtnSave;
         private DevExpress.XtraBars.BarButtonItem barBtnCancel;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem13;
         private DevExpress.XtraBars.BarButtonItem barbtnScale;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
-        private DevExpress.XtraBars.BarSubItem barSubItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
         private DevExpress.XtraBars.BarButtonItem barButtonItem12;
@@ -713,5 +699,26 @@
         private DevExpress.XtraBars.BarSubItem barSubItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem19;
         private DevExpress.XtraBars.BarButtonItem barButtonItem20;
+        private DevExpress.XtraBars.BarButtonItem barBtnPrintLables;
+        private DevExpress.XtraBars.BarHeaderItem barHeaderItem1;
+        private DevExpress.XtraBars.BarEditItem barEditItem1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel repositoryItemHypertextLabel1;
+        private DevExpress.XtraBars.BarHeaderItem barHeaderIStatus;
+        private DevExpress.XtraNavBar.NavBarControl navBarMain;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroupCategories;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemShifts;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemOtherSource;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemReason;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemLossType;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemOperator;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroupStation;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemBookOrder;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemMixing;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemIncoming;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemCrush;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroupSettings;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemDatabase;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemAddNewUser;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemProfile;
     }
 }

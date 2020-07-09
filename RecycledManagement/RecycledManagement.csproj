@@ -36,21 +36,57 @@
     <ApplicationIcon>framas.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="DevExpress.BonusSkins.v20.1" />
+    <Reference Include="DevExpress.Charts.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.CodeParser.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.Desktop.v20.1" />
     <Reference Include="DevExpress.Data.v20.1" />
+    <Reference Include="DevExpress.DataAccess.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v20.1.UI, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Images.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v20.1.Export, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Snap.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Snap.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Snap.v20.1.Extensions, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v20.1" />
     <Reference Include="DevExpress.Sparkline.v20.1.Core" />
+    <Reference Include="DevExpress.Utils.v20.1.UI, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.1.Extensions, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.1.UI, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.1.Wizard, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v20.1" />
     <Reference Include="DevExpress.Printing.v20.1.Core" />
+    <Reference Include="DevExpress.XtraGauges.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPivotGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v20.1.Extensions, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -91,6 +127,12 @@
     <Compile Include="CrushUserControl.Designer.cs">
       <DependentUpon>CrushUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAdminUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdminUser.Designer.cs">
+      <DependentUpon>frmAdminUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConfigFirstInstall.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,11 +151,23 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMixing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMixing.Designer.cs">
+      <DependentUpon>frmMixing.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProcessing.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmProcessing.designer.cs">
       <DependentUpon>frmProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProfile.Designer.cs">
+      <DependentUpon>frmProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="IncomingListUserControl.cs">
       <SubType>UserControl</SubType>
@@ -127,9 +181,48 @@
     <Compile Include="IncomingUserControl.Designer.cs">
       <DependentUpon>IncomingUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="LablesPrint\rptContaminated.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LablesPrint\rptContaminated.Designer.cs">
+      <DependentUpon>rptContaminated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LablesPrint\rptLeftover.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LablesPrint\rptLeftover.Designer.cs">
+      <DependentUpon>rptLeftover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LablesPrint\rptCrushed0.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LablesPrint\rptCrushed0.Designer.cs">
+      <DependentUpon>rptCrushed0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LablesPrint\rptCrushed1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LablesPrint\rptCrushed1.Designer.cs">
+      <DependentUpon>rptCrushed1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LablesPrint\rptDefect.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LablesPrint\rptDefect.Designer.cs">
+      <DependentUpon>rptDefect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LablesPrint\rptOtherSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LablesPrint\rptOtherSource.Designer.cs">
+      <DependentUpon>rptOtherSource.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\BookingOrderSizeModel.cs" />
     <Compile Include="Models\HistoryLoginModel.cs" />
     <Compile Include="Models\LossTypeModel.cs" />
+    <Compile Include="Models\MixingOrderModel.cs" />
+    <Compile Include="Models\MixProductWinlineModel.cs" />
     <Compile Include="Models\OperatorModel.cs" />
     <Compile Include="Models\OperatroRoleModel.cs" />
     <Compile Include="Models\OtherSourceModel.cs" />
@@ -138,6 +231,12 @@
     <Compile Include="Models\UserActionModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LablesPrint\rptRunner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LablesPrint\rptRunner.Designer.cs">
+      <DependentUpon>rptRunner.cs</DependentUpon>
+    </Compile>
     <Compile Include="userControlBookingOrder.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -198,12 +297,6 @@
     <Compile Include="userControlOperators_List.Designer.cs">
       <DependentUpon>userControlOperators_List.cs</DependentUpon>
     </Compile>
-    <Compile Include="userControlMixing.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="userControlMixing.Designer.cs">
-      <DependentUpon>userControlMixing.cs</DependentUpon>
-    </Compile>
     <Compile Include="userControlShifts_List.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -228,6 +321,9 @@
     <EmbeddedResource Include="CrushUserControl.resx">
       <DependentUpon>CrushUserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAdminUser.resx">
+      <DependentUpon>frmAdminUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmConfigFirstInstall.resx">
       <DependentUpon>frmConfigFirstInstall.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,14 +333,38 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMixing.resx">
+      <DependentUpon>frmMixing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProcessing.resx">
       <DependentUpon>frmProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProfile.resx">
+      <DependentUpon>frmProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IncomingListUserControl.resx">
       <DependentUpon>IncomingListUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IncomingUserControl.resx">
       <DependentUpon>IncomingUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LablesPrint\rptContaminated.resx">
+      <DependentUpon>rptContaminated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LablesPrint\rptLeftover.resx">
+      <DependentUpon>rptLeftover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LablesPrint\rptCrushed0.resx">
+      <DependentUpon>rptCrushed0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LablesPrint\rptCrushed1.resx">
+      <DependentUpon>rptCrushed1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LablesPrint\rptDefect.resx">
+      <DependentUpon>rptDefect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LablesPrint\rptOtherSource.resx">
+      <DependentUpon>rptOtherSource.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\RecycledManagement.frmMain.resources" />
     <EmbeddedResource Include="obj\Debug\RecycledManagement.Properties.Resources.resources" />
@@ -265,6 +385,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="LablesPrint\rptRunner.resx">
+      <DependentUpon>rptRunner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="userControlBookingOrder.resx">
       <DependentUpon>userControlBookingOrder.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,9 +417,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="userControlOperators_List.resx">
       <DependentUpon>userControlOperators_List.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="userControlMixing.resx">
-      <DependentUpon>userControlMixing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="userControlShifts_List.resx">
       <DependentUpon>userControlShifts_List.cs</DependentUpon>

@@ -8,56 +8,80 @@ namespace RecycledManagement.Common
 {
     public class GlobalEvent
     {
-        private int scaleValue;
+        #region Tạo sự kiện cho cân
+        private int _scaleValue;
 
-        public int ScaleValue
-        {
-            get => scaleValue;
-            set
-            {
-                scaleValue = value;
-                OnScaleValueChanged(value);//gọi sự kiện
-            }
+        public int ScaleValue 
+        { 
+            get => _scaleValue;
+            set { _scaleValue = value; OnScaleValueChanged(value); }
         }
 
-        #region tạo event cho sự kiện tag scaleValue
-        private event EventHandler<ScaleValueChangedEventArgs> scaleValueChanged;
+        private event EventHandler<ScaleValueChangedEventArgs> _scaleValueChanged;
         public event EventHandler<ScaleValueChangedEventArgs> ScaleValueChanged
         {
             add
             {
-                scaleValueChanged += value;
+                _scaleValueChanged += value;
             }
             remove
             {
-                scaleValueChanged -= value;
+                _scaleValueChanged -= value;
             }
         }
 
-        //tạo method moi khi muốn gọi sự kiện scaleValueChanged thì gọi method này
         void OnScaleValueChanged(int value)
         {
-            //if (scaleValueChanged != null)
-            {
-                scaleValueChanged?.Invoke(this, new ScaleValueChangedEventArgs(value));
-            }
+            _scaleValueChanged?.Invoke(this, new ScaleValueChangedEventArgs(value));
         }
         #endregion
 
+        #region Tạo sự kiện cho việc show MixingEditor
+        private bool _showMixingEditor;
+        public bool ShowMixingEditor { 
+            get => _showMixingEditor;
+            set { _showMixingEditor = value; OnShowMixingEditorChanged(value); } 
+        }
 
+        private event EventHandler<ScaleValueChangedEventArgs> _showMixingEditorChanged;
+        public event EventHandler<ScaleValueChangedEventArgs> ShowMixingEditorChanged
+        {
+            add
+            {
+                _showMixingEditorChanged += value;
+            }
+            remove
+            {
+                _showMixingEditorChanged -= value;
+            }
+        }
+
+        void OnShowMixingEditorChanged(bool value)
+        {
+            _showMixingEditorChanged?.Invoke(this, new ScaleValueChangedEventArgs(value));
+        }
+        #endregion
     }
 
-    //private void event_ScaleValueChanged(object sender, NameChangedEventArgs e)Ơ }
-    //tao lass chua cac du lieu tra ve owr doi so EventArgs
-    public class ScaleValueChangedEventArgs : EventArgs
-    {
-        private int scaleValue;
 
-        public int ScaleValue { get => scaleValue; set => scaleValue = value; }
+    //Class define các properties trả về
+    public class ScaleValueChangedEventArgs
+    {
+        private int _scaleValue;
+
+        private bool _showMixingEditor;
+
+        public int ScaleValue { get => _scaleValue; set => _scaleValue = value; }
+        public bool ShowMixingEditor { get => _showMixingEditor; set => _showMixingEditor = value; }
 
         public ScaleValueChangedEventArgs(int value)
         {
-            scaleValue = value;
+            _scaleValue = value;
+        }
+
+        public ScaleValueChangedEventArgs(bool value)
+        {
+            _showMixingEditor = value;
         }
     }
 }

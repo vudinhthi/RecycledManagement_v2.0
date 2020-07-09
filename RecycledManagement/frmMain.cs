@@ -13,6 +13,8 @@ using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
 using RecycledManagement.Common;
 using System.Diagnostics;
+using DevExpress.XtraReports.UI;
+using RecycledManagement.LablesPrint;
 
 namespace RecycledManagement
 {
@@ -20,14 +22,13 @@ namespace RecycledManagement
     {
         int value = 10;
 
-        #region khai bao cac form
-        XtraUserControl shiftUserControl;
-        XtraUserControl reasonUserControl;
-        XtraUserControl operatorUserControl;
-        XtraUserControl lossTypesUserControl;
-        XtraUserControl otherSourcesUserControl;
-        XtraUserControl bookingOrderUserControl;
-        XtraUserControl incomingUserControl;
+        //XtraUserControl shiftUserControl;
+        //XtraUserControl reasonUserControl;
+        //XtraUserControl operatorUserControl;
+        //XtraUserControl lossTypesUserControl;
+        //XtraUserControl otherSourcesUserControl;
+        //XtraUserControl bookingOrderUserControl;
+        //XtraUserControl incomingUserControl;
 
         XtraUserControl shiftListUserControl;
         XtraUserControl reasonListUserControl;
@@ -37,118 +38,11 @@ namespace RecycledManagement
         XtraUserControl bookingOrderListUserControl;
         XtraUserControl incomingListUserControl;
         XtraUserControl crushListUserControl;
-        #endregion
+        XtraUserControl mixingListUserControl;
 
         public frmMain()
         {
-            InitializeComponent();            
-        }
-
-        #region cac su kien
-        XtraUserControl CreateUserControl(string text)
-        {
-            XtraUserControl result = new XtraUserControl();
-            result.Name = text.ToLower() + "UserControl";
-            result.Text = text;            
-            LabelControl label = new LabelControl();
-            label.Parent = result;
-            label.Appearance.Font = new Font("Tahoma", 25.25F);
-            label.Appearance.ForeColor = Color.Gray;
-            label.Dock = System.Windows.Forms.DockStyle.Fill;
-            label.AutoSizeMode = LabelAutoSizeMode.None;
-            label.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            label.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            label.Text = text;
-            return result;
-        }
-        void accordionControl_SelectedElementChanged(object sender, SelectedElementChangedEventArgs e)
-        {            
-            if (e.Element == null) return;            
-            switch (e.Element.Text)
-            {
-                case "Shifts":
-                    barBtnAddNew.Enabled = false;
-                    shiftListUserControl = new userControlShifts_List();
-                    shiftListUserControl.Text = "Shifts";
-                    tabbedView.AddDocument(shiftListUserControl);
-                    tabbedView.ActivateDocument(shiftListUserControl);                    
-                    break;
-                case "Other Sources":
-                    barBtnAddNew.Enabled = false;
-                    otherSourcesListUserControl = new userControlOtherSources_List();
-                    otherSourcesListUserControl.Text = "Other Source";
-                    tabbedView.AddDocument(otherSourcesListUserControl);
-                    tabbedView.ActivateDocument(otherSourcesListUserControl);
-                    break;
-                case "Reasons":
-                    barBtnAddNew.Enabled = false;
-                    reasonListUserControl = new userControlReasons_List();
-                    reasonListUserControl.Text = "Reason";
-                    tabbedView.AddDocument(reasonListUserControl);
-                    tabbedView.ActivateDocument(reasonListUserControl);
-                    break;
-                case "Loss Type":
-                    barBtnAddNew.Enabled = false;
-                    lossTypesListUserControl = new userControlLossTypes_List();
-                    lossTypesListUserControl.Text = "Loss Type";
-                    tabbedView.AddDocument(lossTypesListUserControl);
-                    tabbedView.ActivateDocument(lossTypesListUserControl);
-                    break;
-                case "Operators":
-                    barBtnAddNew.Enabled = false;
-                    operatorListUserControl = new userControlOperators_List();
-                    operatorListUserControl.Text = "Operator";
-                    tabbedView.AddDocument(operatorListUserControl);
-                    tabbedView.ActivateDocument(operatorListUserControl);
-                    break;
-                case "Booking Materials":
-                    barBtnAddNew.Enabled = true;
-                    bookingOrderListUserControl = new userControlBookingOrders_List();
-                    bookingOrderListUserControl.Text = "Booking Material";
-                    tabbedView.AddDocument(bookingOrderListUserControl);
-                    tabbedView.ActivateDocument(bookingOrderListUserControl);
-                    break;
-                case "Incoming":
-                    barBtnAddNew.Enabled = true;
-                    incomingListUserControl = new IncomingListUserControl();
-                    incomingListUserControl.Text = "Incoming";
-                    tabbedView.AddDocument(incomingListUserControl);
-                    tabbedView.ActivateDocument(incomingListUserControl);
-                    break;
-                case "Crushing":
-                    barBtnAddNew.Enabled = true;
-                    crushListUserControl = new CrushListUserControl();
-                    crushListUserControl.Text = "Crushing";
-                    tabbedView.AddDocument(crushListUserControl);
-                    tabbedView.ActivateDocument(crushListUserControl);
-                    break;
-            }            
-        }
-        void barButtonNavigation_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            int barItemIndex = barSubItemNavigation.ItemLinks.IndexOf(e.Link);
-            accordionControl.SelectedElement = mainAccordionGroup.Elements[barItemIndex];
-        }
-        void tabbedView_DocumentClosed(object sender, DocumentEventArgs e)
-        {
-            RecreateUserControls(e);
-            SetAccordionSelectedElement(e);
-        }
-        void SetAccordionSelectedElement(DocumentEventArgs e)
-        {
-            if (tabbedView.Documents.Count != 0)
-            {
-            }
-            else
-            {
-                accordionControl.SelectedElement = null;
-            }
-        }
-        void RecreateUserControls(DocumentEventArgs e)
-        {
-            //if (e.Document.Caption == "Employees") employeesUserControl = CreateUserControl("Employees");
-            //else customersUserControl = CreateUserControl("Customers");
-           
+            InitializeComponent();
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -162,51 +56,286 @@ namespace RecycledManagement
             nf.ShowDialog();
         }
 
-        private void shiftsControlElement_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void barBtnAddNew_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            //get tên cua form đang được mở trên tableView
-            switch (tabbedView.ActiveDocument.Caption)
-            {
-                case "Shifts":
-                    shiftUserControl = new userControlShifts();
-                    shiftUserControl.Text = "Add New Shifts";
-                    tabbedView.AddDocument(shiftUserControl);
-                    tabbedView.ActivateDocument(shiftUserControl);
-                    break;
-                case "Other Sources":
-                    break;
-                case "Reasons":
-                    break;
-                case "Loss Type":
-                    break;
-                case "Operators":
-                    break;
-                case "Booking Materials":
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        #endregion
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //GlobalVariable.abc.ScaleValueChanged += (s, o) => { Debug.WriteLine($"Main Event write: {o.ScaleValue}"); };
-            //myEvent.ScaleValueChanged += (s, o) => { Debug.WriteLine($"Main Event ghi ScaleValue= {o.ScaleValue}"); };
-            barBtnAddNew.Enabled = false;
+            #region Xet Role
+            //quyen admin
+            if (GlobalVariable.userId == 1)
+            {
+                navBarMain.ActiveGroup = navBarGroupCategories;//cho hien thi group nao khi bat len
+
+                barbtnScale.Enabled = false;
+                barBtnPrintLables.Enabled = false;
+
+                //tat navbarItem
+                navBarItemBookOrder.Enabled = true;
+                navBarItemMixing.Enabled = true;
+                navBarItemIncoming.Enabled = true;
+                navBarItemCrush.Enabled = true;
+
+                GlobalVariable.importOrder = GlobalVariable.importMixing = GlobalVariable.importIncoming = GlobalVariable.importCrush = false;
+            }
+            else
+            {
+                navBarMain.ActiveGroup = navBarGroupStation;
+
+                //check Roe
+                DataTable _data = DbOperatorRole.Instance.GetOperatorRole(GlobalVariable.userId.ToString());
+                if (_data.Rows.Count > 0)
+                {                   
+                    GlobalVariable.importOrder = Convert.ToBoolean(_data.Rows[0]["booking"].ToString().Split('|')[0]);
+
+                    
+                    GlobalVariable.importMixing = Convert.ToBoolean(_data.Rows[0]["mixing"].ToString().Split('|')[0]);
+
+                    
+                    GlobalVariable.importIncoming = Convert.ToBoolean(_data.Rows[0]["incoming"].ToString().Split('|')[0]);
+
+                    
+                    GlobalVariable.importCrush = Convert.ToBoolean(_data.Rows[0]["crushing"].ToString().Split('|')[0]);
+
+                    GlobalVariable.print = Convert.ToBoolean(_data.Rows[0]["crushing"].ToString().Split('|')[1]);
+                    GlobalVariable.scales = Convert.ToBoolean(_data.Rows[0]["crushing"].ToString().Split('|')[2]);
+
+                    if (GlobalVariable.print)
+                    {
+                        barBtnPrintLables.Enabled = true;
+                    }
+                    else
+                    {
+                        barBtnPrintLables.Enabled = false;
+                    }
+
+                    if (GlobalVariable.scales)
+                    {
+                        barbtnScale.Enabled = true;
+                    }
+                    else
+                    {
+                        barbtnScale.Enabled = false;
+                    }
+                }
+
+                navBarItemShifts.Enabled = false;
+                navBarItemLossType.Enabled = false;
+                navBarItemOperator.Enabled = false;
+                navBarItemOtherSource.Enabled = false;
+                navBarItemReason.Enabled = false;
+
+                navBarItemAddNewUser.Enabled = false;
+                navBarItemDatabase.Enabled = false;
+            }
+            #endregion
+
+            GlobalVariable.myEvent.ShowMixingEditorChanged += MyEvent_ShowMixingEditorChanged;//đăng ký event để MixingEditor
+        }
+
+        private void MyEvent_ShowMixingEditorChanged(object sender, ScaleValueChangedEventArgs e)
+        {
+            if (e.ShowMixingEditor==true)
+            {
+                frmMixing nf = new frmMixing();
+                tabbedView.AddDocument(nf);
+            }
         }
 
         private void barbtnScale_ItemClick(object sender, ItemClickEventArgs e)
         {
             value = value + 1;
             GlobalVariable.myEvent.ScaleValue = value;
-            Debug.WriteLine($"Main ghi ScaleValue= {GlobalVariable.myEvent.ScaleValue}");
+            Debug.WriteLine($"Main write ScaleValue={GlobalVariable.myEvent.ScaleValue}");
         }
+
+
+        #region sự kiện bấm chọn item navBar
+
+        #region Stations
+        private void barBtnPrintLables_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                Debug.WriteLine($"Element : {tabbedView.ActiveDocument.Caption}");//get caption Element
+                if (tabbedView.ActiveDocument.Caption == "Incoming")
+                {
+                    DataTable ds = new DataTable();
+
+                    ds = DbIncomingCrush.Instance.GetLable(GlobalVariable.idSelect.ToString());
+
+                    if (GlobalVariable.selectLabel == "Runner")
+                    {
+                        var rptRe = new rptRunner();
+
+                        rptRe.DataSource = ds;
+                        rptRe.CreateDocument();
+                        ReportPrintTool printToolCrush = new ReportPrintTool(rptRe);
+                        printToolCrush.PrintDialog();
+                    }
+                    else if (GlobalVariable.selectLabel == "Defect")
+                    {
+                        var rptRe = new rptDefect();
+
+                        rptRe.DataSource = ds;
+                        rptRe.CreateDocument();
+                        ReportPrintTool printToolCrush = new ReportPrintTool(rptRe);
+                        printToolCrush.PrintDialog();
+                    }
+                    else if (GlobalVariable.selectLabel == "Contaminated")
+                    {
+                        var rptRe = new rptContaminated();
+
+                        rptRe.DataSource = ds;
+                        rptRe.CreateDocument();
+                        ReportPrintTool printToolCrush = new ReportPrintTool(rptRe);
+                        printToolCrush.PrintDialog();
+                    }
+                    else if (GlobalVariable.selectLabel == "Leftover")
+                    {
+                        var rptRe = new rptLeftover();
+
+                        rptRe.DataSource = ds;
+                        rptRe.CreateDocument();
+                        ReportPrintTool printToolCrush = new ReportPrintTool(rptRe);
+                        printToolCrush.PrintDialog();
+                    }
+                    else if (GlobalVariable.selectLabel == "Other Source")
+                    {
+                        var rptRe = new rptOtherSource();
+
+                        rptRe.DataSource = ds;
+                        rptRe.CreateDocument();
+                        ReportPrintTool printToolCrush = new ReportPrintTool(rptRe);
+                        printToolCrush.PrintDialog();
+                    }
+                }
+                else if (tabbedView.ActiveDocument.Caption == "Crushing")
+                {
+                    DataTable ds = new DataTable();
+
+                    //ds = DbCrushing.Instance.GetLable("6");
+                    //var rptRe = new rptCrushed();
+
+                    ds = DbCrushing.Instance.GetLable(GlobalVariable.idSelect.ToString());
+                    if (ds.Rows[0]["CrushedType"].ToString() == "0")
+                    {
+                        var rptRe = new rptCrushed0();
+                        rptRe.DataSource = ds;
+                        rptRe.CreateDocument();
+                        ReportPrintTool printToolCrush = new ReportPrintTool(rptRe);
+                        printToolCrush.PrintDialog();
+                    }
+                    else if (ds.Rows[0]["CrushedType"].ToString() == "1")
+                    {
+                        var rptRe = new rptCrushed1();
+                        rptRe.DataSource = ds;
+                        rptRe.CreateDocument();
+                        ReportPrintTool printToolCrush = new ReportPrintTool(rptRe);
+                        printToolCrush.PrintDialog();
+                    }
+
+
+
+                }
+            }
+            catch { }
+
+
+
+        }
+        private void navBarItemBookOrder_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            bookingOrderListUserControl = new userControlBookingOrders_List();
+            bookingOrderListUserControl.Text = "Booking Material";
+            tabbedView.AddDocument(bookingOrderListUserControl);
+            tabbedView.ActivateDocument(bookingOrderListUserControl);
+        }
+
+        private void navBarItemMixing_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            mixingListUserControl = new userControlMixing_List();
+            mixingListUserControl.Text = "Mixing";
+            tabbedView.AddDocument(mixingListUserControl);
+            tabbedView.ActivateDocument(mixingListUserControl);
+        }
+
+        private void navBarItemIncoming_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            incomingListUserControl = new IncomingListUserControl();
+            incomingListUserControl.Text = "Incoming";
+            tabbedView.AddDocument(incomingListUserControl);
+            tabbedView.ActivateDocument(incomingListUserControl);
+        }
+
+        private void navBarItemCrush_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            crushListUserControl = new CrushListUserControl();
+            crushListUserControl.Text = "Crushing";
+            tabbedView.AddDocument(crushListUserControl);
+            tabbedView.ActivateDocument(crushListUserControl);
+        }
+        #endregion
+
+        #region Categories
+        private void navBarItemShifts_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            shiftListUserControl = new userControlShifts_List();
+            shiftListUserControl.Text = "Shifts";
+            tabbedView.AddDocument(shiftListUserControl);
+            tabbedView.ActivateDocument(shiftListUserControl);
+        }
+
+        private void navBarItemOtherSource_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            otherSourcesListUserControl = new userControlOtherSources_List();
+            otherSourcesListUserControl.Text = "Other Source";
+            tabbedView.AddDocument(otherSourcesListUserControl);
+            tabbedView.ActivateDocument(otherSourcesListUserControl);
+        }
+
+        private void navBarItemReason_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            reasonListUserControl = new userControlReasons_List();
+            reasonListUserControl.Text = "Reason";
+            tabbedView.AddDocument(reasonListUserControl);
+            tabbedView.ActivateDocument(reasonListUserControl);
+        }
+
+        private void navBarItemLossType_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            lossTypesListUserControl = new userControlLossTypes_List();
+            lossTypesListUserControl.Text = "Loss Type";
+            tabbedView.AddDocument(lossTypesListUserControl);
+            tabbedView.ActivateDocument(lossTypesListUserControl);
+        }
+
+        private void navBarItemOperator_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            operatorListUserControl = new userControlOperators_List();
+            operatorListUserControl.Text = "Operator";
+            tabbedView.AddDocument(operatorListUserControl);
+            tabbedView.ActivateDocument(operatorListUserControl);
+        }
+        #endregion
+
+        #region Settings
+        private void navBarItemDatabase_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+
+        }
+
+        private void navBarItemAddNewUser_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            frmAdminUser nf = new frmAdminUser();
+            nf.ShowDialog();
+        }
+
+        private void navBarItemProfile_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            frmProfile nf = new frmProfile();
+            nf.ShowDialog();
+        }
+        #endregion
+
+        #endregion
     }
 }

@@ -33,7 +33,7 @@ namespace RecycledManagement
 
         private void frmConfigFirstInstall_Load(object sender, EventArgs e)
         {
-            try
+            //try
             {
                 #region đọc textFile để lấy thông số cấu hình
                 pathApp = $"{ Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\Files\\DbServerParametter.txt";//get path
@@ -96,7 +96,7 @@ namespace RecycledManagement
                     }
                 }
             }
-            catch { }
+            //catch { }
         }
 
         //lưu thông tin server vào lại settings
