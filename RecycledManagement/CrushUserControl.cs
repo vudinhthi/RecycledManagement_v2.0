@@ -210,38 +210,6 @@ namespace RecycledManagement
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            string crushedCode = null;
-            string mixId = null, shiftId = null, operatorId = null, materialCode = null, materialName = null;
-
-            //chung
-            shiftId = lookUpShift.EditValue.ToString();
-            operatorId = lookUpOperator.EditValue.ToString();
-            string machine = txtCrushMachine.Text;
-            int crushId = DbCrushing.Instance.GetMaxId() + 1;//get gia tri crushId lon nhat
-
-            string weightCrush = txtNetWeight.Text;
-            string crushType = radType.EditValue.ToString();//radioControl trả về Value
-
-            //rieng            
-            if (crushType == "0")//Recycle Material
-            {
-                mixId = lookUpMixCode.EditValue.ToString();
-
-                crushedCode = $"RE-BOM-{DateTime.Now.ToString("yyyyMMdd")}{crushId}";
-            }
-            else
-            {
-                materialCode = lookUpMaterial.EditValue.ToString();
-                materialName = lookUpMaterial.Text;
-                crushedCode = $"RE-{materialCode}-{DateTime.Now.ToString("yyyyMMdd")}{crushId}";
-            }
-
-            Debug.WriteLine($"Insrt Crushing: {DbCrushing.Instance.Insert(shiftId, operatorId, mixId, machine, materialCode, materialName, weightCrush, GlobalVariable.userId.ToString(), crushedCode, crushType)}");
-            view.CloseEditForm();
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             timer1.Enabled = false;
@@ -288,6 +256,38 @@ namespace RecycledManagement
             }
             #endregion
             timer1.Enabled = true;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string crushedCode = null;
+            string mixId = null, shiftId = null, operatorId = null, materialCode = null, materialName = null;
+
+            //chung
+            shiftId = lookUpShift.EditValue.ToString();
+            operatorId = lookUpOperator.EditValue.ToString();
+            string machine = txtCrushMachine.Text;
+            int crushId = DbCrushing.Instance.GetMaxId() + 1;//get gia tri crushId lon nhat
+
+            string weightCrush = txtNetWeight.Text;
+            string crushType = radType.EditValue.ToString();//radioControl trả về Value
+
+            //rieng            
+            if (crushType == "0")//Recycle Material
+            {
+                mixId = lookUpMixCode.EditValue.ToString();
+
+                crushedCode = $"RE-BOM-{DateTime.Now.ToString("yyyyMMdd")}{crushId}";
+            }
+            else
+            {
+                materialCode = lookUpMaterial.EditValue.ToString();
+                materialName = lookUpMaterial.Text;
+                crushedCode = $"RE-{materialCode}-{DateTime.Now.ToString("yyyyMMdd")}{crushId}";
+            }
+
+            Debug.WriteLine($"Insrt Crushing: {DbCrushing.Instance.Insert(shiftId, operatorId, mixId, machine, materialCode, materialName, weightCrush, GlobalVariable.userId.ToString(), crushedCode, crushType)}");
+            view.CloseEditForm();
         }
     }
 }

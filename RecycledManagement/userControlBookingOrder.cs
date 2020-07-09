@@ -234,13 +234,21 @@ namespace RecycledManagement
                     //lay trung bình shotWeight va tinh maxOrderSize
                     if (_data != null && _data.Rows.Count > 0)
                     {
+                        shotWeight = 0;
                         foreach (DataRow item in _data.Rows)
                         {
                             shotWeight = shotWeight + double.Parse(item["ShotWeight"].ToString());
                         }
 
                         shotWeight = (shotWeight / _data.Rows.Count) / 1000;//tính trung bình shotWeight
-                        maxOrderSize = Math.Round(((25 - 1) / shotWeight) - 20, 0);//làm tròn số nguyên
+                        if (shotWeight>0)
+                        {
+                            maxOrderSize = Math.Round(((25 - 1) / shotWeight) - 20, 0);//làm tròn số nguyên
+                        }
+                        else
+                        {
+                            maxOrderSize = 0;
+                        }
                     }
                     else
                     {

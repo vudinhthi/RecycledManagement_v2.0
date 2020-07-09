@@ -139,21 +139,6 @@ namespace RecycledManagement
             #endregion
         }
 
-            //myEvent.ScaleValueChanged += (s, o) =>
-            //{
-            //    Debug.WriteLine($"Incoming Event Write: {o.ScaleValue}");
-            //};
-
-            GlobalVariable.myEvent.ScaleValueChanged += (s, o) =>
-            {
-                Debug.WriteLine($"Incoming Event write: {o.ScaleValue}");
-                if (txtWeight.ContainsFocus)
-                {
-                    txtWeight.Text = o.ScaleValue.ToString();
-                }
-            };
-        }
-
         #region Event
         //sự kiện radioGroup Select
         private void radLossType_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,9 +175,9 @@ namespace RecycledManagement
 
         #endregion
 
-
         //su kien txtWeight khi co sự thay đổi cân thì nó sẽ vào tru voi so lượng rồi fill vào txtNetWeight
-        private void txtWeight_TextChanged(object sender, EventArgs e)
+        
+        private void txtWeight_EditValueChanged(object sender, EventArgs e)
         {
             if (txtWeight.Text.Trim() != "0")
             {
@@ -204,6 +189,7 @@ namespace RecycledManagement
             //{
             //    txtNetWeight.Text = "0";
             //}
+        }
 
         #region test
         //private void timer1_Tick(object sender, EventArgs e)
