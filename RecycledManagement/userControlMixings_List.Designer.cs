@@ -28,44 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.gridMixed = new DevExpress.XtraGrid.GridControl();
+            this.gridViewMixed = new DevExpress.XtraGrid.Views.Grid.GridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gridMixed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewMixed)).BeginInit();
             this.SuspendLayout();
             // 
-            // gridControl1
+            // gridMixed
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(640, 336);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gridMixed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridMixed.Location = new System.Drawing.Point(0, 0);
+            this.gridMixed.MainView = this.gridViewMixed;
+            this.gridMixed.Name = "gridMixed";
+            this.gridMixed.Size = new System.Drawing.Size(1461, 641);
+            this.gridMixed.TabIndex = 0;
+            this.gridMixed.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewMixed});
             // 
-            // gridView1
+            // gridViewMixed
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
+            this.gridViewMixed.GridControl = this.gridMixed;
+            this.gridViewMixed.Name = "gridViewMixed";
+            this.gridViewMixed.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewMixed.OptionsBehavior.ReadOnly = true;
+            this.gridViewMixed.OptionsPrint.PrintHeader = false;
+            this.gridViewMixed.OptionsPrint.PrintPreview = true;
             // 
-            // userControlListShifts
+            // userControlMixing_List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.gridMixed);
             this.Name = "userControlMixing_List";
-            this.Size = new System.Drawing.Size(640, 336);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.Size = new System.Drawing.Size(1461, 641);
+            this.Load += new System.EventHandler(this.userControlMixing_List_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.gridMixed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewMixed)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gridMixed;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewMixed;
     }
 }

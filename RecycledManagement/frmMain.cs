@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraBars.Docking2010.Views;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
+using DevExpress.XtraBars.Docking2010.Views.Tabbed;
 
 namespace RecycledManagement
 {
@@ -36,6 +37,7 @@ namespace RecycledManagement
             InitializeComponent();
             accordionControl.SelectedElement = mixingControlElement1;
         }
+
         XtraUserControl CreateUserControl(string text)
         {
             XtraUserControl result = new XtraUserControl();
@@ -52,6 +54,7 @@ namespace RecycledManagement
             label.Text = text;
             return result;
         }
+
         void accordionControl_SelectedElementChanged(object sender, SelectedElementChangedEventArgs e)
         {            
             if (e.Element == null) return;            
@@ -95,21 +98,25 @@ namespace RecycledManagement
                     break;
                 case "Mixing":
                     mixingListUserControl = new userControlMixing_List();
-                    mixingListUserControl.Text = "Mixing";
+                    mixingListUserControl.Text = "Mixing List";
                     tabbedView.AddDocument(mixingListUserControl);
                     tabbedView.ActivateDocument(mixingListUserControl);
                     break;
             }            
         }
+
         void barButtonNavigation_ItemClick(object sender, ItemClickEventArgs e)
         {
             int barItemIndex = barSubItemNavigation.ItemLinks.IndexOf(e.Link);
             accordionControl.SelectedElement = mainAccordionGroup.Elements[barItemIndex];
         }
+
         void tabbedView_DocumentClosed(object sender, DocumentEventArgs e)
         {
             SetAccordionSelectedElement(e);
+            barButtonAddNew.Enabled = true;
         }
+
         void SetAccordionSelectedElement(DocumentEventArgs e)
         {
             if (tabbedView.Documents.Count != 0)
@@ -121,6 +128,7 @@ namespace RecycledManagement
                 accordionControl.SelectedElement = null;
             }
         }
+
         private void barButtonAddNew_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (accordionControl.SelectedElement == null) return;            
@@ -131,8 +139,37 @@ namespace RecycledManagement
                     mixingUserControl.Text = "Add new Mixing";
                     tabbedView.AddDocument(mixingUserControl);
                     tabbedView.ActivateDocument(mixingUserControl);
+                    barButtonAddNew.Enabled = false;
                     break;
             }
         }
+
+        private void barButtonSave_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (tabbedView.ActiveDocument == null) return;
+
+            switch (tabbedView.ActiveDocument.Control.Name)
+            {
+                case "userControlMixing":
+                    MessageBox.Show("Saving Mixing row");
+                    break;
+            }
+        }
+
+        private void BarButtonCancel_ItemClick(object sender, ItemClickEventArgs e)
+        {            
+            tabbedView.Controller.Close(tabbedView.ActiveDocument);
+        }
+
+        private void barButtonScale_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (tabbedView.ActiveDocument == null) return;
+            switch (tabbedView.ActiveDocument.Control.Name)
+            {
+                case "userControlMixing":
+                    
+                    break;
+            }
+        }        
     }
 }

@@ -12,15 +12,17 @@ using RecycledManagement.Common;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace RecycledManagement
 {
-    public partial class userControlMixing : DevExpress.XtraEditors.XtraUserControl
+    public partial class userControlMixing : EditFormUserControl
     {
-        DataTable dt;
+        private DataTable dt;
         public userControlMixing()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            //this.SetBoundFieldName(lueOrderId, "ItemCode");
         }
         private void UserControlMixing_Load(object sender, EventArgs e)
         {
@@ -100,54 +102,7 @@ namespace RecycledManagement
             lueOrderId.Properties.DisplayMember = "c002";
             lueOrderId.Properties.ValueMember = "c002";
             lueOrderId.Properties.Columns.Add(new LookUpColumnInfo("c002", "ProductCode", 100));
-            lueOrderId.Properties.Columns.Add(new LookUpColumnInfo("c003", "ProductName", 300));
-
-            lueOrderId.EditValueChanged += (o, e) =>
-            {
-                LookUpEdit sd = o as LookUpEdit;
-                tedItemName.Text = sd.GetColumnValue("c003").ToString();
-                tedColorName.Text = sd.GetColumnValue("ColorName").ToString();
-                dt = DbMixing.Instance.GetMaterialByItems(sd.GetColumnValue("c002").ToString());
-                gridMaterialConsumption.DataSource = dt;
-
-                gridViewMaterialConsumption.PopulateColumns();
-                gridViewMaterialConsumption.Columns["ID"].VisibleIndex = -1;
-                gridViewMaterialConsumption.Columns["productcode"].VisibleIndex = -1;
-
-                gridViewMaterialConsumption.Columns["materialcode"].VisibleIndex = 1;
-                gridViewMaterialConsumption.Columns["materialname"].VisibleIndex = 2;
-                gridViewMaterialConsumption.Columns["Quantity"].VisibleIndex = 3;
-
-                gridViewMaterialConsumption.Columns["materialcode"].Caption = "Material Code";
-                gridViewMaterialConsumption.Columns["materialname"].Caption = "Material Name";
-
-                gridViewMaterialConsumption.Columns["materialcode"].Width = 80;
-                gridViewMaterialConsumption.Columns["materialname"].Width = 150;
-                gridViewMaterialConsumption.Columns["Quantity"].Width = 60;
-
-                gridViewMaterialConsumption.Columns["Quantity"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                gridViewMaterialConsumption.Columns["Quantity"].DisplayFormat.FormatString = "{0:n3}";
-
-                // Calculated Total column: 
-                GridColumn columnTotal = new GridColumn();
-                columnTotal.Caption = "Total";
-                columnTotal.FieldName = "Total";
-                columnTotal.OptionsColumn.AllowEdit = false;
-                columnTotal.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
-                //columnTotal.UnboundExpression = weightRM + "*[Quantity]";
-
-                gridViewMaterialConsumption.Columns.Add(columnTotal);
-
-                columnTotal.VisibleIndex = gridViewMaterialConsumption.VisibleColumns.Count;
-                columnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                columnTotal.DisplayFormat.FormatString = "{0:n3}";
-
-                gridViewMaterialConsumption.OptionsBehavior.Editable = false;
-                gridViewMaterialConsumption.OptionsView.ColumnAutoWidth = true;
-
-                GridColumnSummaryItem item1 = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:n3}");
-                gridViewMaterialConsumption.Columns["Total"].Summary.Add(item1);
-            };
+            lueOrderId.Properties.Columns.Add(new LookUpColumnInfo("c003", "ProductName", 300));            
         }        
         //Load list of Recycled
         private void LoadRecycled()
@@ -204,6 +159,73 @@ namespace RecycledManagement
             lueLeftover.Properties.ValueMember = "CrushedId";
             lueLeftover.Properties.Columns.Add(new LookUpColumnInfo("CrushedId", "CrushedId"));
             lueLeftover.Properties.Columns.Add(new LookUpColumnInfo("CrushedCode", "CrushedCode"));
+        }        
+
+        public static Control FindFocusedControl(Control control)
+        {
+            var container = control as IContainerControl;
+            while (container != null)
+            {
+                control = container.ActiveControl;
+                container = control as IContainerControl;
+            }
+            return control;
         }
+
+        private void tedWeightMaterial_EditValueChanged(object sender, EventArgs e)
+        {
+            LoadGridMaterial(lueOrderId.GetColumnValue("c002").ToString(), tedWeightMaterial.EditValue.ToString());
+        }
+
+        private void LoadGridMaterial(string orderId, string weightMaterialConsumption)
+        {
+            dt = DbMixing.Instance.GetMaterialByItems(orderId);
+            gridMaterialConsumption.DataSource = dt;
+
+            gridViewMaterialConsumption.PopulateColumns();
+            gridViewMaterialConsumption.Columns["ID"].VisibleIndex = -1;
+            gridViewMaterialConsumption.Columns["productcode"].VisibleIndex = -1;
+
+            gridViewMaterialConsumption.Columns["materialcode"].VisibleIndex = 1;
+            gridViewMaterialConsumption.Columns["materialname"].VisibleIndex = 2;
+            gridViewMaterialConsumption.Columns["Quantity"].VisibleIndex = 3;
+
+            gridViewMaterialConsumption.Columns["materialcode"].Caption = "Material Code";
+            gridViewMaterialConsumption.Columns["materialname"].Caption = "Material Name";
+
+            gridViewMaterialConsumption.Columns["materialcode"].Width = 80;
+            gridViewMaterialConsumption.Columns["materialname"].Width = 150;
+            gridViewMaterialConsumption.Columns["Quantity"].Width = 60;
+
+            gridViewMaterialConsumption.Columns["Quantity"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            gridViewMaterialConsumption.Columns["Quantity"].DisplayFormat.FormatString = "{0:n3}";
+
+            // Calculated Total column: 
+            GridColumn columnTotal = new GridColumn();
+            columnTotal.Caption = "Total";
+            columnTotal.FieldName = "Total";
+            columnTotal.OptionsColumn.AllowEdit = false;
+            columnTotal.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+            columnTotal.UnboundExpression = weightMaterialConsumption + "*[Quantity]";
+
+            gridViewMaterialConsumption.Columns.Add(columnTotal);
+
+            columnTotal.VisibleIndex = gridViewMaterialConsumption.VisibleColumns.Count;
+            columnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            columnTotal.DisplayFormat.FormatString = "{0:n3}";
+
+            gridViewMaterialConsumption.OptionsBehavior.Editable = false;
+            gridViewMaterialConsumption.OptionsView.ColumnAutoWidth = true;
+
+            GridColumnSummaryItem item1 = new GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:n3}");
+            gridViewMaterialConsumption.Columns["Total"].Summary.Add(item1);
+        }
+
+        private void lueOrderId_EditValueChanged(object sender, EventArgs e)
+        {            
+            tedItemName.Text = lueOrderId.GetColumnValue("c003").ToString();
+            tedColorName.Text = lueOrderId.GetColumnValue("ColorName").ToString();
+            LoadGridMaterial(lueOrderId.GetColumnValue("c002").ToString(), tedWeightMaterial.EditValue.ToString());
+        }        
     }
 }

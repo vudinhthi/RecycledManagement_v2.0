@@ -68,5 +68,17 @@ namespace RecycledManagement.Common
             dt = DataProvider.Instance.ExecuteQuery("sp_getCrushedByLossType @lossTypeId", new object[] { lossType });
             return dt;
         }
+        public DataTable GetMixeds()
+        {
+            DataTable dt = new DataTable();
+            dt = DataProvider.Instance.ExecuteQuery("sp_getMixeds");
+            return dt;
+        }
+        public int CreateMixed(string mixCode, int orderId, int shiftId, int operatorId, float wMixTotal, float wMaterialTotal, float wRecycledTotal, string note)
+        {
+            int result;
+            result = DataProvider.Instance.ExecuteNonQuery("sp_createMixed @MixCode, @orderId, @shiftID, @operatorId, @reasonID, @weightMixTotal, @weightMaterialTotal, @weightRecycledTotal, @Note", new object[] { mixCode, shiftId, operatorId, wMixTotal, wMaterialTotal, wRecycledTotal, note });
+            return result;
+        }
     }
 }
