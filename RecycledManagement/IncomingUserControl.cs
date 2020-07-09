@@ -139,6 +139,20 @@ namespace RecycledManagement
             #endregion
         }
 
+            //myEvent.ScaleValueChanged += (s, o) =>
+            //{
+            //    Debug.WriteLine($"Incoming Event Write: {o.ScaleValue}");
+            //};
+
+            GlobalVariable.myEvent.ScaleValueChanged += (s, o) =>
+            {
+                Debug.WriteLine($"Incoming Event write: {o.ScaleValue}");
+                if (txtWeight.ContainsFocus)
+                {
+                    txtWeight.Text = o.ScaleValue.ToString();
+                }
+            };
+        }
 
         #region Event
         //sự kiện radioGroup Select
@@ -190,7 +204,6 @@ namespace RecycledManagement
             //{
             //    txtNetWeight.Text = "0";
             //}
-        }
 
         #region test
         //private void timer1_Tick(object sender, EventArgs e)
