@@ -11,5 +11,15 @@ namespace RecycledManagement.Common
         public static int role = 0;
         public static int userId;
         public static DateTime loginDate;
+
+        private static int scale;
+
+        public static int Scale
+        {
+            get => scale;
+            set { scale = value; }
+        }
+
+        public static GlobalEvent myEvent = new GlobalEvent();
     }
 }

@@ -28,44 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.grcOtherSource = new DevExpress.XtraGrid.GridControl();
+            this.grvOtherSource = new DevExpress.XtraGrid.Views.Grid.GridView();
+            ((System.ComponentModel.ISupportInitialize)(this.grcOtherSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvOtherSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // gridControl1
+            // grcOtherSource
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(640, 336);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.grcOtherSource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grcOtherSource.Location = new System.Drawing.Point(0, 0);
+            this.grcOtherSource.MainView = this.grvOtherSource;
+            this.grcOtherSource.Name = "grcOtherSource";
+            this.grcOtherSource.Size = new System.Drawing.Size(640, 336);
+            this.grcOtherSource.TabIndex = 0;
+            this.grcOtherSource.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvOtherSource});
             // 
-            // gridView1
+            // grvOtherSource
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
+            this.grvOtherSource.GridControl = this.grcOtherSource;
+            this.grvOtherSource.Name = "grvOtherSource";
             // 
-            // userControlListShifts
+            // userControlOtherSources_List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.grcOtherSource);
             this.Name = "userControlOtherSources_List";
             this.Size = new System.Drawing.Size(640, 336);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.Load += new System.EventHandler(this.userControlOtherSources_List_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.grcOtherSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvOtherSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl grcOtherSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvOtherSource;
     }
 }

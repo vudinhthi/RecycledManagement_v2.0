@@ -28,44 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.gridControlShift = new DevExpress.XtraGrid.GridControl();
+            this.gridViewShift = new DevExpress.XtraGrid.Views.Grid.GridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlShift)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewShift)).BeginInit();
             this.SuspendLayout();
             // 
-            // gridControl1
+            // gridControlShift
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(640, 336);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gridControlShift.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlShift.Location = new System.Drawing.Point(0, 0);
+            this.gridControlShift.MainView = this.gridViewShift;
+            this.gridControlShift.Name = "gridControlShift";
+            this.gridControlShift.Size = new System.Drawing.Size(640, 336);
+            this.gridControlShift.TabIndex = 0;
+            this.gridControlShift.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewShift});
             // 
-            // gridView1
+            // gridViewShift
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
+            this.gridViewShift.GridControl = this.gridControlShift;
+            this.gridViewShift.Name = "gridViewShift";
+            this.gridViewShift.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridViewShift_RowClick);
             // 
-            // userControlListShifts
+            // userControlShifts_List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gridControl1);
-            this.Name = "userControlListShifts";
+            this.Controls.Add(this.gridControlShift);
+            this.Name = "userControlShifts_List";
             this.Size = new System.Drawing.Size(640, 336);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.Load += new System.EventHandler(this.userControlShifts_List_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlShift)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewShift)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gridControlShift;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewShift;
     }
 }

@@ -69,5 +69,25 @@ namespace RecycledManagement.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap framas_mini__black_ {
+            get {
+                object obj = ResourceManager.GetObject("framas mini (black)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap framas_Wallpaper_02 {
+            get {
+                object obj = ResourceManager.GetObject("framas_Wallpaper_02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

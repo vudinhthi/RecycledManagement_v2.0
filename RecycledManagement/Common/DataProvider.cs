@@ -46,7 +46,7 @@ namespace RecycledManagement.Common
         {
             DataTable res = new DataTable();
             
-            try
+            //try
             {
                 using (SqlConnection connection = new SqlConnection(connectionStr))
                 {
@@ -64,7 +64,14 @@ namespace RecycledManagement.Common
                         {
                             if (item.Contains("@"))
                             {
-                                command.Parameters.AddWithValue(item, parametter[i]);
+                                if (parametter[i] != null)
+                                {
+                                    command.Parameters.AddWithValue(item, parametter[i]);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue(item, DBNull.Value);
+                                }
                                 i++;
                             }
 
@@ -79,7 +86,7 @@ namespace RecycledManagement.Common
                     connection.Dispose();
                 }
             }
-            catch { }
+            //catch { }
 
             return res;
         }
@@ -95,7 +102,7 @@ namespace RecycledManagement.Common
         {
             int res = 0;
 
-            try
+            //try
             {
                 using (SqlConnection connection = new SqlConnection(connectionStr))
                 {
@@ -111,7 +118,14 @@ namespace RecycledManagement.Common
                         {
                             if (item.Contains("@"))
                             {
-                                command.Parameters.AddWithValue(item, parametter[i]);
+                                if (parametter[i]!=null)
+                                {
+                                    command.Parameters.AddWithValue(item, parametter[i]);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue(item, DBNull.Value);
+                                }
                                 i++;
                             }
                         }
@@ -123,7 +137,7 @@ namespace RecycledManagement.Common
                     connection.Dispose();
                 }
             }
-            catch { }
+            //catch { }
 
             return res;
         }
@@ -151,7 +165,14 @@ namespace RecycledManagement.Common
                         {
                             if (item.Contains("@"))
                             {
-                                command.Parameters.AddWithValue(item, parametter[i]);
+                                if (parametter[i] != null)
+                                {
+                                    command.Parameters.AddWithValue(item, parametter[i]);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue(item, DBNull.Value);
+                                }
                                 i++;
                             }
                         }

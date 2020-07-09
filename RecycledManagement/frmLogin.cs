@@ -12,6 +12,7 @@ using RecycledManagement.Common;
 using DevExpress.XtraSplashScreen;
 using System.Threading;
 using RecycledManagement.Common;
+using System.Globalization;
 
 namespace RecycledManagement
 {
@@ -30,7 +31,7 @@ namespace RecycledManagement
                 frmMain newForm = new frmMain();
                 this.Hide();
                 newForm.ShowDialog();
-                this.Show();
+                //this.Show();
             }
             else
             {
@@ -40,7 +41,23 @@ namespace RecycledManagement
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            
+            comboRole.Text = "Operator";
+        }
+
+        public string TextUser
+        {
+            get { return txtUserName.Text; }
+            set { txtUserName.Text = value; }
+        }
+        public string TextPass
+        {
+            get { return txtPasswrod.Text; }
+            set { txtPasswrod.Text = value; }
+        }
+        public string TextCombo
+        {
+            get { return comboRole.Text; }
+            set { comboRole.Text = value; }
         }
     }
 }

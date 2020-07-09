@@ -63,10 +63,34 @@
   <ItemGroup>
     <Compile Include="Common\DataProvider.cs" />
     <Compile Include="Common\DbAccount.cs" />
+    <Compile Include="Common\DbBookingOrder.cs" />
+    <Compile Include="Common\DbCrushing.cs" />
     <Compile Include="Common\DbHistoryLogin.cs" />
+    <Compile Include="Common\DbIncomingCrush.cs" />
+    <Compile Include="Common\DbLossType.cs" />
+    <Compile Include="Common\DbMixCode.cs" />
+    <Compile Include="Common\DbOperator.cs" />
+    <Compile Include="Common\DbReasons.cs" />
+    <Compile Include="Common\DbUserAction.cs" />
     <Compile Include="Common\DbOperatorRole.cs" />
+    <Compile Include="Common\DbOtherSource.cs" />
+    <Compile Include="Common\DbShift.cs" />
+    <Compile Include="Common\EncodeMD5.cs" />
     <Compile Include="Common\Encryptor.cs" />
+    <Compile Include="Common\GlobalEvent.cs" />
     <Compile Include="Common\GlobalVariable.cs" />
+    <Compile Include="CrushListUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrushListUserControl.Designer.cs">
+      <DependentUpon>CrushListUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrushUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrushUserControl.Designer.cs">
+      <DependentUpon>CrushUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmConfigFirstInstall.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,9 +115,27 @@
     <Compile Include="frmProcessing.designer.cs">
       <DependentUpon>frmProcessing.cs</DependentUpon>
     </Compile>
+    <Compile Include="IncomingListUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IncomingListUserControl.Designer.cs">
+      <DependentUpon>IncomingListUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IncomingUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IncomingUserControl.Designer.cs">
+      <DependentUpon>IncomingUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\HistoryLoginModel.cs" />
+    <Compile Include="Models\LossTypeModel.cs" />
+    <Compile Include="Models\OperatorModel.cs" />
     <Compile Include="Models\OperatroRoleModel.cs" />
+    <Compile Include="Models\OtherSourceModel.cs" />
+    <Compile Include="Models\Reasons.cs" />
+    <Compile Include="Models\ShiftModel.cs" />
+    <Compile Include="Models\UserActionModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="userControlBookingOrder.cs">
@@ -180,6 +222,12 @@
     <Compile Include="userControlShifts.Designer.cs">
       <DependentUpon>userControlShifts.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CrushListUserControl.resx">
+      <DependentUpon>CrushListUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrushUserControl.resx">
+      <DependentUpon>CrushUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmConfigFirstInstall.resx">
       <DependentUpon>frmConfigFirstInstall.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +239,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProcessing.resx">
       <DependentUpon>frmProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncomingListUserControl.resx">
+      <DependentUpon>IncomingListUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IncomingUserControl.resx">
+      <DependentUpon>IncomingUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\RecycledManagement.frmMain.resources" />
     <EmbeddedResource Include="obj\Debug\RecycledManagement.Properties.Resources.resources" />
@@ -364,8 +418,8 @@
     <Content Include="obj\Debug\recycledmanagement.exe.licenses" />
     <Content Include="obj\Debug\RecycledManagement.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
-    <Content Include="Resources\framas mini %28black%29.png" />
-    <Content Include="Resources\framas_Wallpaper_021.png" />
+    <None Include="Resources\framas mini %28black%29.png" />
+    <None Include="Resources\framas_Wallpaper_02.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
