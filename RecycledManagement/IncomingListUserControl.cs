@@ -188,6 +188,7 @@ namespace RecycledManagement
             if (grvIncoming.FocusedRowHandle >= 0)
             {
                 GlobalVariable.idSelect = (int)grvIncoming.GetRowCellValue(grvIncoming.FocusedRowHandle, "IncomingId");
+                GlobalVariable.selectLabel = grvIncoming.GetRowCellValue(grvIncoming.FocusedRowHandle, "LossTypeName").ToString();
                 GlobalVariable.newOrUpdateIncoming = GlobalVariable.enableFlagIncoming = false;
             }
             else

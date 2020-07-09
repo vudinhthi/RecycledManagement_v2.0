@@ -4,11 +4,11 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 
-namespace RecycledManagement
+namespace RecycledManagement.LablesPrint
 {
-    public partial class rptContaminated : DevExpress.XtraReports.UI.XtraReport
+    public partial class rptDefect : DevExpress.XtraReports.UI.XtraReport
     {
-        public rptContaminated()
+        public rptDefect()
         {
             InitializeComponent();
         }

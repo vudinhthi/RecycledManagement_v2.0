@@ -108,7 +108,27 @@ namespace RecycledManagement
             lookUpTeamLeader.Properties.DisplayMember = "OperatorName";
             #endregion
 
+            #region check nếu ko có quyền nhập thì disable các control đi
+            if (GlobalVariable.importOrder == false)
+            {
+                lookUpShift.ReadOnly = true;
+                lookUpTeamLeader.ReadOnly = true;
+                lookUpItemName.ReadOnly = true;
+                lookUpSize.ReadOnly = true;
+                txtMachine.ReadOnly = true;
+                txtNote.ReadOnly = true;
+                dateEditBook.ReadOnly = true;
+                spinEditBook.ReadOnly = true;
+                labMaxOrderSize.Enabled = false;
+                radBookOrder.ReadOnly = true;
+                grvOrder.OptionsBehavior.ReadOnly = true;
 
+                btnAdd.Enabled = false;
+                btnSaveOrder.Enabled = false;
+                lookUpSize.EditValue = null;
+                grcOrder.DataSource = null;
+            }
+            #endregion
         }
 
         //button delete trong GrifView
@@ -212,7 +232,7 @@ namespace RecycledManagement
                     lookUpSize.Properties.DataSource = _data;
 
                     //lay trung bình shotWeight va tinh maxOrderSize
-                    if (_data != null)
+                    if (_data != null && _data.Rows.Count > 0)
                     {
                         foreach (DataRow item in _data.Rows)
                         {
@@ -221,6 +241,10 @@ namespace RecycledManagement
 
                         shotWeight = (shotWeight / _data.Rows.Count) / 1000;//tính trung bình shotWeight
                         maxOrderSize = Math.Round(((25 - 1) / shotWeight) - 20, 0);//làm tròn số nguyên
+                    }
+                    else
+                    {
+                        shotWeight = maxOrderSize = 0;
                     }
                     lookUpSize.Properties.ValueMember = "ItemCode";
                     lookUpSize.Properties.DisplayMember = "Size";
@@ -240,7 +264,7 @@ namespace RecycledManagement
                 && !string.IsNullOrEmpty(itemCode) && !string.IsNullOrEmpty(itemName) && !string.IsNullOrEmpty(colorCode) && !string.IsNullOrEmpty(colorName))
             {
                 //tạo OrderCode theo format: OR-itemName-yyyyMMddOrderId
-                orderId = DbBookingOrder.Instance.GetMaxIdOrderBook();
+                orderId = DbBookingOrder.Instance.GetMaxIdOrderBook() + 1;
                 orderCode = $"OR-{itemCode}-{DateTime.Now.ToString("yyyymmdd")}{orderId}";
 
                 if (DbBookingOrder.Instance.InsertOrderBook(orderCode, txtMachine.Text, itemCode, itemName, colorCode, colorName, orderAmount.ToString(), orderStatus, txtNote.Text, lookUpTeamLeader.GetColumnValue("OperatorId").ToString()
@@ -349,23 +373,28 @@ namespace RecycledManagement
             //add new order
             if (GlobalVariable.newOrUpdateOrderBook == true && GlobalVariable.enableFlagOrderBook == true)
             {
-                lookUpShift.ReadOnly = false;
-                lookUpTeamLeader.ReadOnly = false;
-                lookUpItemName.ReadOnly = false;
-                lookUpSize.ReadOnly = false;
-                txtMachine.ReadOnly = false;
-                txtNote.ReadOnly = false;
-                dateEditBook.ReadOnly = false;
-                spinEditBook.ReadOnly = false;
-                btnAdd.Enabled = true;
-                labMaxOrderSize.Enabled = true;
-                radBookOrder.ReadOnly = false;
-                grvOrder.OptionsBehavior.ReadOnly = true;
+                //neu có quyền nhập
+                if (GlobalVariable.importOrder == true)
+                {
+                    lookUpShift.ReadOnly = false;
+                    lookUpTeamLeader.ReadOnly = false;
+                    lookUpItemName.ReadOnly = false;
+                    lookUpSize.ReadOnly = false;
+                    txtMachine.ReadOnly = false;
+                    txtNote.ReadOnly = false;
+                    dateEditBook.ReadOnly = false;
+                    spinEditBook.ReadOnly = false;
+                    labMaxOrderSize.Enabled = true;
+                    radBookOrder.ReadOnly = false;
+                    grvOrder.OptionsBehavior.ReadOnly = true;
 
-                btnSaveOrder.Enabled = true;
-                grcOrder.DataSource = null;
+                    btnAdd.Enabled = true;
+                    btnSaveOrder.Enabled = true;
+                    grcOrder.DataSource = null;
+                    lookUpSize.EditValue = null;
+                }
+
                 spinEditBook.EditValue = 1;
-                lookUpSize.EditValue = null;
                 weight = 0;
                 maxOrderSize = 0;
                 numOfOrderSize = 0;
@@ -391,11 +420,11 @@ namespace RecycledManagement
                 radBookOrder.ReadOnly = true;
                 grvOrder.OptionsBehavior.ReadOnly = true;
 
-
                 btnSaveOrder.Enabled = false;
-                spinEditBook.EditValue = 1;
                 lookUpSize.EditValue = null;
                 grcOrder.DataSource = null;
+
+                spinEditBook.EditValue = 1;
                 weight = 0;
                 maxOrderSize = 0;
                 orderAmount = 0;
@@ -431,6 +460,15 @@ namespace RecycledManagement
                 GlobalVariable.enableFlagOrderBook = true;
             }
             #endregion
+
+            //if (GlobalVariable.importOrder)
+            //{
+            //    btnSaveOrder.Enabled = true;
+            //}
+            //else
+            //{
+            //    btnSaveOrder.Enabled = false;
+            //}
 
             timer1.Enabled = true;
 

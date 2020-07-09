@@ -108,6 +108,25 @@ namespace RecycledManagement
                     txtWeight.Text = o.ScaleValue.ToString();
                 }
             };
+
+            #region check role Import
+            if (GlobalVariable.importCrush == false)
+            {
+                lookUpShift.ReadOnly = true;
+                lookUpOperator.ReadOnly = true;
+                txtCrushMachine.ReadOnly = true;
+                lookUpMixCode.ReadOnly = true;
+                lookUpMaterial.ReadOnly = true;
+                txtWeight.ReadOnly = true;
+                txtNetWeight.ReadOnly = true;
+                radType.ReadOnly = true;
+
+                labItemName.Enabled = false;
+                labColorName.Enabled = false;
+                labMaterialCode.Enabled = false;
+                btnSave.Enabled = false;
+            }
+            #endregion
         }
         #endregion
 
@@ -200,7 +219,7 @@ namespace RecycledManagement
             shiftId = lookUpShift.EditValue.ToString();
             operatorId = lookUpOperator.EditValue.ToString();
             string machine = txtCrushMachine.Text;
-            int crushId = DbCrushing.Instance.GetMaxId();//get gia tri crushId lon nhat
+            int crushId = DbCrushing.Instance.GetMaxId() + 1;//get gia tri crushId lon nhat
 
             string weightCrush = txtNetWeight.Text;
             string crushType = radType.EditValue.ToString();//radioControl trả về Value
@@ -230,20 +249,23 @@ namespace RecycledManagement
             //add new order
             if (GlobalVariable.newOrUpdateCrushed == true && GlobalVariable.enableFlagCrushed == true)
             {
-                lookUpShift.ReadOnly = false;
-                lookUpOperator.ReadOnly = false;
-                txtCrushMachine.ReadOnly = false;
-                lookUpMixCode.ReadOnly = false;
-                lookUpMaterial.ReadOnly = false;
-                txtWeight.ReadOnly = false;
-                txtNetWeight.ReadOnly = false;
-                radType.ReadOnly = false;
+                //check quyen nhap
+                if (GlobalVariable.importCrush == true)
+                {
+                    lookUpShift.ReadOnly = false;
+                    lookUpOperator.ReadOnly = false;
+                    txtCrushMachine.ReadOnly = false;
+                    lookUpMixCode.ReadOnly = false;
+                    lookUpMaterial.ReadOnly = false;
+                    txtWeight.ReadOnly = false;
+                    txtNetWeight.ReadOnly = false;
+                    radType.ReadOnly = false;
 
-                labItemName.Enabled = true;
-                labColorName.Enabled = true;
-                labMaterialCode.Enabled = true;
-                btnSave.Enabled = true;
-
+                    labItemName.Enabled = true;
+                    labColorName.Enabled = true;
+                    labMaterialCode.Enabled = true;
+                    btnSave.Enabled = true;
+                }
                 GlobalVariable.enableFlagCrushed = false;
             }
             else if (GlobalVariable.newOrUpdateCrushed == false && GlobalVariable.enableFlagCrushed == false)

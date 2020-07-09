@@ -2,6 +2,7 @@
 using RecycledManagement.Common;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,8 @@ namespace RecycledManagement.Common
         private static DbAccount _instance;
         public static DbAccount Instance
         {
-            get {
+            get
+            {
                 if (_instance == null)
                 {
                     _instance = new DbAccount();
@@ -92,6 +94,39 @@ namespace RecycledManagement.Common
             }
 
             return result;
+        }
+
+        //lay tong tin cua User theo ID
+        public DataTable GetUser(string userId)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_getUserInfo @UserID", new object[] { userId });
+        }
+
+        //dung cho user operator update
+        public int UpdateAccountUser(string userId, string userName, string password)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("sp_AccountUpdate @Userid , @UserName , @Password", new object[] { userId, userName, password });
+        }
+
+        public DataTable GetUserReset()
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_AccountSelectUserReset");
+        }
+
+        public int GetMaxIdAccount()
+        {
+            return DataProvider.Instance.ExecuteNonQuery_GetIdIdentity("sp_AccountGetMaxId");
+        }
+
+        public int InsertAccount(string userName, string fullName, string pass, string role)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("sp_AccountInsert @UserName , @FullName , @Pass , @Role", new object[] { userName, fullName, pass, role });
+        }
+
+        public int InsertOperatorRole(string userId, string booking, string mixing, string incoming, string crush)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("sp_OperatorRoleInsert @userId , @booking , @mixing , @incoming , @crushing"
+                , new object[] { userId, booking, mixing, incoming, crush });
         }
     }
 }

@@ -38,6 +38,13 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("sp_IncomingCrushGetLienBang");
         }
 
+        //get 1 dong data theo cruchedId
+        public DataTable GetLable(string incomingId)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_IncomingGetLable @IncomingId", new object[] { incomingId });
+        }
+
+
         //Insert data
         public int InsertData(string MixId, string ShiftId, string LossTypeId, string SourceId, string reasonId, string MaterialCode, string MaterialName, string WeightIncoming, string CeratesBy, string IncomingCode)
         {

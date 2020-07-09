@@ -18,9 +18,19 @@ namespace RecycledManagement.Common
                                                                                      //mỗi lần click vào row trên gridView thì sẽ xét xem đó là dòng mới hay dòng cũ, để gán true or false cho biến này để hide/show nút Save trên EditForm
         public static bool newOrUpdateCrushed = false, enableFlagCrushed = false;//true--New-->hiện nút save trên editForm; false--update-->ẩn nút save trên editForm
         public static bool newOrUpdateIncoming = false, enableFlagIncoming = false;//true--New-->hiện nút save trên editForm; false--update-->ẩn nút save trên editForm
+        public static bool newOrUpdateMix = false, enableFlagMix = false;//true--New-->hiện nút save trên editForm; false--update-->ẩn nút save trên editForm
         #endregion
 
         public static int idSelect;//dùng để lưu lại rowSelect khi chọn trên GridView để khi bấm printLables in cho đúng record
+        public static string selectLabel = "";//biến dùng để chọn loại tem cần in
+        public static int orderId;//dung cho Station Mixing
+        public static string mixId;
+
+        //biến check quyền cho user
+        public static bool importOrder = false, print = false, scales = false;
+        public static bool importMixing = false;
+        public static bool importIncoming = false;
+        public static bool importCrush = false;
 
         public static GlobalEvent myEvent = new GlobalEvent();//tạo đối tượng để nhận event tag scaleValueChanged
     }

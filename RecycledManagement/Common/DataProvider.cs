@@ -210,7 +210,7 @@ namespace RecycledManagement.Common
                     
                     command.ExecuteNonQuery();
 
-                    result = (int)command.Parameters["@LastIdentity"].Value + 1;
+                    result = (int)command.Parameters["@LastIdentity"].Value;
                     
                     connection.Close();
                     connection.Dispose();

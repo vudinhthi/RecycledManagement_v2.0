@@ -1,6 +1,5 @@
 ﻿using RecycledManagement.Common;
 using RecycledManagement.Models;
-using RecycledManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,9 +29,9 @@ namespace RecycledManagement.Common
 
         }
 
-        public DataTable GetOperatorRole(int userId)
+        public DataTable GetOperatorRole(string userId)
         {
-            return DataProvider.Instance.ExecuteQuery($"select * from tblOperatorRole where userId={userId}");
+            return DataProvider.Instance.ExecuteQuery("sp_OperatorRoleSelectId @UserId",new object[] { userId});
         }
     }
 }

@@ -4,11 +4,11 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 
-namespace RecycledManagement
+namespace RecycledManagement.LablesPrint
 {
-    public partial class rptCrushed : DevExpress.XtraReports.UI.XtraReport
+    public partial class rptOtherSource : DevExpress.XtraReports.UI.XtraReport
     {
-        public rptCrushed()
+        public rptOtherSource()
         {
             InitializeComponent();
         }

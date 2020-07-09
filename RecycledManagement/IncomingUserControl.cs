@@ -122,6 +122,21 @@ namespace RecycledManagement
                     txtWeight.Text = o.ScaleValue.ToString();
                 }
             };
+
+            #region check role Import
+            if (GlobalVariable.importIncoming == false)
+            {
+                lookUpShift.ReadOnly = true;
+                lookUpMaterial.ReadOnly = true;
+                lookUpReason.ReadOnly = true;
+                lookUpOtherSource.ReadOnly = true;
+                lookUpMaterial.ReadOnly = true;
+                txtWeight.ReadOnly = true;
+                txtNetWeight.ReadOnly = true;
+                radLossType.ReadOnly = true;
+                btnSave.Enabled = false;
+            }
+            #endregion
         }
 
 
@@ -208,17 +223,20 @@ namespace RecycledManagement
             //add new order
             if (GlobalVariable.newOrUpdateIncoming == true && GlobalVariable.enableFlagIncoming == true)
             {
-                lookUpShift.ReadOnly = false;
-                lookUpMaterial.ReadOnly = false;
-                lookUpReason.ReadOnly = false;
-                lookUpOtherSource.ReadOnly = false;
-                lookUpMaterial.ReadOnly = false;
-                txtWeight.ReadOnly = false;
-                txtNetWeight.ReadOnly = false;
-                radLossType.ReadOnly = false;
+                //neu co quyen nhap
+                if (GlobalVariable.importIncoming == true)
+                {
+                    lookUpShift.ReadOnly = false;
+                    lookUpMaterial.ReadOnly = false;
+                    lookUpReason.ReadOnly = false;
+                    lookUpOtherSource.ReadOnly = false;
+                    lookUpMaterial.ReadOnly = false;
+                    txtWeight.ReadOnly = false;
+                    txtNetWeight.ReadOnly = false;
+                    radLossType.ReadOnly = false;
 
-                btnSave.Enabled = true;
-
+                    btnSave.Enabled = true;
+                }
                 GlobalVariable.enableFlagIncoming = false;
             }
             else if (GlobalVariable.newOrUpdateIncoming == false && GlobalVariable.enableFlagIncoming == false)
@@ -244,7 +262,7 @@ namespace RecycledManagement
         private void btnSave_Click(object sender, EventArgs e)
         {
             string mixId = null, shiftId = null, sourceId = null, reasonId = null, materialCode = null, materialName = null;
-            int incomingId = DbIncomingCrush.Instance.GetMaxIncomingId();//get gia tri Incoming lon nhat
+            int incomingId = DbIncomingCrush.Instance.GetMaxIncomingId() + 1;//get gia tri Incoming lon nhat
             string weightIncoming = txtNetWeight.Text;
             string lossTypeId = radLossType.EditValue.ToString();
             shiftId = lookUpShift.EditValue.ToString();
