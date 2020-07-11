@@ -11,11 +11,15 @@ using DevExpress.XtraEditors;
 using RecycledManagement.Common;
 using RecycledManagement.Models;
 using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Views.Grid;
+using System.Diagnostics;
 
 namespace RecycledManagement
 {
     public partial class frmMixing : DevExpress.XtraEditors.XtraForm
     {
+        int status;//xet xem trạng thái của đơn hàng đang ở công đoạn nào để chọn cân cho phù hợp
+
         public frmMixing()
         {
             InitializeComponent();
@@ -54,15 +58,83 @@ namespace RecycledManagement
                 txtItemName.Text = orderInfo.ItemName;
                 txtColorName.Text = orderInfo.ColorName;
                 txtOrderNote.Text = orderInfo.OrderNote;
+                txtItemCode.Text = orderInfo.ItemCode;
+                txtColorCode.Text = orderInfo.ColorCode;
             }
+            //kiểm tra trạng thái đơn hàng để set biến chọn cân để cân
+            //chỉ set trong pageLoad trạng thái 3, vì 1 2 sẽ đc set trọng event của gridview
+            status = Convert.ToInt32(orderInfo.Status);
+            if (status == 1 || status == 2)
+            {
+                lookUpRecycle1.Enabled = false;
+                lookUpRecycle2.Enabled = false;
+                lookUpCompound.Enabled = false;
+                lookUpClearRecycle.Enabled = false;
+                lookUpFramapur.Enabled = false;
+                lookUpLeftover.Enabled = false;
+
+                txtWeightRecycle1.Enabled = false;
+                txtWeightRecycle2.Enabled = false;
+                txtWeightCompound.Enabled = false;
+                txtWeightClearRecycle.Enabled = false;
+                txtWeightFramapur.Enabled = false;
+                txtWeightLeftover.Enabled = false;
+
+                lookUpReason.Enabled = false;
+                checkBoxUsingRecycle.Enabled = false;
+
+                if (status==2)
+                {
+                    lookUpShift.ReadOnly = true;
+                    lookUpOperator.ReadOnly = true;
+
+                    lookUpShift.EditValue = orderInfo.MixShiftId;
+                }
+            }
+            else if (status == 3)
+            {
+                lookUpShift.ReadOnly = true;
+                lookUpOperator.ReadOnly = true;
+                lookUpShift.EditValue = orderInfo.MixShiftId;
+                lookUpOperator.EditValue = orderInfo.MixOperatorId;
+
+                GlobalVariable.selectScale = "ScalePlastic";//set chon can nhựa vì trạng thái order đang ở cân recycle
+
+                grcMaterialConsumption.Enabled = false;
+            }
+
 
             List<MixProductWinlineModel> data = DbMixCode.Instance.GetProductWinline(orderInfo.ItemCode, orderInfo.OrderAmount);
 
             grcMaterialConsumption.DataSource = data;
 
-            //RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
-            //grcMaterialConsumption.RepositoryItems.Add(edit);
-            //grvMaterialConsumption.Columns["ActualUsage"].ColumnEdit = edit;
+            //đang ký sự kiện scaleValueChanged
+            GlobalVariable.myEvent.ScaleValueChanged += (s, o) =>
+            {
+                Debug.WriteLine($"Mixing event write: {o.ScaleValue} | Allow Focus: {grvControlTextEdit.AllowFocused} | Appearance Focus: ");
+
+                //grvMaterialConsumption.SetFocusedValue(o.ScaleValue);
+                if (status == 1 || status == 2)
+                {
+                    //grvMaterialConsumption.SetFocusedValue(o.ScaleValue);
+                    string materialCodeSub = grvMaterialConsumption.GetFocusedRowCellDisplayText("MaterialCode").Substring(0, 3);
+                    if (status == 1 && (materialCodeSub == "RCP" || materialCodeSub == "RMB" || materialCodeSub == "REX" || materialCodeSub == "RAD"))//can mau
+                    {
+                        grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue);
+                    }
+                    else if (status == 2 && (materialCodeSub == "RPM" || materialCodeSub == "RCM" || materialCodeSub == "RRE" || materialCodeSub == "RMX"))//can nhua
+                    {
+                        grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue);
+                    }
+                }
+                else if (status == 3)
+                {
+                    if (txtWeightRecycle1.ContainsFocus)
+                    {
+                        txtWeightRecycle1.Text = o.ScaleValue.ToString();
+                    }
+                }
+            };
 
         }
 
@@ -104,6 +176,83 @@ namespace RecycledManagement
 
                 lookUpReason.Enabled = true;
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            GlobalVariable.myEvent.ShowMixingEditor = false;
+            this.Close();
+        }
+
+        private void grvMaterialConsumption_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            //GridView view = sender as GridView;
+
+            //MixProductWinlineModel data = view.GetRow(e.RowHandle) as MixProductWinlineModel;
+
+            //if (data != null)
+            //{
+            //    string materialCodeSub = "";
+            //    view.OptionsBehavior.Editable = false;//khoa ko cho nhap tren GridView
+
+            //    if (status == 1)//New order--> Cân color
+            //    {
+            //        materialCodeSub = data.MaterialCode.Substring(0, 3);
+            //        if (materialCodeSub == "RCP" || materialCodeSub == "RMB" || materialCodeSub == "REX" || materialCodeSub == "RAD")
+            //        {
+            //            view.OptionsBehavior.Editable = true;//mở khóa nhap tren GridView
+
+            //        }
+            //    }
+            //    else if (status == 2)//Process-->Cân nhựa
+            //    {
+            //        e.Appearance.BackColor = Color.Yellow;
+            //    }
+            //    else if (status == 3)//Process--> Cân Recycle
+            //    {
+            //        e.Appearance.BackColor = Color.Magenta;
+            //    }
+            //    else if (status == 4)//finish
+            //    {
+            //        e.Appearance.BackColor = Color.Green;
+            //    }
+            //}
+        }
+
+        //Disable row theo dieu kien
+        private void grvMaterialConsumption_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            GridView view = sender as GridView;
+
+            string ma = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "MaterialCode").ToString();
+            string materialCodeSub = ma.Substring(0, 3);
+
+            if (status == 1)//New order--> Cân color
+            {
+                GlobalVariable.selectScale = "ScaleColor";
+
+                if (materialCodeSub == "RPM" || materialCodeSub == "RCM" || materialCodeSub == "RRE" || materialCodeSub == "RMX")
+                {
+                    e.Cancel = true;//disable Row
+                }
+            }
+            else if (status == 2)//Process-->Cân nhựa
+            {
+                GlobalVariable.selectScale = "ScalePlastic";
+                if (materialCodeSub == "RCP" || materialCodeSub == "RMB" || materialCodeSub == "REX" || materialCodeSub == "RAD")
+                {
+                    e.Cancel = true;
+                }
+            }
+            //else if (status == 3)//Process--> Cân Recycle
+            //{
+            //    GlobalVariable.selectScale = "ScalePlastic";
+            //    e.Cancel = true;
+            //}
+            //else if (status == 4)//finish
+            //{
+            //    e.Cancel = true;
+            //}
         }
     }
 }

@@ -25,6 +25,7 @@ namespace RecycledManagement.Common
         public static string selectLabel = "";//biến dùng để chọn loại tem cần in
         public static int orderId;//dung cho Station Mixing
         public static string mixId;
+        public static string selectScale;//biến để chọn cân. "ScaleColor"--> cân màu; "ScalePlastic"--> cân nhựa
 
         //biến check quyền cho user
         public static bool importOrder = false, print = false, scales = false;

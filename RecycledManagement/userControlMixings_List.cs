@@ -29,7 +29,7 @@ namespace RecycledManagement
 
             //grvMixing.Appearance.Row.BackColor = Color.Green;
 
-
+            GlobalVariable.myEvent.ShowMixingEditorChanged += MyEvent_ShowMixingEditorChanged;
 
             //an cot gridView
             //grvBookingOrder.Columns["CrushId"].Visible = false;
@@ -40,14 +40,13 @@ namespace RecycledManagement
             //grvBookingOrder.Columns["CrushedType"].Visible = false;
         }
 
-        private void grvMixing_RowClick(object sender, RowClickEventArgs e)
+        //su kien khi đống MĩingEditor thì refresh lại GridView và đóng form
+        private void MyEvent_ShowMixingEditorChanged(object sender, ScaleValueChangedEventArgs e)
         {
-            //GlobalVariable.mixId = grvMixing.GetRowCellValue(grvMixing.FocusedRowHandle, "MixId").ToString();
-            GlobalVariable.orderId = Convert.ToInt32(grvMixing.GetRowCellValue(grvMixing.FocusedRowHandle, "OrderId").ToString());
-
-            //gán giá trị cho biến ShowMixingEditor để tạo sự kiện
-            GlobalVariable.myEvent.ShowMixingEditor = false;
-            GlobalVariable.myEvent.ShowMixingEditor = true;
+            if (GlobalVariable.myEvent.ShowMixingEditor==false)
+            {
+                grcMixing.DataSource = DbMixCode.Instance.GetAllMixedList();
+            }
         }
 
 
@@ -92,6 +91,7 @@ namespace RecycledManagement
 
             if (data != null)
             {
+                view.OptionsBehavior.Editable = false;//khoa ko cho nhap tren GridView, khoa toan bo gridView
 
                 if (data.Status == "1")
                 {
@@ -112,6 +112,16 @@ namespace RecycledManagement
             }
             #endregion
             #endregion
+        }
+
+        private void grvMixing_DoubleClick(object sender, EventArgs e)
+        {
+            //GlobalVariable.mixId = grvMixing.GetRowCellValue(grvMixing.FocusedRowHandle, "MixId").ToString();
+            GlobalVariable.orderId = Convert.ToInt32(grvMixing.GetRowCellValue(grvMixing.FocusedRowHandle, "OrderId").ToString());
+
+            //gán giá trị cho biến ShowMixingEditor để tạo sự kiện
+            //GlobalVariable.myEvent.ShowMixingEditor = false;
+            GlobalVariable.myEvent.ShowMixingEditor = true;
         }
     }
 }
