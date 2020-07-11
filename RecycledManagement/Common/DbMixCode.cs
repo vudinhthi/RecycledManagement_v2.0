@@ -77,5 +77,10 @@ namespace RecycledManagement.Common
 
             return result;
         }
+
+        public int CreatedMix(List<SqlTransactionQueryList> listQuery)
+        {
+            return DataProvider.Instance.ExecuteSqlTransaction(listQuery);
+        }
     }
 }

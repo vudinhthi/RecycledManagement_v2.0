@@ -219,5 +219,72 @@ namespace RecycledManagement.Common
             catch { }
             return result;
         }
+
+
+        /// <summary>
+        /// Method sử dụng Transaction
+        /// </summary>
+        /// <param name="listQuery">list chứa dang sách các lệnh thực hiện trong Transaction. chỉ sử dụng các lệnh sửa đổi dữ liệu như: insert, update, delete,...
+        /// Danh sách truyền vào là list gồm 2 phần tử.
+        /// 1. query: chứa câu truy vấn, có thể là lệnh trực tiếp hoặc Stored Procedures.
+        /// 2. parametter: Object[], dùng cho Stored Procedures.</param>
+        /// <returns>0:Thất bại; 1: thành công.</returns>
+        public int ExecuteSqlTransaction(List<SqlTransactionQueryList> listQuery)
+        {
+            int result = 0;
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                connection.Open();
+
+                SqlCommand command = connection.CreateCommand();
+                SqlTransaction transaction;
+
+                // Start a local transaction.
+                transaction = connection.BeginTransaction("SampleTransaction");
+
+                // Must assign both transaction object and connection
+                // to Command object for a pending local transaction
+                command.Connection = connection;
+                command.Transaction = transaction;
+
+                try
+                {
+                    foreach (SqlTransactionQueryList item in listQuery)
+                    {
+                        this.ExecuteNonQuery(item.Query,item.Parametter);
+                    }
+                    // Attempt to commit the transaction.
+                    transaction.Commit();
+                    Debug.WriteLine("Both records are written to database.");
+
+                    result = 1;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Commit Exception Type: {0}", ex.GetType());
+                    Debug.WriteLine("  Message: {0}", ex.Message);
+
+                    // Attempt to roll back the transaction.
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex2)
+                    {
+                        // This catch block will handle any errors that may have occurred
+                        // on the server that would cause the rollback to fail, such as
+                        // a closed connection.
+                        Debug.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
+                        Debug.WriteLine("  Message: {0}", ex2.Message);
+                    }
+
+                    result = 0;
+                }
+
+                connection.Close();
+                connection.Dispose();
+            }
+            return result;
+        }
     }
 }

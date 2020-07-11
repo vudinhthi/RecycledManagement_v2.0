@@ -13,12 +13,17 @@ using RecycledManagement.Models;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Grid;
 using System.Diagnostics;
+using DevExpress.XtraGrid;
+using DevExpress.Data;
+using System.Threading;
 
 namespace RecycledManagement
 {
     public partial class frmMixing : DevExpress.XtraEditors.XtraForm
     {
         int status;//xet xem trạng thái của đơn hàng đang ở công đoạn nào để chọn cân cho phù hợp
+        double totalMaterialConsumtion, totalMaterialConsumtionNet = 0;
+
 
         public frmMixing()
         {
@@ -45,6 +50,8 @@ namespace RecycledManagement
             lookUpReason.Properties.DisplayMember = "ReasonName";
             #endregion
 
+
+            #region set trang thai order
             //MixingOrderModel orderInfo = DbMixCode.Instance.GetAllMixed1Row(!string.IsNullOrEmpty(GlobalVariable.mixId) ? GlobalVariable.mixId : null);
             MixingOrderModel orderInfo = DbMixCode.Instance.GetAllMixed1Row(GlobalVariable.orderId.ToString());
 
@@ -82,13 +89,16 @@ namespace RecycledManagement
 
                 lookUpReason.Enabled = false;
                 checkBoxUsingRecycle.Enabled = false;
+                txtTotalRecycleWeight.Enabled = false;
+                txtNetWeightRecycle.Enabled = false;
 
-                if (status==2)
+                if (status == 2)
                 {
                     lookUpShift.ReadOnly = true;
                     lookUpOperator.ReadOnly = true;
 
-                    lookUpShift.EditValue = orderInfo.MixShiftId;
+                    lookUpShift.EditValue = (object)orderInfo.MixShiftId;
+
                 }
             }
             else if (status == 3)
@@ -102,7 +112,7 @@ namespace RecycledManagement
 
                 grcMaterialConsumption.Enabled = false;
             }
-
+            #endregion
 
             List<MixProductWinlineModel> data = DbMixCode.Instance.GetProductWinline(orderInfo.ItemCode, orderInfo.OrderAmount);
 
@@ -116,6 +126,7 @@ namespace RecycledManagement
                 //grvMaterialConsumption.SetFocusedValue(o.ScaleValue);
                 if (status == 1 || status == 2)
                 {
+                    //Thread.Sleep(500);
                     //grvMaterialConsumption.SetFocusedValue(o.ScaleValue);
                     string materialCodeSub = grvMaterialConsumption.GetFocusedRowCellDisplayText("MaterialCode").Substring(0, 3);
                     if (status == 1 && (materialCodeSub == "RCP" || materialCodeSub == "RMB" || materialCodeSub == "REX" || materialCodeSub == "RAD"))//can mau
@@ -178,8 +189,11 @@ namespace RecycledManagement
             }
         }
 
+        //Cteated Mix
         private void btnSave_Click(object sender, EventArgs e)
         {
+
+
             GlobalVariable.myEvent.ShowMixingEditor = false;
             this.Close();
         }
@@ -253,6 +267,53 @@ namespace RecycledManagement
             //{
             //    e.Cancel = true;
             //}
+        }
+
+        private void grvMaterialConsumption_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
+        {
+            GridView view = sender as GridView;
+            // Get the summary ID. 
+            int summaryID = Convert.ToInt32((e.Item as GridSummaryItem).Tag);
+
+            // Initialization. 
+            if (e.SummaryProcess == CustomSummaryProcess.Start)
+            {
+                //discontinuedProductsCount = 0;
+                if (summaryID == 1)
+                {
+                    totalMaterialConsumtion = 0;
+                }
+            }
+
+            // Calculation.
+            if (e.SummaryProcess == CustomSummaryProcess.Calculate)
+            {
+                switch (summaryID)
+                {
+                    case 1: // The total summary calculated against the 'UnitPrice' column. 
+                        double unitsInStock = Convert.ToDouble(view.GetRowCellValue(e.RowHandle, "ActualUsage"));
+                        totalMaterialConsumtion += Math.Round(Convert.ToDouble(e.FieldValue), 3);
+                        break;
+                        //case 2: // The group summary. 
+                        //maxOrderSize
+                        //break;
+                }
+            }
+
+            // Finalization. 
+            if (e.SummaryProcess == CustomSummaryProcess.Finalize)
+            {
+                switch (summaryID)
+                {
+                    case 1:
+                        e.TotalValue = totalMaterialConsumtion;
+                        break;
+                        //case 2:
+                        //    maxOrderSize = Math.Round(((25 - (1 * numOfOrderSize)) / shotWeight) - 20, 3);
+                        //    e.TotalValue = maxOrderSize;
+                        //    break;
+                }
+            }
         }
     }
 }
