@@ -233,6 +233,7 @@
     <Compile Include="Models\Reasons.cs" />
     <Compile Include="Models\ShiftModel.cs" />
     <Compile Include="Models\UserActionModel.cs" />
+    <Compile Include="Models\UserConfigModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LablesPrint\rptRunner.cs">
@@ -240,6 +241,12 @@
     </Compile>
     <Compile Include="LablesPrint\rptRunner.Designer.cs">
       <DependentUpon>rptRunner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserConfig.Designer.cs">
+      <DependentUpon>frmUserConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="userControlBookingOrder.cs">
       <SubType>UserControl</SubType>
@@ -391,6 +398,9 @@
     </Compile>
     <EmbeddedResource Include="LablesPrint\rptRunner.resx">
       <DependentUpon>rptRunner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserConfig.resx">
+      <DependentUpon>frmUserConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="userControlBookingOrder.resx">
       <DependentUpon>userControlBookingOrder.cs</DependentUpon>
