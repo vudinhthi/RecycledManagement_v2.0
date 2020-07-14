@@ -33,6 +33,9 @@ namespace RecycledManagement.Common
         public static bool importIncoming = false;
         public static bool importCrush = false;
 
+        //Biến lưu các giá trị trừ bì
+        public static double boxWeightIncoming = 2.1966,boxWeightCrushing = 1.14, boxWeightMixingMaterial = 0.16, boxWeightMixingRecycle = 1.14;
+
         public static GlobalEvent myEvent = new GlobalEvent();//tạo đối tượng để nhận event tag scaleValueChanged
     }
 }

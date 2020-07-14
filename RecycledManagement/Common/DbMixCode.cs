@@ -82,5 +82,10 @@ namespace RecycledManagement.Common
         {
             return DataProvider.Instance.ExecuteSqlTransaction(listQuery);
         }
+
+        public int GetMaxId()
+        {
+            return DataProvider.Instance.ExecuteNonQuery_GetIdIdentity("sp_MixedGetMaxId");
+        }
     }
 }

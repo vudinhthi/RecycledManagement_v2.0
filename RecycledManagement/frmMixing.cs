@@ -22,7 +22,14 @@ namespace RecycledManagement
     public partial class frmMixing : DevExpress.XtraEditors.XtraForm
     {
         int status;//xet xem trạng thái của đơn hàng đang ở công đoạn nào để chọn cân cho phù hợp
-        double totalMaterialConsumtion, totalMaterialConsumtionNet = 0;
+        double totalMaterialConsumtion = 0, totalRecycle = 0, total = 0;
+        double weightRecycle1 = 0, weightRecycle2 = 0, weightCompound = 0, weightClearRecycle = 0, weightFramapur = 0, weightLeftover = 0;
+
+        MixingOrderModel orderInfo;
+        List<MixProductWinlineModel> productMix;
+
+        System.Timers.Timer nTimer = new System.Timers.Timer();
+
 
 
         public frmMixing()
@@ -53,7 +60,7 @@ namespace RecycledManagement
 
             #region set trang thai order
             //MixingOrderModel orderInfo = DbMixCode.Instance.GetAllMixed1Row(!string.IsNullOrEmpty(GlobalVariable.mixId) ? GlobalVariable.mixId : null);
-            MixingOrderModel orderInfo = DbMixCode.Instance.GetAllMixed1Row(GlobalVariable.orderId.ToString());
+            orderInfo = DbMixCode.Instance.GetAllMixed1Row(GlobalVariable.orderId.ToString());
 
             if (orderInfo != null)
             {
@@ -71,7 +78,7 @@ namespace RecycledManagement
             //kiểm tra trạng thái đơn hàng để set biến chọn cân để cân
             //chỉ set trong pageLoad trạng thái 3, vì 1 2 sẽ đc set trọng event của gridview
             status = Convert.ToInt32(orderInfo.Status);
-            if (status == 1 || status == 2)
+            if (status == 1) //new order-->cân màu
             {
                 lookUpRecycle1.Enabled = false;
                 lookUpRecycle2.Enabled = false;
@@ -90,16 +97,38 @@ namespace RecycledManagement
                 lookUpReason.Enabled = false;
                 checkBoxUsingRecycle.Enabled = false;
                 txtTotalRecycleWeight.Enabled = false;
-                txtNetWeightRecycle.Enabled = false;
 
-                if (status == 2)
-                {
-                    lookUpShift.ReadOnly = true;
-                    lookUpOperator.ReadOnly = true;
+                List<MixProductWinlineModel> data = DbMixCode.Instance.GetProductWinline(orderInfo.ItemCode, orderInfo.OrderAmount);
 
-                    lookUpShift.EditValue = (object)orderInfo.MixShiftId;
+                grcMaterialConsumption.DataSource = data;
+            }
+            else if (status == 2)
+            {
+                lookUpRecycle1.Enabled = false;
+                lookUpRecycle2.Enabled = false;
+                lookUpCompound.Enabled = false;
+                lookUpClearRecycle.Enabled = false;
+                lookUpFramapur.Enabled = false;
+                lookUpLeftover.Enabled = false;
 
-                }
+                txtWeightRecycle1.Enabled = false;
+                txtWeightRecycle2.Enabled = false;
+                txtWeightCompound.Enabled = false;
+                txtWeightClearRecycle.Enabled = false;
+                txtWeightFramapur.Enabled = false;
+                txtWeightLeftover.Enabled = false;
+
+                lookUpReason.Enabled = false;
+                checkBoxUsingRecycle.Enabled = false;
+                txtTotalRecycleWeight.Enabled = false;
+
+
+                lookUpShift.ReadOnly = true;
+                lookUpOperator.ReadOnly = true;
+
+                lookUpShift.Text = orderInfo.MixShiftName;
+
+
             }
             else if (status == 3)
             {
@@ -112,11 +141,9 @@ namespace RecycledManagement
 
                 grcMaterialConsumption.Enabled = false;
             }
+
             #endregion
 
-            List<MixProductWinlineModel> data = DbMixCode.Instance.GetProductWinline(orderInfo.ItemCode, orderInfo.OrderAmount);
-
-            grcMaterialConsumption.DataSource = data;
 
             //đang ký sự kiện scaleValueChanged
             GlobalVariable.myEvent.ScaleValueChanged += (s, o) =>
@@ -135,18 +162,66 @@ namespace RecycledManagement
                     }
                     else if (status == 2 && (materialCodeSub == "RPM" || materialCodeSub == "RCM" || materialCodeSub == "RRE" || materialCodeSub == "RMX"))//can nhua
                     {
-                        grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue);
+                        grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue - GlobalVariable.boxWeightMixingMaterial);
                     }
                 }
-                else if (status == 3)
+                else if (status == 3)//can Recycle
                 {
                     if (txtWeightRecycle1.ContainsFocus)
                     {
-                        txtWeightRecycle1.Text = o.ScaleValue.ToString();
+                        txtWeightRecycle1.Text = (o.ScaleValue - GlobalVariable.boxWeightMixingRecycle).ToString();
+                    }
+                    else if (txtWeightRecycle2.ContainsFocus)
+                    {
+                        txtWeightRecycle2.Text = (o.ScaleValue - GlobalVariable.boxWeightMixingRecycle).ToString();
+                    }
+                    else if (txtWeightCompound.ContainsFocus)
+                    {
+                        txtWeightCompound.Text = (o.ScaleValue - GlobalVariable.boxWeightMixingRecycle).ToString();
+                    }
+                    else if (txtWeightClearRecycle.ContainsFocus)
+                    {
+                        txtWeightClearRecycle.Text = (o.ScaleValue - GlobalVariable.boxWeightMixingRecycle).ToString();
+                    }
+                    else if (txtWeightFramapur.ContainsFocus)
+                    {
+                        txtWeightFramapur.Text = (o.ScaleValue - GlobalVariable.boxWeightMixingRecycle).ToString();
+                    }
+                    else if (txtWeightLeftover.ContainsFocus)
+                    {
+                        txtWeightLeftover.Text = (o.ScaleValue - GlobalVariable.boxWeightMixingRecycle).ToString();
                     }
                 }
             };
 
+
+            //khoi tao timer
+            nTimer.Interval = 500;
+            nTimer.Elapsed += NTimer_Elapsed;
+            nTimer.Enabled = true;
+        }
+
+        private void NTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            nTimer.Enabled = false;
+            try
+            {
+                totalRecycle = weightRecycle1 + weightRecycle2 + weightCompound + weightClearRecycle + weightFramapur + weightLeftover;
+
+                txtTotalRecycleWeight.Invoke(new Action(() =>
+                {
+                    txtTotalRecycleWeight.Text = totalRecycle.ToString();
+                }));
+
+                total = totalMaterialConsumtion + totalRecycle;
+
+                txtTotalMaterialWeight.Invoke(new Action(() =>
+                {
+                    txtTotalMaterialWeight.Text = total.ToString();
+                }));
+            }
+            catch { }
+            nTimer.Enabled = true;
         }
 
         private void checkBoxUsingRecycle_CheckedChanged(object sender, EventArgs e)
@@ -192,45 +267,56 @@ namespace RecycledManagement
         //Cteated Mix
         private void btnSave_Click(object sender, EventArgs e)
         {
+            List<SqlTransactionQueryList> listQuery = new List<SqlTransactionQueryList>();
+
+            if (status == 1)//lưu cân màu
+            {
+                listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixedInsert @OrderId , @ShiftId , @OperatorId , @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal", Parametter = new object[] { orderInfo.OrderId, lookUpShift.EditValue, lookUpOperator.EditValue, total, null, null, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle } });
+
+                foreach (var item in productMix)
+                {
+                    if (item.MaterialCode.Contains("RCP") || item.MaterialCode.Contains("RMB") || item.MaterialCode.Contains("REX") || item.MaterialCode.Contains("RAD"))
+                    {
+                        listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixMaterialScaledInsert @MaterialCode , @WeightMaxScaled , @MixId , @CreatedBy , @MaterialName , @WeightMacEdited", Parametter = new object[] { } });
+                    }
+                }
+
+                listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixRecycledScaledInsert @WeightReScaled , @WeightReTotal , @MixId , @CreatedBy , @RecycledCode", Parametter = new object[] { } });
+            }
+            else if (status == 2)//lưu cân nhựa
+            {
+                //listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixedInsert @OrderId , @ShiftId , @OperatorId , @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal", Parametter = new object[] { orderInfo.OrderId, lookUpShift.EditValue, lookUpOperator.EditValue, total, null, null, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle } });
+
+                foreach (var item in productMix)
+                {
+                    if (item.MaterialCode.Contains("RPM") || item.MaterialCode.Contains("RCM") || item.MaterialCode.Contains("RRE") || item.MaterialCode.Contains("RMX"))
+                    {
+                        listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixMaterialScaledInsert @MaterialCode , @WeightMaxScaled , @MixId , @CreatedBy , @MaterialName , @WeightMacEdited", Parametter = new object[] { } });
+                    }
+                }
+            }
+            else if (status == 3)//lưu cân recycle
+            {
+                //listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixedInsert @OrderId , @ShiftId , @OperatorId , @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal", Parametter = new object[] { orderInfo.OrderId, lookUpShift.EditValue, lookUpOperator.EditValue, total, null, null, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle } });
+                listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixRecycledScaledInsert @WeightReScaled , @WeightReTotal , @MixId , @CreatedBy , @RecycledCode", Parametter = new object[] { } });
+            }
 
 
-            GlobalVariable.myEvent.ShowMixingEditor = false;
-            this.Close();
+            if (DbMixCode.Instance.CreatedMix(listQuery) > 0)
+            {
+                GlobalVariable.myEvent.ShowMixingEditor = false;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show($"Created Mixing Fail!");
+            }
         }
 
-        private void grvMaterialConsumption_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+
+        private void txtWeightRecycle1_EditValueChanged(object sender, EventArgs e)
         {
-            //GridView view = sender as GridView;
-
-            //MixProductWinlineModel data = view.GetRow(e.RowHandle) as MixProductWinlineModel;
-
-            //if (data != null)
-            //{
-            //    string materialCodeSub = "";
-            //    view.OptionsBehavior.Editable = false;//khoa ko cho nhap tren GridView
-
-            //    if (status == 1)//New order--> Cân color
-            //    {
-            //        materialCodeSub = data.MaterialCode.Substring(0, 3);
-            //        if (materialCodeSub == "RCP" || materialCodeSub == "RMB" || materialCodeSub == "REX" || materialCodeSub == "RAD")
-            //        {
-            //            view.OptionsBehavior.Editable = true;//mở khóa nhap tren GridView
-
-            //        }
-            //    }
-            //    else if (status == 2)//Process-->Cân nhựa
-            //    {
-            //        e.Appearance.BackColor = Color.Yellow;
-            //    }
-            //    else if (status == 3)//Process--> Cân Recycle
-            //    {
-            //        e.Appearance.BackColor = Color.Magenta;
-            //    }
-            //    else if (status == 4)//finish
-            //    {
-            //        e.Appearance.BackColor = Color.Green;
-            //    }
-            //}
+            weightRecycle1 = Convert.ToDouble(txtWeightRecycle1.Text);
         }
 
         //Disable row theo dieu kien
@@ -269,7 +355,7 @@ namespace RecycledManagement
             //}
         }
 
-        private void grvMaterialConsumption_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
+        private void grvMaterialConsumption_CustomSummaryCalculate(object sender, CustomSummaryEventArgs e)
         {
             GridView view = sender as GridView;
             // Get the summary ID. 
@@ -294,9 +380,6 @@ namespace RecycledManagement
                         double unitsInStock = Convert.ToDouble(view.GetRowCellValue(e.RowHandle, "ActualUsage"));
                         totalMaterialConsumtion += Math.Round(Convert.ToDouble(e.FieldValue), 3);
                         break;
-                        //case 2: // The group summary. 
-                        //maxOrderSize
-                        //break;
                 }
             }
 
@@ -308,10 +391,6 @@ namespace RecycledManagement
                     case 1:
                         e.TotalValue = totalMaterialConsumtion;
                         break;
-                        //case 2:
-                        //    maxOrderSize = Math.Round(((25 - (1 * numOfOrderSize)) / shotWeight) - 20, 3);
-                        //    e.TotalValue = maxOrderSize;
-                        //    break;
                 }
             }
         }
