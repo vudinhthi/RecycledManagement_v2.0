@@ -25,12 +25,16 @@ namespace RecycledManagement.Common
         public static string selectLabel = "";//biến dùng để chọn loại tem cần in
         public static int orderId;//dung cho Station Mixing
         public static string mixId;
+        public static string selectScale;//biến để chọn cân. "ScaleColor"--> cân màu; "ScalePlastic"--> cân nhựa
 
         //biến check quyền cho user
         public static bool importOrder = false, print = false, scales = false;
         public static bool importMixing = false;
         public static bool importIncoming = false;
         public static bool importCrush = false;
+
+        //Biến lưu các giá trị trừ bì
+        public static double boxWeightIncoming = 2.1966,boxWeightCrushing = 1.14, boxWeightMixingMaterial = 0.16, boxWeightMixingRecycle = 1.14;
 
         public static GlobalEvent myEvent = new GlobalEvent();//tạo đối tượng để nhận event tag scaleValueChanged
     }

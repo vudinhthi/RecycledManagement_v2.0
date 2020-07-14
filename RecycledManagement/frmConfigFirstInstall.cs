@@ -16,25 +16,52 @@ using System.Configuration;
 using System.IO;
 using System.Reflection;
 using System.Globalization;
+using System.IO.Ports;
+using Newtonsoft.Json;
+using System.Net.Mail;
+using DevExpress.Utils.Menu;
 
 namespace RecycledManagement
 {
     public partial class frmConfigFirstInstall : DevExpress.XtraEditors.XtraForm
     {
-        string pathApp;
+        string pathApp, pathComConfig, pathMailserverConfig;
         string[] dataArr = new string[5];
         string serverName, dbName, userName, password, configFirstInstall;
-
+        MailConfig mailConfig;
         public frmConfigFirstInstall()
         {
             InitializeComponent();
         }
 
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            MailHelper mailHelper = new MailHelper()
+            {
+                FromMailAddress =new MailAddress(txtFromMailAddress.Text),
+                Host = txtHost.Text,
+                Password = txtMailPassword.Text,
+                Port = txtPort.Text,
+                ToMailAddress = "cong.nguyen@framas.com,thi.vu@framas.com",
+                CCMailAddress = "tuan.le@framas.com,sang.nguyen@framas.com",
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                EnalbleSsl = true,
+                isBodyHtml = false,
+                UseDefaultCredentials = false,
+                Subject = "Test",
+                Body = "This is email to test"
+            };
+            Task<bool> task = new Task<bool>(()=>mailHelper.SendEmail()
+            );
+            task.Start();
+            task.ContinueWith(t => XtraMessageBox.Show(t.Result.ToString()));
+        }
 
         private void frmConfigFirstInstall_Load(object sender, EventArgs e)
         {
             //try
             {
+                GetComPort();
                 #region đọc textFile để lấy thông số cấu hình
                 pathApp = $"{ Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\Files\\DbServerParametter.txt";//get path
                 // Debug.WriteLine(pathApp);
@@ -59,8 +86,26 @@ namespace RecycledManagement
                 txtServerName.Enabled = false;
                 txtUserName.Enabled = false;
                 txtPassword.Enabled = false;
-                btnSave.Enabled = false;
+                btnSend.Enabled = false;
+                //Cấu hình Mail server
+                pathMailserverConfig = @"./Files/MailserverConfig.json";
+                if (File.Exists(pathMailserverConfig))
+                {
+                    mailConfig = JsonConvert.DeserializeObject<MailConfig>(File.ReadAllText(pathMailserverConfig));
+                    txtFromMailAddress.Text = mailConfig.FromMailAddress = EncodeMD5.DecryptString(mailConfig.FromMailAddress, "ITFramasBDVN");
+                    txtMailPassword.Text = mailConfig.Password = EncodeMD5.DecryptString(mailConfig.Password, "ITFramasBDVN");
+                    txtHost.Text = mailConfig.Host = EncodeMD5.DecryptString(mailConfig.Host, "ITFramasBDVN");
+                    txtPort.Text = mailConfig.Port = EncodeMD5.DecryptString(mailConfig.Port, "ITFramasBDVN");
+                }
+                else
+                {
+                    mailConfig = new MailConfig();
+                    mailConfig.FromMailAddress = txtFromMailAddress.Text = "sang.nguyen@framas.com";
+                    mailConfig.Password = txtMailPassword.Text = "san48Ngu#";
+                    mailConfig.Host = txtHost.Text = "smtp.office365.com";
+                    mailConfig.Port = txtPort.Text = "587";
 
+                }
                 //khi cài chương trình chạy dầu tiên thì vào cấu hình DB server 
                 if (configFirstInstall == "False")
                 {
@@ -68,7 +113,7 @@ namespace RecycledManagement
                     txtServerName.Enabled = true;
                     txtUserName.Enabled = true;
                     txtPassword.Enabled = true;
-                    btnSave.Enabled = true;
+                    btnSend.Enabled = true;
                 }
                 else//
                 {
@@ -128,10 +173,11 @@ namespace RecycledManagement
 
                     //lưu lại trạng thái cấu hình là đã cấu hình rồi vào settings
                     //mã hóa MD5 rồi mới lưu xuống textFile
-                    configFirstInstall = "True";
+                    configFirstInstall = "False";
                     WriteFile(pathApp, $"serverName:{EncodeMD5.EncryptString(serverName, "ITFramasBDVN")}|dbName:{EncodeMD5.EncryptString(dbName, "ITFramasBDVN")}" +
                         $"|userName:{EncodeMD5.EncryptString(userName, "ITFramasBDVN")}|password:{EncodeMD5.EncryptString(password, "ITFramasBDVN")}|configFirstInstall:{configFirstInstall}");
-
+                    //Save Mail Config
+                    SaveMailConfig();
                     //vao form Login
                     frmLogin newForm = new frmLogin();
                     this.Hide();
@@ -197,5 +243,36 @@ namespace RecycledManagement
             // catch { return status; }
         }
         #endregion
+        #region Sang's Method
+        private void GetComPort()
+        {
+            string[] portNames = SerialPort.GetPortNames();     //<-- Reads all available comPorts
+            foreach (var portName in portNames)
+            {
+                cbbComPort.Properties.Items.Add(portName);                  //<-- Adds Ports to combobox
+            }
+            cbbComPort.SelectedIndex = 0;
+        }
+        
+        
+        private void SaveMailConfig()
+        {
+            mailConfig.FromMailAddress = EncodeMD5.EncryptString(txtFromMailAddress.Text, "ITFramasBDVN");
+            mailConfig.Password = EncodeMD5.EncryptString(txtMailPassword.Text, "ITFramasBDVN");
+            mailConfig.Host = EncodeMD5.EncryptString(txtHost.Text, "ITFramasBDVN");
+            mailConfig.Port = EncodeMD5.EncryptString(txtPort.Text, "ITFramasBDVN");
+            string json = JsonConvert.SerializeObject(mailConfig, Formatting.Indented);
+            File.WriteAllText(pathMailserverConfig, json);
+        }
+        #endregion
+    }
+    class MailConfig
+    {
+        public string FromMailAddress { get; set; }
+        public string Password { get; set; }
+        public string Host { get; set; }
+        public string Port { get; set; }
+       
+
     }
 }

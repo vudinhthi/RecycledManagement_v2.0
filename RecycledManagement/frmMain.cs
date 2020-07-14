@@ -144,7 +144,7 @@ namespace RecycledManagement
         {
             value = value + 1;
             GlobalVariable.myEvent.ScaleValue = value;
-            Debug.WriteLine($"Main write ScaleValue={GlobalVariable.myEvent.ScaleValue}");
+            Debug.WriteLine($"Main write ScaleValue={GlobalVariable.myEvent.ScaleValue} | Select Scale: {GlobalVariable.selectScale}");
         }
 
 

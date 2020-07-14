@@ -68,7 +68,7 @@ namespace RecycledManagement.Common
         {
             List<MixProductWinlineModel> result = new List<MixProductWinlineModel>();
 
-            DataTable data = DataProvider.Instance.ExecuteQuery("sp_getMaterialsProductWinLine @ProductId", new object[] { itemCode });
+            DataTable data = DataProvider.Instance.ExecuteQuery("sp_getMaterialsProductWinLineMix @ProductId", new object[] { itemCode });
 
             foreach (DataRow item in data.Rows)
             {
@@ -76,6 +76,16 @@ namespace RecycledManagement.Common
             }
 
             return result;
+        }
+
+        public int CreatedMix(List<SqlTransactionQueryList> listQuery)
+        {
+            return DataProvider.Instance.ExecuteSqlTransaction(listQuery);
+        }
+
+        public int GetMaxId()
+        {
+            return DataProvider.Instance.ExecuteNonQuery_GetIdIdentity("sp_MixedGetMaxId");
         }
     }
 }
