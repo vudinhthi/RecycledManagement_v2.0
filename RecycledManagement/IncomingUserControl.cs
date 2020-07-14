@@ -86,12 +86,22 @@ namespace RecycledManagement
             lookUpShift.Properties.DataSource = DbShift.Instance.GetShiftComming();
             lookUpShift.Properties.ValueMember = "ShiftId";
             lookUpShift.Properties.DisplayMember = "ShiftName";
+
+            lookUpShift.Properties.Columns.Add(new LookUpColumnInfo("ShiftId", "ShiftId", 40));
+            lookUpShift.Properties.Columns.Add(new LookUpColumnInfo("ShiftName", "ShiftName", 120));
+            //enable text editing 
+            lookUpShift.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
             #endregion
 
             #region get Reason
             lookUpReason.Properties.DataSource = DbReasons.Instance.GetReasonType(2);
             lookUpReason.Properties.ValueMember = "ReasonId";
             lookUpReason.Properties.DisplayMember = "ReasonName";
+
+            lookUpReason.Properties.Columns.Add(new LookUpColumnInfo("ReasonId", "ReasonId", 40));
+            lookUpReason.Properties.Columns.Add(new LookUpColumnInfo("ReasonName", "ReasonName", 120));
+            //enable text editing 
+            lookUpReason.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
             #endregion
 
             #region get MixCode
@@ -99,18 +109,29 @@ namespace RecycledManagement
             lookUpMixCode.Properties.ValueMember = "MixId";
             lookUpMixCode.Properties.DisplayMember = "MixCode";
             //lookUpOrderId.Properties.Columns["OrderId"].Visible = false;
+
+            lookUpMixCode.Properties.Columns.Add(new LookUpColumnInfo("MixId", "MixId", 40));
+            lookUpMixCode.Properties.Columns.Add(new LookUpColumnInfo("MixCode", "MixCode", 120));
             #endregion
 
             #region get Source
             lookUpOtherSource.Properties.DataSource = DbOtherSource.Instance.GetAllIncoming();
             lookUpOtherSource.Properties.ValueMember = "SourceId";
             lookUpOtherSource.Properties.DisplayMember = "SourceName";
+
+            lookUpOtherSource.Properties.Columns.Add(new LookUpColumnInfo("SourceId", "SourceId", 40));
+            lookUpOtherSource.Properties.Columns.Add(new LookUpColumnInfo("SourceName", "SourceName", 120));
+            //enable text editing 
+            lookUpOtherSource.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
             #endregion
 
             #region get Material
             lookUpMaterial.Properties.DataSource = DbIncomingCrush.Instance.GetMaterialsIncomingWinLine();
             lookUpMaterial.Properties.ValueMember = "materialcode";
             lookUpMaterial.Properties.DisplayMember = "materialname";
+
+            lookUpMaterial.Properties.Columns.Add(new LookUpColumnInfo("materialcode", "Material Code", 40));
+            lookUpMaterial.Properties.Columns.Add(new LookUpColumnInfo("materialname", "Material Name", 120));
             #endregion
 
             //Đăng ký sự kiện scaleValueChanged
@@ -260,7 +281,7 @@ namespace RecycledManagement
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string mixId = null, shiftId = null, sourceId = null, reasonId = null, materialCode = null, materialName = null;
+            string mixId = null, shiftId = null, sourceId = null, reasonId = null, materialCode = null, materialName = null, leftOverCode = null, itemCode = null;
             int incomingId = DbIncomingCrush.Instance.GetMaxIncomingId() + 1;//get gia tri Incoming lon nhat
             string weightIncoming = txtNetWeight.Text;
             string lossTypeId = radLossType.EditValue.ToString();
@@ -271,12 +292,16 @@ namespace RecycledManagement
             {
                 mixId = lookUpMixCode.EditValue.ToString();
             }
+            
             //LossType chọn Leftover
             else if (lookUpMixCode.Enabled == true && lookUpMaterial.Enabled == false && lookUpReason.Enabled == true && lookUpOtherSource.Enabled == false)
             {
                 mixId = lookUpMixCode.EditValue.ToString();
+                itemCode = lookUpMixCode.GetColumnValue("ItemCode").ToString();
                 reasonId = lookUpReason.EditValue.ToString();
+                leftOverCode = $"LO|{DateTime.Now.ToString("yyyyMMdd")}|{itemCode}|{incomingId}";
             }
+            
             //LossType chọn OtherSource
             else if (lookUpMixCode.Enabled == false && lookUpMaterial.Enabled == true && lookUpReason.Enabled == false && lookUpOtherSource.Enabled == true)
             {
@@ -289,7 +314,7 @@ namespace RecycledManagement
 
             //goi method Insert tblIncomingCrush
             DbIncomingCrush.Instance.InsertData(mixId, shiftId, lossTypeId, sourceId, reasonId, materialCode, materialName, weightIncoming,
-                GlobalVariable.userId.ToString(), $"LE-ORCODE-{DateTime.Now.ToString("yyyyMMdd")}{incomingId}");
+                GlobalVariable.userId.ToString(), leftOverCode);
 
             view.CloseEditForm();
         }

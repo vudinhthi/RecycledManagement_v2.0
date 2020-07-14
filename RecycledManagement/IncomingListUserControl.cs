@@ -163,6 +163,8 @@ namespace RecycledManagement
 
             grcIncoming.DataSource = DbIncomingCrush.Instance.GetDataGridView();
 
+            grvIncoming.OptionsView.ColumnAutoWidth = true;
+
             //an cot gridView
             grvIncoming.Columns["IncomingId"].Visible = false;
             grvIncoming.Columns["MixId"].Visible = false;
@@ -175,6 +177,9 @@ namespace RecycledManagement
             grvIncoming.Columns["SourceName"].Visible = false;
             grvIncoming.Columns["ItemCode"].Visible = false;
             grvIncoming.Columns["CreatedBy"].Visible = false;
+
+            //set thu thu cac columns trong GridView
+
         }
 
         private void grvIncoming_RowClick(object sender, RowClickEventArgs e)
