@@ -53,6 +53,7 @@ namespace RecycledManagement
             this.SetBoundFieldName(this.lookUpTeamLeader, "OperatorId");
             this.SetBoundPropertyName(this.lookUpTeamLeader, "EditValue");
 
+            this.SetBoundFieldName(this.lookUpItemCode, "ItemCode");
             this.SetBoundFieldName(this.lookUpItemName, "ItemCode");
             this.SetBoundPropertyName(this.lookUpItemName, "EditValue");
 
@@ -289,20 +290,20 @@ namespace RecycledManagement
                             {
                                 DbBookingOrder.Instance.InsertOrderBookSize(orderId.ToString(), item.SizeName, item.QtyPrs.ToString(), item.QtyKg.ToString(), GlobalVariable.userId.ToString());
                             }
-                            //MessageBox.Show($"Successful!");
+                            //XtraMessageBox.Show($"Successful!");
                             //dong editform
                             //OwnerForm.Close();
                             view.CloseEditForm();//tăt editForm
                         }
                         else
                         {
-                            MessageBox.Show($"Insert Databases Error!");
+                            XtraMessageBox.Show($"Insert Databases Error!");
                             //error, do somthing
                         }
                     }
                     else
                     {
-                        MessageBox.Show($"Insert Databases Error!");
+                        XtraMessageBox.Show($"Insert Databases Error!");
                         //error, do somthing
                     }
 
@@ -310,13 +311,13 @@ namespace RecycledManagement
                 }
                 else
                 {
-                    MessageBox.Show($"Insert Databases Error!");
+                    XtraMessageBox.Show($"Insert Databases Error!");
                     //error, do somthing
                 }
             }
             else
             {
-                MessageBox.Show($"Fill in the missing information, please enter again!");
+                XtraMessageBox.Show($"Fill in the missing information, please enter again!");
             }
         }
 
@@ -460,6 +461,7 @@ namespace RecycledManagement
                     grcOrder.Invoke(new Action(() =>
                     {
                         grcOrder.DataSource = listData;
+                       // grvOrder.Columns["Note"].Visible = false;
                     }
                         ));
                 }

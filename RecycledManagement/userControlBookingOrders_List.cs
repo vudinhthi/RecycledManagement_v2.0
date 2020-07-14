@@ -64,6 +64,9 @@ namespace RecycledManagement
             //grvBookingOrder.Columns["MixId"].Visible = false;
             //grvBookingOrder.Columns["CreatedBy"].Visible = false;
             //grvBookingOrder.Columns["CrushedType"].Visible = false;
+            grvBookingOrder.Columns["CreatedBy"].Visible = false;
+            grvBookingOrder.Columns["Note"].Visible = false;
+            grvBookingOrder.Columns["OrderType"].Visible = false;
         }
 
         private void grvBookingOrder_ShowingEditor(object sender, CancelEventArgs e)
