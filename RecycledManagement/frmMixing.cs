@@ -21,7 +21,7 @@ namespace RecycledManagement
 {
     public partial class frmMixing : DevExpress.XtraEditors.XtraForm
     {
-        int status;//xet xem trạng thái của đơn hàng đang ở công đoạn nào để chọn cân cho phù hợp
+        int status = 0;//xet xem trạng thái của đơn hàng đang ở công đoạn nào để chọn cân cho phù hợp
         double totalMaterialConsumtion = 0, totalRecycle = 0, total = 0;
         double weightRecycle1 = 0, weightRecycle2 = 0, weightCompound = 0, weightClearRecycle = 0, weightFramapur = 0, weightLeftover = 0;
 
@@ -60,8 +60,9 @@ namespace RecycledManagement
 
             #region set trang thai order
             //MixingOrderModel orderInfo = DbMixCode.Instance.GetAllMixed1Row(!string.IsNullOrEmpty(GlobalVariable.mixId) ? GlobalVariable.mixId : null);
-            orderInfo = DbMixCode.Instance.GetAllMixed1Row(GlobalVariable.orderId.ToString());
+            orderInfo = DbMixCode.Instance.GetAllMixed1Row(GlobalVariable.orderId.ToString());//get đơn hàng về
 
+            //hiển thị thông tin đơn hàng
             if (orderInfo != null)
             {
                 txtOrderId.Text = orderInfo.OrderId;
@@ -75,9 +76,18 @@ namespace RecycledManagement
                 txtItemCode.Text = orderInfo.ItemCode;
                 txtColorCode.Text = orderInfo.ColorCode;
             }
-            //kiểm tra trạng thái đơn hàng để set biến chọn cân để cân
-            //chỉ set trong pageLoad trạng thái 3, vì 1 2 sẽ đc set trọng event của gridview
+
+            #region kiểm tra trạng thái đơn hàng để set biến chọn cân để cân
+            //chỉ set " GlobalVariable.selectScale" trong pageLoad khi status= 3, vì 1 2 sẽ đc set trong event của gridview
+            //lấy danh sách product theo mã itemCode hiển thị lên gridView material Comsumption
+            /*LƯU Ý:
+             * -nếu status=1 (new Order)->thì chỉ cần get product từ winline lên đưa vào gridView
+             * -nếu status=2 (đã cân màu rồi-->cân nhựa) -> get thêm khối lượng cân màu fill vào các row màu
+             * -nếu status=3 (đã cân màu và nhựa-->cân recycle) -> get thêm khối lượng cân màu và nhựa fill vào các dòng trong gridView materialConsumption
+            */
+            productMix = DbMixCode.Instance.GetProductWinline(orderInfo.ItemCode, orderInfo.OrderAmount);
             status = Convert.ToInt32(orderInfo.Status);
+
             if (status == 1) //new order-->cân màu
             {
                 lookUpRecycle1.Enabled = false;
@@ -98,11 +108,9 @@ namespace RecycledManagement
                 checkBoxUsingRecycle.Enabled = false;
                 txtTotalRecycleWeight.Enabled = false;
 
-                List<MixProductWinlineModel> data = DbMixCode.Instance.GetProductWinline(orderInfo.ItemCode, orderInfo.OrderAmount);
-
-                grcMaterialConsumption.DataSource = data;
+                grcMaterialConsumption.DataSource = productMix;//hiển thị danh sách Product lên gridView Material Consumption
             }
-            else if (status == 2)
+            else if (status == 2)//--> Cân nhựa
             {
                 lookUpRecycle1.Enabled = false;
                 lookUpRecycle2.Enabled = false;
@@ -121,26 +129,48 @@ namespace RecycledManagement
                 lookUpReason.Enabled = false;
                 checkBoxUsingRecycle.Enabled = false;
                 txtTotalRecycleWeight.Enabled = false;
+         
+                lookUpShift.Text = orderInfo.MixShiftName;
+                lookUpOperator.Text = orderInfo.MixOperatorName;
 
+                lookUpShift.ReadOnly = true;
+                lookUpOperator.ReadOnly = true;
 
+                #region get color scales
+                DataTable dataColorScales = DbMixCode.Instance.GetMaterialCsalesColor(orderInfo.MixId);
+                if (dataColorScales!=null&&dataColorScales.Rows.Count>0)
+                {
+                    foreach (DataRow item in dataColorScales.Rows)
+                    {
+                        foreach (var item1 in productMix)
+                        {
+                            //if ()
+                            //{
+
+                            //}
+                        }
+                    }
+                }
+                #endregion
+
+                grcMaterialConsumption.DataSource = productMix;//hiển thị danh sách Product lên gridView Material Consumption
+
+            }
+            else if (status == 3)//cân recycle
+            {
                 lookUpShift.ReadOnly = true;
                 lookUpOperator.ReadOnly = true;
 
                 lookUpShift.Text = orderInfo.MixShiftName;
-
-
-            }
-            else if (status == 3)
-            {
-                lookUpShift.ReadOnly = true;
-                lookUpOperator.ReadOnly = true;
-                lookUpShift.EditValue = orderInfo.MixShiftId;
-                lookUpOperator.EditValue = orderInfo.MixOperatorId;
+                lookUpOperator.Text = orderInfo.MixOperatorName;
 
                 GlobalVariable.selectScale = "ScalePlastic";//set chon can nhựa vì trạng thái order đang ở cân recycle
 
                 grcMaterialConsumption.Enabled = false;
+
+                grcMaterialConsumption.DataSource = productMix;//hiển thị danh sách Product lên gridView Material Consumption
             }
+            #endregion
 
             #endregion
 

@@ -38,6 +38,16 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("sp_MixedGetAll");
         }
 
+        public DataTable GetMaterialCsalesColor(string mixId)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_MixMaterialScalesColor @MixId", new object[] { mixId });
+        }
+
+        public DataTable GetMaterialCsalesPlastic(string mixId)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_MixMaterialScalesPlastic @MixId", new object[] { mixId });
+        }
+
         public List<MixingOrderModel> GetAllMixedList()
         {
             List<MixingOrderModel> result = new List<MixingOrderModel>();
