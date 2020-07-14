@@ -75,6 +75,9 @@
     <Reference Include="DevExpress.XtraRichEdit.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -116,6 +119,7 @@
     <Compile Include="Common\GlobalEvent.cs" />
     <Compile Include="Common\GlobalVariable.cs" />
     <Compile Include="Common\SqlTransactionQueryList.cs" />
+    <Compile Include="Common\MailHelper.cs" />
     <Compile Include="CrushListUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -230,6 +234,7 @@
     <Compile Include="Models\Reasons.cs" />
     <Compile Include="Models\ShiftModel.cs" />
     <Compile Include="Models\UserActionModel.cs" />
+    <Compile Include="Models\UserConfigModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LablesPrint\rptRunner.cs">
@@ -237,6 +242,12 @@
     </Compile>
     <Compile Include="LablesPrint\rptRunner.Designer.cs">
       <DependentUpon>rptRunner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserConfig.Designer.cs">
+      <DependentUpon>frmUserConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="userControlBookingOrder.cs">
       <SubType>UserControl</SubType>
@@ -389,6 +400,9 @@
     <EmbeddedResource Include="LablesPrint\rptRunner.resx">
       <DependentUpon>rptRunner.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmUserConfig.resx">
+      <DependentUpon>frmUserConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="userControlBookingOrder.resx">
       <DependentUpon>userControlBookingOrder.cs</DependentUpon>
     </EmbeddedResource>
@@ -436,6 +450,7 @@
     <None Include="obj\Debug\RecycledManagement.csproj.CoreCompileInputs.cache" />
     <None Include="obj\Debug\RecycledManagement.csproj.GenerateResource.cache" />
     <None Include="obj\Debug\RecycledManagement.csprojAssemblyReference.cache" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
