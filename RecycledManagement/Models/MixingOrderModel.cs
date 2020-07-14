@@ -16,36 +16,38 @@ namespace RecycledManagement.Models
             this.mixId = row[0].ToString();
             this.mixCode = row[1].ToString();
             this.mixShiftId = row[2].ToString();
-            this.mixOperatorId = row[3].ToString();
-            this.weightMixTotal = row[4].ToString();
-            this.reasonId = row[5].ToString();
-            this.mixNote = row[6].ToString();
-            this.mixCreatedDate = row[7].ToString();
+            this.mixShiftName = row[3].ToString();
+            this.mixOperatorId = row[4].ToString();
+            this.mixOperatorName = row[5].ToString();
+            this.weightMixTotal = row[6].ToString();
+            this.reasonId = row[7].ToString();
+            this.mixNote = row[8].ToString();
+            this.mixCreatedDate = row[9].ToString();
 
-            this.createdBy = row[8].ToString();
-            this.weightMaterialTotal = row[9].ToString();
-            this.weightRecycleTotal = row[10].ToString();
+            this.createdBy = row[10].ToString();
+            this.weightMaterialTotal = row[11].ToString();
+            this.weightRecycleTotal = row[12].ToString();
 
-            
-            this.orderId = row[11].ToString();
-            this.orderCode = row[12].ToString();
-            this.machine = row[13].ToString();
-            this.itemCode = row[14].ToString();
-            this.itemName = row[15].ToString();
-            this.colorCode = row[16].ToString();
-            this.colorName = row[17].ToString();
-            this.orderAmount = row[18].ToString();
-            this.orderStatus = row[19].ToString();
-            this.orderCreatedDate = row[20].ToString();
-            this.orderNote = row[21].ToString();
-            this.orderOperatorId = row[22].ToString();
-            this.orderOperatorName = row[23].ToString();
-            this.orderType = row[24].ToString();
-            this.finishDate = row[25].ToString();
-            this.orderShiftId = row[26].ToString();
 
-            this.orderLogId = row[27].ToString();
-            this.status = row[28].ToString();
+            this.orderId = row[13].ToString();
+            this.orderCode = row[14].ToString();
+            this.machine = row[15].ToString();
+            this.itemCode = row[16].ToString();
+            this.itemName = row[17].ToString();
+            this.colorCode = row[18].ToString();
+            this.colorName = row[19].ToString();
+            this.orderAmount = row[20].ToString();
+            this.orderStatus = row[21].ToString();
+            this.orderCreatedDate = row[22].ToString();
+            this.orderNote = row[23].ToString();
+            this.orderOperatorId = row[24].ToString();
+            this.orderOperatorName = row[25].ToString();
+            this.orderType = row[26].ToString();
+            this.finishDate = row[27].ToString();
+            this.orderShiftId = row[28].ToString();
+
+            this.orderLogId = row[29].ToString();
+            this.status = row[30].ToString();
 
         }
 
@@ -59,8 +61,14 @@ namespace RecycledManagement.Models
         private string mixShiftId;
         public string MixShiftId { get => mixShiftId; set => mixShiftId = value; }
 
+        private string mixShiftName;
+        public string MixShiftName { get => mixShiftName; set => mixShiftName = value; }
+
         private string mixOperatorId;
         public string MixOperatorId { get => mixOperatorId; set => mixOperatorId = value; }
+
+        private string mixOperatorName;
+        public string MixOperatorName { get => mixOperatorName; set => mixOperatorName = value; }
 
         private string weightMixTotal;
         public string WeightMixTotal { get => weightMixTotal; set => weightMixTotal = value; }

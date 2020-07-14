@@ -20,7 +20,7 @@ namespace RecycledManagement.Models
             this.materialName = row[3].ToString();
             this.quantity = row[4].ToString();
             this.actualUsage = "0";
-
+            this.Range = row[5].ToString();
             this.total = (Convert.ToDouble(orderAmount) * Convert.ToDouble(this.quantity)).ToString();
         }
         #endregion
@@ -29,6 +29,7 @@ namespace RecycledManagement.Models
         private string materialName;
         private string quantity;
         private string total;
+        private string range;
         private string actualUsage;
 
         public string MaterialCode { get => materialCode; set => materialCode = value; }
@@ -36,5 +37,6 @@ namespace RecycledManagement.Models
         public string Quantity { get => quantity; set => quantity = value; }
         public string Total { get => total; set => total = value; }
         public string ActualUsage { get => actualUsage; set => actualUsage = value; }
+        public string Range { get => range; set => range = value; }
     }
 }

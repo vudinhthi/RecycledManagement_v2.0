@@ -118,6 +118,7 @@
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\GlobalEvent.cs" />
     <Compile Include="Common\GlobalVariable.cs" />
+    <Compile Include="Common\SqlTransactionQueryList.cs" />
     <Compile Include="Common\MailHelper.cs" />
     <Compile Include="CrushListUserControl.cs">
       <SubType>UserControl</SubType>

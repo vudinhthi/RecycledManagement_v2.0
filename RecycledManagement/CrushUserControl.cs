@@ -206,7 +206,7 @@ namespace RecycledManagement
             {
                 float item = 0;
                 float.TryParse(txtWeight.Text.Trim(), out item);
-                txtNetWeight.Text = (item - 1.14).ToString("0.00");
+                txtNetWeight.Text = (item - GlobalVariable.boxWeightCrushing).ToString("0.00");
             }
         }
 

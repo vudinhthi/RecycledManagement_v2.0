@@ -9,9 +9,9 @@ namespace RecycledManagement.Common
     public class GlobalEvent
     {
         #region Tạo sự kiện cho cân
-        private int _scaleValue;
+        private double _scaleValue;
 
-        public int ScaleValue 
+        public double ScaleValue 
         { 
             get => _scaleValue;
             set { _scaleValue = value; OnScaleValueChanged(value); }
@@ -30,7 +30,7 @@ namespace RecycledManagement.Common
             }
         }
 
-        void OnScaleValueChanged(int value)
+        void OnScaleValueChanged(double value)
         {
             _scaleValueChanged?.Invoke(this, new ScaleValueChangedEventArgs(value));
         }
@@ -67,14 +67,14 @@ namespace RecycledManagement.Common
     //Class define các properties trả về
     public class ScaleValueChangedEventArgs
     {
-        private int _scaleValue;
+        private double _scaleValue;
 
         private bool _showMixingEditor;
 
-        public int ScaleValue { get => _scaleValue; set => _scaleValue = value; }
+        public double ScaleValue { get => _scaleValue; set => _scaleValue = value; }
         public bool ShowMixingEditor { get => _showMixingEditor; set => _showMixingEditor = value; }
 
-        public ScaleValueChangedEventArgs(int value)
+        public ScaleValueChangedEventArgs(double value)
         {
             _scaleValue = value;
         }
