@@ -149,13 +149,53 @@ namespace RecycledManagement
 
             grcCrush.DataSource = DbCrushing.Instance.GetDataGridView();
 
-            //an cot gridView
-            grvCrush.Columns["CrushId"].Visible = false;
+            //an cot gridView            
             grvCrush.Columns["ShiftId"].Visible = false;
             grvCrush.Columns["OperatorId"].Visible = false;
             grvCrush.Columns["MixId"].Visible = false;
             grvCrush.Columns["CreatedBy"].Visible = false;
             grvCrush.Columns["CrushedType"].Visible = false;
+            grvCrush.Columns["MaterialCode"].Visible = false;
+            grvCrush.Columns["MaterialName"].Visible = false;
+            grvCrush.Columns["ItemCode"].Visible = false;
+
+            //set thu thu cac columns trong GridView
+            grvCrush.Columns["CrushId"].VisibleIndex = 0;
+            grvCrush.Columns["CreatedDate"].VisibleIndex = 1;
+            grvCrush.Columns["ShiftName"].VisibleIndex = 2;
+            grvCrush.Columns["OperatorName"].VisibleIndex = 3;
+            grvCrush.Columns["MixCode"].VisibleIndex = 4;
+            grvCrush.Columns["CrushedCode"].VisibleIndex = 5;
+            grvCrush.Columns["ItemName"].VisibleIndex = 6;
+            grvCrush.Columns["ColorCode"].VisibleIndex = 7;
+            grvCrush.Columns["ColorName"].VisibleIndex = 8;
+            grvCrush.Columns["WeightCrushed"].VisibleIndex = 9;
+            grvCrush.Columns["Machine"].VisibleIndex = 10;
+
+            //Set columns caption
+            //grvCrush.Columns["IncomingId"].Caption = "Id";
+            //grvCrush.Columns["CreatedDate"].Caption = "Date";
+            //grvCrush.Columns["ShiftName"].Caption = "Shift";
+            //grvCrush.Columns["LossTypeName"].Caption = "Type";
+            //grvCrush.Columns["IncomingCode"].Caption = "Incoming Lots ID";
+            //grvCrush.Columns["MixCode"].Caption = "Mixing Lots ID";
+            //grvCrush.Columns["WeightIncoming"].Caption = "Weight";
+
+            //Set column's width of GridView
+            //grvCrush.Columns["IncomingId"].Width = 10;
+            //grvCrush.Columns["CreatedDate"].Width = 40;
+            //grvCrush.Columns["ShiftName"].Width = 10;
+            //grvCrush.Columns["LossTypeName"].Width = 30;
+            //grvCrush.Columns["IncomingCode"].Width = 70;
+            //grvCrush.Columns["MixCode"].Width = 70;
+            //grvCrush.Columns["MaterialCode"].Width = 30;
+            //grvCrush.Columns["WeightCrushed"].Width = 30;
+
+            //Dinh dang thoi gian cot CreatedDate
+            grvCrush.Columns["CreatedDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            grvCrush.Columns["CreatedDate"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
+            grvCrush.Columns["WeightCrushed"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            grvCrush.Columns["WeightCrushed"].DisplayFormat.FormatString = "{0:n2}";
         }
 
         private void grvCrush_ShowingEditor(object sender, CancelEventArgs e)

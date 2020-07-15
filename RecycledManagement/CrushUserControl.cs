@@ -40,12 +40,12 @@ namespace RecycledManagement
 
             this.SetBoundFieldName(this.txtCrushMachine, "Machine");
             this.SetBoundFieldName(this.txtNetWeight, "WeightCrushed");
-
-            this.SetBoundFieldName(this.labItemName, "ItemName");
-            this.SetBoundFieldName(this.labColorName, "ColorName");
-            this.SetBoundFieldName(this.labMaterialCode, "MaterialCode");
-
-
+            
+            this.SetBoundFieldName(this.tedItemName, "ItemName");
+            this.SetBoundFieldName(this.tedColorName, "ColorName");
+            this.SetBoundFieldName(this.tedItemCode, "ItemCode");
+            this.SetBoundFieldName(this.tedColorCode, "ColorCode");
+            this.SetBoundFieldName(this.tedMaterialName, "MaterialCode");
         }
 
         #region PageLoad
@@ -53,12 +53,8 @@ namespace RecycledManagement
         {
             timer1.Enabled = true;
 
-            lookUpMixCode.Enabled = false;
-            labItemName.Enabled = false;
-            labColorName.Enabled = false;
-
-            lookUpMaterial.Enabled = false;
-            labMaterialCode.Enabled = false;
+            lookUpMixCode.Enabled = false;            
+            lookUpMaterial.Enabled = false;            
 
             #region add item for radio
             RadioGroupItem radioItem;
@@ -78,12 +74,22 @@ namespace RecycledManagement
             lookUpShift.Properties.DataSource = DbShift.Instance.GetShiftComming();
             lookUpShift.Properties.ValueMember = "ShiftId";
             lookUpShift.Properties.DisplayMember = "ShiftName";
+
+            lookUpShift.Properties.Columns.Add(new LookUpColumnInfo("ShiftId", "ShiftId", 40));
+            lookUpShift.Properties.Columns.Add(new LookUpColumnInfo("ShiftName", "ShiftName", 120));
+            //enable text editing 
+            lookUpShift.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
             #endregion
 
             #region Operators
             lookUpOperator.Properties.DataSource = DbCrushing.Instance.GetOperators();
             lookUpOperator.Properties.ValueMember = "OperatorId";
             lookUpOperator.Properties.DisplayMember = "OperatorName";
+
+            lookUpOperator.Properties.Columns.Add(new LookUpColumnInfo("OperatorId", "OperatorId", 40));
+            lookUpOperator.Properties.Columns.Add(new LookUpColumnInfo("OperatorName", "OperatorName", 120));
+            //enable text editing 
+            lookUpOperator.Properties.TextEditStyle = TextEditStyles.DisableTextEditor;
             #endregion
 
             #region get MixCode
@@ -91,12 +97,18 @@ namespace RecycledManagement
             lookUpMixCode.Properties.ValueMember = "MixId";
             lookUpMixCode.Properties.DisplayMember = "MixCode";
             //lookUpOrderId.Properties.Columns["OrderId"].Visible = false;
+
+            lookUpMixCode.Properties.Columns.Add(new LookUpColumnInfo("MixId", "MixId", 40));
+            lookUpMixCode.Properties.Columns.Add(new LookUpColumnInfo("MixCode", "MixCode", 120));
             #endregion
 
             #region get Material
             lookUpMaterial.Properties.DataSource = DbIncomingCrush.Instance.GetMaterialsIncomingWinLine();
             lookUpMaterial.Properties.ValueMember = "materialcode";
-            lookUpMaterial.Properties.DisplayMember = "materialname";
+            lookUpMaterial.Properties.DisplayMember = "materialcode";
+
+            lookUpMaterial.Properties.Columns.Add(new LookUpColumnInfo("materialcode", "Material Code", 40));
+            lookUpMaterial.Properties.Columns.Add(new LookUpColumnInfo("materialname", "Material Name", 120));
             #endregion
 
             //đang ký sự kiện scaleValueChanged
@@ -121,9 +133,9 @@ namespace RecycledManagement
                 txtNetWeight.ReadOnly = true;
                 radType.ReadOnly = true;
 
-                labItemName.Enabled = false;
-                labColorName.Enabled = false;
-                labMaterialCode.Enabled = false;
+                tedItemName.Enabled = false;
+                tedColorName.Enabled = false;
+                tedMaterialName.Enabled = false;
                 btnSave.Enabled = false;
             }
             #endregion
@@ -134,19 +146,21 @@ namespace RecycledManagement
         private void lookUpMixCode_EditValueChanged(object sender, EventArgs e)
         {
             try
-            {
-                ////int rowIndex= lookUpMixCode.Properties.GetDataSourceRowIndex("OrderId",100);
-                //var rowIndex = lookUpMixCode.GetColumnValue("OrderId");
-                //var s = lookUpMixCode.Properties.GetDataSourceValue("OrderId", 3);
-                //Debug.WriteLine($"Mix: {s}");
-                if (!string.IsNullOrEmpty(lookUpMixCode.Text) && lookUpMixCode.Text != "[EditValue is null]")
-                {
-                    DataTable _data = DbBookingOrder.Instance.GetOrderCrush(lookUpMixCode.GetColumnValue("OrderId").ToString());
-                    labItemName.Text = _data.Rows[0][0].ToString();
-                    labColorName.Text = _data.Rows[0][1].ToString();
-                    labMaterialCode.Text = "-----";
+            {                
+                if (!string.IsNullOrEmpty(lookUpMixCode.Text) && lookUpMixCode.Text != "Select")
+                {                    
+                    tedItemCode.EditValue = lookUpMixCode.GetColumnValue("ItemCode").ToString();                    
+                    tedColorCode.EditValue = lookUpMixCode.GetColumnValue("ColorCode").ToString(); ;
+                    tedItemName.EditValue = lookUpMixCode.GetColumnValue("ItemName").ToString(); ;
+                    tedColorName.EditValue = lookUpMixCode.GetColumnValue("ColorName").ToString(); ;                    
                 }
-                //labMaterialCode.Text = "-----";
+                else
+                {
+                    tedItemCode.EditValue = null;
+                    tedItemName.EditValue = null;
+                    tedColorCode.EditValue = null;
+                    tedColorName.EditValue = null;
+                }
             }
             catch
             {
@@ -160,12 +174,12 @@ namespace RecycledManagement
             {
                 if (!string.IsNullOrEmpty(lookUpMaterial.Text) && lookUpMaterial.Text != "[EditValue is null]")
                 {
-                    labMaterialCode.Text = lookUpMaterial.GetColumnValue("materialcode").ToString();
-                    labItemName.Text = "-----";
-                    labColorName.Text = "-----";
+                    tedMaterialName.EditValue = lookUpMaterial.GetColumnValue("materialname").ToString();
                 }
-                //labItemName.Text = "-----";
-                //labColorName.Text = "-----";
+                else
+                {
+                    tedMaterialName.EditValue = null;
+                }
             }
             catch
             {
@@ -181,24 +195,19 @@ namespace RecycledManagement
             if (edit.SelectedIndex == 0)
             {
                 lookUpMixCode.Enabled = true;
-                labItemName.Enabled = true;
-                labColorName.Enabled = true;
 
                 lookUpMaterial.Enabled = false;
-                labMaterialCode.Enabled = false;
+                lookUpMaterial.EditValue = null;
             }
             else
             {
-                lookUpMixCode.Enabled = false;
-                labItemName.Enabled = false;
-                labColorName.Enabled = false;
-
                 lookUpMaterial.Enabled = true;
-                labMaterialCode.Enabled = true;
+
+                lookUpMixCode.Enabled = false;
+                lookUpMixCode.EditValue = null;
             }
         }
         #endregion
-
 
         private void txtWeight_TextChanged(object sender, EventArgs e)
         {
@@ -229,9 +238,11 @@ namespace RecycledManagement
                     txtNetWeight.ReadOnly = false;
                     radType.ReadOnly = false;
 
-                    labItemName.Enabled = true;
-                    labColorName.Enabled = true;
-                    labMaterialCode.Enabled = true;
+                    tedItemCode.ReadOnly = true;
+                    tedItemName.ReadOnly = true;
+                    tedItemCode.ReadOnly = true;
+                    tedColorName.ReadOnly = true;
+                    tedMaterialName.ReadOnly = true;
                     btnSave.Enabled = true;
                 }
                 GlobalVariable.enableFlagCrushed = false;
@@ -247,9 +258,11 @@ namespace RecycledManagement
                 txtNetWeight.ReadOnly = true;
                 radType.ReadOnly = true;
 
-                labItemName.Enabled = false;
-                labColorName.Enabled = false;
-                labMaterialCode.Enabled = false;
+                tedItemCode.ReadOnly = true;
+                tedItemName.ReadOnly = true;
+                tedItemCode.ReadOnly = true;
+                tedColorName.ReadOnly = true;
+                tedMaterialName.ReadOnly = true;
                 btnSave.Enabled = false;
 
                 GlobalVariable.enableFlagCrushed = true;
@@ -261,9 +274,10 @@ namespace RecycledManagement
         private void btnSave_Click(object sender, EventArgs e)
         {
             string crushedCode = null;
-            string mixId = null, shiftId = null, operatorId = null, materialCode = null, materialName = null;
+            string mixId = null, shiftId = null, operatorId = null, materialCode = null, materialName = null, itemCode = null;
 
             //chung
+            itemCode = tedItemCode.EditValue.ToString();
             shiftId = lookUpShift.EditValue.ToString();
             operatorId = lookUpOperator.EditValue.ToString();
             string machine = txtCrushMachine.Text;
@@ -276,14 +290,13 @@ namespace RecycledManagement
             if (crushType == "0")//Recycle Material
             {
                 mixId = lookUpMixCode.EditValue.ToString();
-
-                crushedCode = $"RE-BOM-{DateTime.Now.ToString("yyyyMMdd")}{crushId}";
+                crushedCode = $"RE|{DateTime.Now.ToString("yyyyMMdd")}|{itemCode}|{crushId}";
             }
             else
             {
                 materialCode = lookUpMaterial.EditValue.ToString();
                 materialName = lookUpMaterial.Text;
-                crushedCode = $"RE-{materialCode}-{DateTime.Now.ToString("yyyyMMdd")}{crushId}";
+                crushedCode = $"RE|{DateTime.Now.ToString("yyyyMMdd")}|{materialCode}|{crushId}";
             }
 
             Debug.WriteLine($"Insrt Crushing: {DbCrushing.Instance.Insert(shiftId, operatorId, mixId, machine, materialCode, materialName, weightCrush, GlobalVariable.userId.ToString(), crushedCode, crushType)}");
