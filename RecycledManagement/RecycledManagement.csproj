@@ -442,6 +442,7 @@
     <EmbeddedResource Include="userControlShifts.resx">
       <DependentUpon>userControlShifts.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include=".editorconfig" />
     <None Include="App.config" />
     <None Include="bin\Debug\RecycledManagement.exe.config" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />

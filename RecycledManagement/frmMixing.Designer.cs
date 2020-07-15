@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMixing));
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtMixNote = new DevExpress.XtraEditors.TextEdit();
             this.txtColorCode = new DevExpress.XtraEditors.TextEdit();
             this.txtItemCode = new DevExpress.XtraEditors.TextEdit();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtTotalMaterialWeight = new DevExpress.XtraEditors.TextEdit();
             this.txtTotalRecycleWeight = new DevExpress.XtraEditors.TextEdit();
-            this.txtWeightLeftover = new DevExpress.XtraEditors.TextEdit();
             this.lookUpLeftover = new DevExpress.XtraEditors.LookUpEdit();
             this.lookUpReason = new DevExpress.XtraEditors.LookUpEdit();
             this.txtOrderNote = new DevExpress.XtraEditors.TextEdit();
@@ -45,12 +45,7 @@
             this.txtReceivingTime = new DevExpress.XtraEditors.TextEdit();
             this.txtTeamLeader = new DevExpress.XtraEditors.TextEdit();
             this.txtMachine = new DevExpress.XtraEditors.TextEdit();
-            this.txtWeightFramapur = new DevExpress.XtraEditors.TextEdit();
-            this.txtWeightClearRecycle = new DevExpress.XtraEditors.TextEdit();
-            this.txtWeightCompound = new DevExpress.XtraEditors.TextEdit();
-            this.txtWeightRecycle2 = new DevExpress.XtraEditors.TextEdit();
             this.lookUpFramapur = new DevExpress.XtraEditors.LookUpEdit();
-            this.txtWeightRecycle1 = new DevExpress.XtraEditors.TextEdit();
             this.lookUpClearRecycle = new DevExpress.XtraEditors.LookUpEdit();
             this.lookUpCompound = new DevExpress.XtraEditors.LookUpEdit();
             this.lookUpRecycle2 = new DevExpress.XtraEditors.LookUpEdit();
@@ -68,6 +63,7 @@
             this.lookUpShift = new DevExpress.XtraEditors.LookUpEdit();
             this.lookUpOperator = new DevExpress.XtraEditors.LookUpEdit();
             this.txtOrderId = new DevExpress.XtraEditors.TextEdit();
+            this.txtWeightRecycle1 = new DevExpress.XtraEditors.ButtonEdit();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -84,6 +80,7 @@
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup5 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -104,15 +101,18 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtMixNote = new DevExpress.XtraEditors.TextEdit();
-            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtWeightRecycle2 = new DevExpress.XtraEditors.ButtonEdit();
+            this.txtWeightCompound = new DevExpress.XtraEditors.ButtonEdit();
+            this.txtWeightClearRecycle = new DevExpress.XtraEditors.ButtonEdit();
+            this.txtWeightFramapur = new DevExpress.XtraEditors.ButtonEdit();
+            this.txtWeightLeftover = new DevExpress.XtraEditors.ButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMixNote.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtColorCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalMaterialWeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalRecycleWeight.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightLeftover.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpLeftover.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpReason.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOrderNote.Properties)).BeginInit();
@@ -122,12 +122,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtReceivingTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTeamLeader.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightFramapur.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightClearRecycle.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightCompound.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRecycle2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpFramapur.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRecycle1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpClearRecycle.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpCompound.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpRecycle2.Properties)).BeginInit();
@@ -138,6 +133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpShift.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpOperator.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOrderId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRecycle1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
@@ -154,6 +150,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
@@ -174,8 +171,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMixNote.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRecycle2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightCompound.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightClearRecycle.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightFramapur.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightLeftover.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl2
@@ -186,7 +186,6 @@
             this.layoutControl2.Controls.Add(this.btnSave);
             this.layoutControl2.Controls.Add(this.txtTotalMaterialWeight);
             this.layoutControl2.Controls.Add(this.txtTotalRecycleWeight);
-            this.layoutControl2.Controls.Add(this.txtWeightLeftover);
             this.layoutControl2.Controls.Add(this.lookUpLeftover);
             this.layoutControl2.Controls.Add(this.lookUpReason);
             this.layoutControl2.Controls.Add(this.txtOrderNote);
@@ -196,12 +195,7 @@
             this.layoutControl2.Controls.Add(this.txtReceivingTime);
             this.layoutControl2.Controls.Add(this.txtTeamLeader);
             this.layoutControl2.Controls.Add(this.txtMachine);
-            this.layoutControl2.Controls.Add(this.txtWeightFramapur);
-            this.layoutControl2.Controls.Add(this.txtWeightClearRecycle);
-            this.layoutControl2.Controls.Add(this.txtWeightCompound);
-            this.layoutControl2.Controls.Add(this.txtWeightRecycle2);
             this.layoutControl2.Controls.Add(this.lookUpFramapur);
-            this.layoutControl2.Controls.Add(this.txtWeightRecycle1);
             this.layoutControl2.Controls.Add(this.lookUpClearRecycle);
             this.layoutControl2.Controls.Add(this.lookUpCompound);
             this.layoutControl2.Controls.Add(this.lookUpRecycle2);
@@ -211,6 +205,12 @@
             this.layoutControl2.Controls.Add(this.lookUpShift);
             this.layoutControl2.Controls.Add(this.lookUpOperator);
             this.layoutControl2.Controls.Add(this.txtOrderId);
+            this.layoutControl2.Controls.Add(this.txtWeightRecycle1);
+            this.layoutControl2.Controls.Add(this.txtWeightRecycle2);
+            this.layoutControl2.Controls.Add(this.txtWeightCompound);
+            this.layoutControl2.Controls.Add(this.txtWeightClearRecycle);
+            this.layoutControl2.Controls.Add(this.txtWeightFramapur);
+            this.layoutControl2.Controls.Add(this.txtWeightLeftover);
             this.layoutControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl2.Location = new System.Drawing.Point(0, 0);
             this.layoutControl2.Name = "layoutControl2";
@@ -219,6 +219,14 @@
             this.layoutControl2.Size = new System.Drawing.Size(1254, 922);
             this.layoutControl2.TabIndex = 1;
             this.layoutControl2.Text = "layoutControl2";
+            // 
+            // txtMixNote
+            // 
+            this.txtMixNote.Location = new System.Drawing.Point(151, 202);
+            this.txtMixNote.Name = "txtMixNote";
+            this.txtMixNote.Size = new System.Drawing.Size(1079, 24);
+            this.txtMixNote.StyleController = this.layoutControl2;
+            this.txtMixNote.TabIndex = 37;
             // 
             // txtColorCode
             // 
@@ -275,20 +283,6 @@
             this.txtTotalRecycleWeight.StyleController = this.layoutControl2;
             this.txtTotalRecycleWeight.TabIndex = 30;
             // 
-            // txtWeightLeftover
-            // 
-            this.txtWeightLeftover.EditValue = "0";
-            this.txtWeightLeftover.Enabled = false;
-            this.txtWeightLeftover.Location = new System.Drawing.Point(1148, 467);
-            this.txtWeightLeftover.Name = "txtWeightLeftover";
-            this.txtWeightLeftover.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtWeightLeftover.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtWeightLeftover.Properties.Mask.EditMask = "n3";
-            this.txtWeightLeftover.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtWeightLeftover.Size = new System.Drawing.Size(82, 24);
-            this.txtWeightLeftover.StyleController = this.layoutControl2;
-            this.txtWeightLeftover.TabIndex = 29;
-            // 
             // lookUpLeftover
             // 
             this.lookUpLeftover.Enabled = false;
@@ -297,9 +291,10 @@
             this.lookUpLeftover.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpLeftover.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpLeftover.Size = new System.Drawing.Size(293, 24);
+            this.lookUpLeftover.Size = new System.Drawing.Size(266, 24);
             this.lookUpLeftover.StyleController = this.layoutControl2;
             this.lookUpLeftover.TabIndex = 28;
+            this.lookUpLeftover.EditValueChanged += new System.EventHandler(this.lookUpLeftover_EditValueChanged);
             // 
             // lookUpReason
             // 
@@ -375,54 +370,6 @@
             this.txtMachine.StyleController = this.layoutControl2;
             this.txtMachine.TabIndex = 19;
             // 
-            // txtWeightFramapur
-            // 
-            this.txtWeightFramapur.EditValue = "0";
-            this.txtWeightFramapur.Enabled = false;
-            this.txtWeightFramapur.Location = new System.Drawing.Point(1148, 439);
-            this.txtWeightFramapur.Name = "txtWeightFramapur";
-            this.txtWeightFramapur.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtWeightFramapur.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtWeightFramapur.Size = new System.Drawing.Size(82, 24);
-            this.txtWeightFramapur.StyleController = this.layoutControl2;
-            this.txtWeightFramapur.TabIndex = 18;
-            // 
-            // txtWeightClearRecycle
-            // 
-            this.txtWeightClearRecycle.EditValue = "0";
-            this.txtWeightClearRecycle.Enabled = false;
-            this.txtWeightClearRecycle.Location = new System.Drawing.Point(1148, 411);
-            this.txtWeightClearRecycle.Name = "txtWeightClearRecycle";
-            this.txtWeightClearRecycle.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtWeightClearRecycle.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtWeightClearRecycle.Size = new System.Drawing.Size(82, 24);
-            this.txtWeightClearRecycle.StyleController = this.layoutControl2;
-            this.txtWeightClearRecycle.TabIndex = 17;
-            // 
-            // txtWeightCompound
-            // 
-            this.txtWeightCompound.EditValue = "0";
-            this.txtWeightCompound.Enabled = false;
-            this.txtWeightCompound.Location = new System.Drawing.Point(1148, 383);
-            this.txtWeightCompound.Name = "txtWeightCompound";
-            this.txtWeightCompound.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtWeightCompound.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtWeightCompound.Size = new System.Drawing.Size(82, 24);
-            this.txtWeightCompound.StyleController = this.layoutControl2;
-            this.txtWeightCompound.TabIndex = 16;
-            // 
-            // txtWeightRecycle2
-            // 
-            this.txtWeightRecycle2.EditValue = "0";
-            this.txtWeightRecycle2.Enabled = false;
-            this.txtWeightRecycle2.Location = new System.Drawing.Point(1148, 355);
-            this.txtWeightRecycle2.Name = "txtWeightRecycle2";
-            this.txtWeightRecycle2.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtWeightRecycle2.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtWeightRecycle2.Size = new System.Drawing.Size(82, 24);
-            this.txtWeightRecycle2.StyleController = this.layoutControl2;
-            this.txtWeightRecycle2.TabIndex = 15;
-            // 
             // lookUpFramapur
             // 
             this.lookUpFramapur.Enabled = false;
@@ -431,24 +378,10 @@
             this.lookUpFramapur.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpFramapur.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpFramapur.Size = new System.Drawing.Size(293, 24);
+            this.lookUpFramapur.Size = new System.Drawing.Size(266, 24);
             this.lookUpFramapur.StyleController = this.layoutControl2;
             this.lookUpFramapur.TabIndex = 14;
-            // 
-            // txtWeightRecycle1
-            // 
-            this.txtWeightRecycle1.EditValue = "0";
-            this.txtWeightRecycle1.Enabled = false;
-            this.txtWeightRecycle1.Location = new System.Drawing.Point(1148, 327);
-            this.txtWeightRecycle1.Name = "txtWeightRecycle1";
-            this.txtWeightRecycle1.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtWeightRecycle1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtWeightRecycle1.Properties.Mask.EditMask = "n3";
-            this.txtWeightRecycle1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtWeightRecycle1.Size = new System.Drawing.Size(82, 24);
-            this.txtWeightRecycle1.StyleController = this.layoutControl2;
-            this.txtWeightRecycle1.TabIndex = 13;
-            this.txtWeightRecycle1.EditValueChanged += new System.EventHandler(this.txtWeightRecycle1_EditValueChanged);
+            this.lookUpFramapur.EditValueChanged += new System.EventHandler(this.lookUpFramapur_EditValueChanged);
             // 
             // lookUpClearRecycle
             // 
@@ -458,9 +391,10 @@
             this.lookUpClearRecycle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpClearRecycle.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpClearRecycle.Size = new System.Drawing.Size(293, 24);
+            this.lookUpClearRecycle.Size = new System.Drawing.Size(266, 24);
             this.lookUpClearRecycle.StyleController = this.layoutControl2;
             this.lookUpClearRecycle.TabIndex = 12;
+            this.lookUpClearRecycle.EditValueChanged += new System.EventHandler(this.lookUpClearRecycle_EditValueChanged);
             // 
             // lookUpCompound
             // 
@@ -470,9 +404,10 @@
             this.lookUpCompound.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpCompound.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpCompound.Size = new System.Drawing.Size(293, 24);
+            this.lookUpCompound.Size = new System.Drawing.Size(266, 24);
             this.lookUpCompound.StyleController = this.layoutControl2;
             this.lookUpCompound.TabIndex = 11;
+            this.lookUpCompound.EditValueChanged += new System.EventHandler(this.lookUpCompound_EditValueChanged);
             // 
             // lookUpRecycle2
             // 
@@ -482,9 +417,10 @@
             this.lookUpRecycle2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpRecycle2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpRecycle2.Size = new System.Drawing.Size(293, 24);
+            this.lookUpRecycle2.Size = new System.Drawing.Size(266, 24);
             this.lookUpRecycle2.StyleController = this.layoutControl2;
             this.lookUpRecycle2.TabIndex = 10;
+            this.lookUpRecycle2.EditValueChanged += new System.EventHandler(this.lookUpRecycle2_EditValueChanged);
             // 
             // lookUpRecycle1
             // 
@@ -494,9 +430,10 @@
             this.lookUpRecycle1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpRecycle1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpRecycle1.Size = new System.Drawing.Size(293, 24);
+            this.lookUpRecycle1.Size = new System.Drawing.Size(266, 24);
             this.lookUpRecycle1.StyleController = this.layoutControl2;
             this.lookUpRecycle1.TabIndex = 9;
+            this.lookUpRecycle1.EditValueChanged += new System.EventHandler(this.lookUpRecycle1_EditValueChanged);
             // 
             // checkBoxUsingRecycle
             // 
@@ -647,6 +584,22 @@
             this.txtOrderId.Size = new System.Drawing.Size(54, 24);
             this.txtOrderId.StyleController = this.layoutControl2;
             this.txtOrderId.TabIndex = 4;
+            // 
+            // txtWeightRecycle1
+            // 
+            this.txtWeightRecycle1.EditValue = "0";
+            this.txtWeightRecycle1.Location = new System.Drawing.Point(1121, 327);
+            this.txtWeightRecycle1.Name = "txtWeightRecycle1";
+            this.txtWeightRecycle1.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtWeightRecycle1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtWeightRecycle1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightRecycle1.Properties.Mask.EditMask = "n3";
+            this.txtWeightRecycle1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtWeightRecycle1.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightRecycle1_Properties_ButtonClick);
+            this.txtWeightRecycle1.Size = new System.Drawing.Size(109, 24);
+            this.txtWeightRecycle1.StyleController = this.layoutControl2;
+            this.txtWeightRecycle1.TabIndex = 13;
             // 
             // layoutControlGroup2
             // 
@@ -833,6 +786,15 @@
             this.layoutControlItem3.Text = "Mix Operator";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(124, 18);
             // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.txtMixNote;
+            this.layoutControlItem24.Location = new System.Drawing.Point(0, 28);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(1210, 28);
+            this.layoutControlItem24.Text = "Note";
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(124, 18);
+            // 
             // layoutControlGroup5
             // 
             this.layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
@@ -870,7 +832,7 @@
             this.layoutControlItem7.Control = this.lookUpRecycle1;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 52);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(424, 28);
+            this.layoutControlItem7.Size = new System.Drawing.Size(397, 28);
             this.layoutControlItem7.Text = "Recycle 1 Id";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(124, 18);
             // 
@@ -879,7 +841,7 @@
             this.layoutControlItem8.Control = this.lookUpRecycle2;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 80);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(424, 28);
+            this.layoutControlItem8.Size = new System.Drawing.Size(397, 28);
             this.layoutControlItem8.Text = "Recycle 2 Id";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(124, 18);
             // 
@@ -888,7 +850,7 @@
             this.layoutControlItem9.Control = this.lookUpCompound;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 108);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(424, 28);
+            this.layoutControlItem9.Size = new System.Drawing.Size(397, 28);
             this.layoutControlItem9.Text = "Compound Id";
             this.layoutControlItem9.TextSize = new System.Drawing.Size(124, 18);
             // 
@@ -897,18 +859,17 @@
             this.layoutControlItem10.Control = this.lookUpClearRecycle;
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 136);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(424, 28);
+            this.layoutControlItem10.Size = new System.Drawing.Size(397, 28);
             this.layoutControlItem10.Text = "Clear Recycle Id";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(124, 18);
             // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.txtWeightRecycle1;
-            this.layoutControlItem11.Location = new System.Drawing.Point(424, 52);
-            this.layoutControlItem11.MaxSize = new System.Drawing.Size(0, 28);
-            this.layoutControlItem11.MinSize = new System.Drawing.Size(99, 28);
+            this.layoutControlItem11.Location = new System.Drawing.Point(397, 52);
+            this.layoutControlItem11.MinSize = new System.Drawing.Size(50, 25);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(131, 28);
+            this.layoutControlItem11.Size = new System.Drawing.Size(158, 28);
             this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem11.Text = "Weight";
             this.layoutControlItem11.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -920,16 +881,16 @@
             this.layoutControlItem12.Control = this.lookUpFramapur;
             this.layoutControlItem12.Location = new System.Drawing.Point(0, 164);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(424, 28);
+            this.layoutControlItem12.Size = new System.Drawing.Size(397, 28);
             this.layoutControlItem12.Text = "Framapur Id";
             this.layoutControlItem12.TextSize = new System.Drawing.Size(124, 18);
             // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.txtWeightRecycle2;
-            this.layoutControlItem13.Location = new System.Drawing.Point(424, 80);
+            this.layoutControlItem13.Location = new System.Drawing.Point(397, 80);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(131, 28);
+            this.layoutControlItem13.Size = new System.Drawing.Size(158, 28);
             this.layoutControlItem13.Text = "Weight";
             this.layoutControlItem13.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem13.TextSize = new System.Drawing.Size(40, 18);
@@ -938,9 +899,9 @@
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.txtWeightCompound;
-            this.layoutControlItem14.Location = new System.Drawing.Point(424, 108);
+            this.layoutControlItem14.Location = new System.Drawing.Point(397, 108);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(131, 28);
+            this.layoutControlItem14.Size = new System.Drawing.Size(158, 28);
             this.layoutControlItem14.Text = "Weight";
             this.layoutControlItem14.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem14.TextSize = new System.Drawing.Size(40, 18);
@@ -949,9 +910,9 @@
             // layoutControlItem15
             // 
             this.layoutControlItem15.Control = this.txtWeightClearRecycle;
-            this.layoutControlItem15.Location = new System.Drawing.Point(424, 136);
+            this.layoutControlItem15.Location = new System.Drawing.Point(397, 136);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(131, 28);
+            this.layoutControlItem15.Size = new System.Drawing.Size(158, 28);
             this.layoutControlItem15.Text = "Weight";
             this.layoutControlItem15.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem15.TextSize = new System.Drawing.Size(40, 18);
@@ -960,9 +921,9 @@
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.txtWeightFramapur;
-            this.layoutControlItem16.Location = new System.Drawing.Point(424, 164);
+            this.layoutControlItem16.Location = new System.Drawing.Point(397, 164);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(131, 28);
+            this.layoutControlItem16.Size = new System.Drawing.Size(158, 28);
             this.layoutControlItem16.Text = "Weight";
             this.layoutControlItem16.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem16.TextSize = new System.Drawing.Size(40, 18);
@@ -982,16 +943,16 @@
             this.layoutControlItem26.Control = this.lookUpLeftover;
             this.layoutControlItem26.Location = new System.Drawing.Point(0, 192);
             this.layoutControlItem26.Name = "layoutControlItem26";
-            this.layoutControlItem26.Size = new System.Drawing.Size(424, 28);
+            this.layoutControlItem26.Size = new System.Drawing.Size(397, 28);
             this.layoutControlItem26.Text = "Leftover Id";
             this.layoutControlItem26.TextSize = new System.Drawing.Size(124, 18);
             // 
             // layoutControlItem27
             // 
             this.layoutControlItem27.Control = this.txtWeightLeftover;
-            this.layoutControlItem27.Location = new System.Drawing.Point(424, 192);
+            this.layoutControlItem27.Location = new System.Drawing.Point(397, 192);
             this.layoutControlItem27.Name = "layoutControlItem27";
-            this.layoutControlItem27.Size = new System.Drawing.Size(131, 28);
+            this.layoutControlItem27.Size = new System.Drawing.Size(158, 28);
             this.layoutControlItem27.Text = "Weight";
             this.layoutControlItem27.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem27.TextSize = new System.Drawing.Size(40, 18);
@@ -1042,22 +1003,77 @@
             this.layoutControlItem29.Text = "Total Material Weight";
             this.layoutControlItem29.TextSize = new System.Drawing.Size(124, 18);
             // 
-            // txtMixNote
+            // txtWeightRecycle2
             // 
-            this.txtMixNote.Location = new System.Drawing.Point(151, 202);
-            this.txtMixNote.Name = "txtMixNote";
-            this.txtMixNote.Size = new System.Drawing.Size(1079, 24);
-            this.txtMixNote.StyleController = this.layoutControl2;
-            this.txtMixNote.TabIndex = 37;
+            this.txtWeightRecycle2.EditValue = "0";
+            this.txtWeightRecycle2.Location = new System.Drawing.Point(1121, 355);
+            this.txtWeightRecycle2.Name = "txtWeightRecycle2";
+            this.txtWeightRecycle2.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtWeightRecycle2.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtWeightRecycle2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightRecycle2.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightRecycle2_Properties_ButtonClick);
+            this.txtWeightRecycle2.Size = new System.Drawing.Size(109, 24);
+            this.txtWeightRecycle2.StyleController = this.layoutControl2;
+            this.txtWeightRecycle2.TabIndex = 15;
             // 
-            // layoutControlItem24
+            // txtWeightCompound
             // 
-            this.layoutControlItem24.Control = this.txtMixNote;
-            this.layoutControlItem24.Location = new System.Drawing.Point(0, 28);
-            this.layoutControlItem24.Name = "layoutControlItem24";
-            this.layoutControlItem24.Size = new System.Drawing.Size(1210, 28);
-            this.layoutControlItem24.Text = "Note";
-            this.layoutControlItem24.TextSize = new System.Drawing.Size(124, 18);
+            this.txtWeightCompound.EditValue = "0";
+            this.txtWeightCompound.Location = new System.Drawing.Point(1121, 383);
+            this.txtWeightCompound.Name = "txtWeightCompound";
+            this.txtWeightCompound.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtWeightCompound.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtWeightCompound.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightCompound.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightCompound_Properties_ButtonClick);
+            this.txtWeightCompound.Size = new System.Drawing.Size(109, 24);
+            this.txtWeightCompound.StyleController = this.layoutControl2;
+            this.txtWeightCompound.TabIndex = 16;
+            // 
+            // txtWeightClearRecycle
+            // 
+            this.txtWeightClearRecycle.EditValue = "0";
+            this.txtWeightClearRecycle.Location = new System.Drawing.Point(1121, 411);
+            this.txtWeightClearRecycle.Name = "txtWeightClearRecycle";
+            this.txtWeightClearRecycle.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtWeightClearRecycle.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtWeightClearRecycle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightClearRecycle.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightClearRecycle_Properties_ButtonClick);
+            this.txtWeightClearRecycle.Size = new System.Drawing.Size(109, 24);
+            this.txtWeightClearRecycle.StyleController = this.layoutControl2;
+            this.txtWeightClearRecycle.TabIndex = 17;
+            // 
+            // txtWeightFramapur
+            // 
+            this.txtWeightFramapur.EditValue = "0";
+            this.txtWeightFramapur.Location = new System.Drawing.Point(1121, 439);
+            this.txtWeightFramapur.Name = "txtWeightFramapur";
+            this.txtWeightFramapur.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtWeightFramapur.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtWeightFramapur.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightFramapur.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightFramapur_Properties_ButtonClick);
+            this.txtWeightFramapur.Size = new System.Drawing.Size(109, 24);
+            this.txtWeightFramapur.StyleController = this.layoutControl2;
+            this.txtWeightFramapur.TabIndex = 18;
+            // 
+            // txtWeightLeftover
+            // 
+            this.txtWeightLeftover.EditValue = "0";
+            this.txtWeightLeftover.Location = new System.Drawing.Point(1121, 467);
+            this.txtWeightLeftover.Name = "txtWeightLeftover";
+            this.txtWeightLeftover.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtWeightLeftover.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtWeightLeftover.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightLeftover.Properties.Mask.EditMask = "n3";
+            this.txtWeightLeftover.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtWeightLeftover.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightLeftover_Properties_ButtonClick);
+            this.txtWeightLeftover.Size = new System.Drawing.Size(109, 24);
+            this.txtWeightLeftover.StyleController = this.layoutControl2;
+            this.txtWeightLeftover.TabIndex = 29;
             // 
             // frmMixing
             // 
@@ -1075,11 +1091,11 @@
             this.Load += new System.EventHandler(this.frmMixing_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtMixNote.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtColorCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalMaterialWeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalRecycleWeight.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightLeftover.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpLeftover.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpReason.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOrderNote.Properties)).EndInit();
@@ -1089,12 +1105,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtReceivingTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTeamLeader.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightFramapur.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightClearRecycle.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightCompound.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRecycle2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpFramapur.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRecycle1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpClearRecycle.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpCompound.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpRecycle2.Properties)).EndInit();
@@ -1105,6 +1116,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpShift.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpOperator.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOrderId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRecycle1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
@@ -1121,6 +1133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
@@ -1141,18 +1154,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMixNote.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightRecycle2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightCompound.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightClearRecycle.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightFramapur.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtWeightLeftover.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
-        private DevExpress.XtraEditors.TextEdit txtWeightFramapur;
-        private DevExpress.XtraEditors.TextEdit txtWeightClearRecycle;
-        private DevExpress.XtraEditors.TextEdit txtWeightCompound;
-        private DevExpress.XtraEditors.TextEdit txtWeightRecycle2;
         private DevExpress.XtraEditors.LookUpEdit lookUpFramapur;
         private DevExpress.XtraEditors.LookUpEdit lookUpClearRecycle;
         private DevExpress.XtraEditors.LookUpEdit lookUpCompound;
@@ -1197,7 +1209,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup7;
-        private DevExpress.XtraEditors.TextEdit txtWeightLeftover;
         private DevExpress.XtraEditors.LookUpEdit lookUpLeftover;
         private DevExpress.XtraEditors.LookUpEdit lookUpReason;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
@@ -1215,7 +1226,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit grvControlTextEdit;
-        private DevExpress.XtraEditors.TextEdit txtWeightRecycle1;
         private DevExpress.XtraEditors.TextEdit txtOrderId;
         private DevExpress.XtraEditors.TextEdit txtColorCode;
         private DevExpress.XtraEditors.TextEdit txtItemCode;
@@ -1225,5 +1235,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraEditors.TextEdit txtMixNote;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
+        private DevExpress.XtraEditors.ButtonEdit txtWeightRecycle1;
+        private DevExpress.XtraEditors.ButtonEdit txtWeightRecycle2;
+        private DevExpress.XtraEditors.ButtonEdit txtWeightCompound;
+        private DevExpress.XtraEditors.ButtonEdit txtWeightClearRecycle;
+        private DevExpress.XtraEditors.ButtonEdit txtWeightFramapur;
+        private DevExpress.XtraEditors.ButtonEdit txtWeightLeftover;
     }
 }

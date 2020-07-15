@@ -43,9 +43,9 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("sp_MixMaterialScalesColor @MixId", new object[] { mixId });
         }
 
-        public DataTable GetMaterialCsalesPlastic(string mixId)
+        public DataTable GetMaterialCsalesGetMixId(string mixId)
         {
-            return DataProvider.Instance.ExecuteQuery("sp_MixMaterialScalesPlastic @MixId", new object[] { mixId });
+            return DataProvider.Instance.ExecuteQuery("sp_MixMaterialScalesGetMixId @MixId", new object[] { mixId });
         }
 
         public List<MixingOrderModel> GetAllMixedList()
@@ -97,5 +97,26 @@ namespace RecycledManagement.Common
         {
             return DataProvider.Instance.ExecuteNonQuery_GetIdIdentity("sp_MixedGetMaxId");
         }
+
+        /// <summary>
+        /// get CrushingCode de fill vao cac lookupEdit cua recycle.
+        /// </summary>
+        /// <param name="crushLike"> @CrushedCode='RE|R%'.</param>
+        /// <returns>DataTable.</returns>
+        public DataTable GetCrushingCode(string crushLike)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_CrushingGetCrushedCode @CrushedCode", new object[] { crushLike });
+        }
+
+        /// <summary>
+        /// Get incomingCode from IncomingCrush table. Fill to lookupEdit Leftover.
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetIncomingCode()
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_IncomingGetIncomingCode");
+        }
+
+
     }
 }
