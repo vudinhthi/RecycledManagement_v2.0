@@ -155,7 +155,11 @@ namespace RecycledManagement
                 {
                     //Thread.Sleep(500);
                     //grvMaterialConsumption.SetFocusedValue(o.ScaleValue);
-                    string materialCodeSub = grvMaterialConsumption.GetFocusedRowCellDisplayText("MaterialCode").Substring(0, 3);
+                    //gridView.GetRowCellValue(gridView.FocusedRowHandle, gridView.Columns["ShiftName"]);
+                    //string materialCodeSub = grvMaterialConsumption.GetFocusedRowCellDisplayText("MaterialCode").Substring(0, 3);
+
+                    string materialCodeSub = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, grvMaterialConsumption.Columns["materialcode"]).ToString().Substring(0, 3);
+                    
                     if (status == 1 && (materialCodeSub == "RCP" || materialCodeSub == "RMB" || materialCodeSub == "REX" || materialCodeSub == "RAD"))//can mau
                     {
                         grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue);

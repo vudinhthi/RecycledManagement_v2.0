@@ -142,8 +142,10 @@
             // tedColorName
             // 
             this.SetBoundPropertyName(this.tedColorName, "");
+            this.tedColorName.Enabled = false;
             this.tedColorName.Location = new System.Drawing.Point(536, 223);
             this.tedColorName.Name = "tedColorName";
+            this.tedColorName.Properties.AllowFocused = false;
             this.tedColorName.Properties.ReadOnly = true;
             this.tedColorName.Size = new System.Drawing.Size(293, 24);
             this.tedColorName.StyleController = this.layoutControl1;
@@ -152,8 +154,10 @@
             // tedItemName
             // 
             this.SetBoundPropertyName(this.tedItemName, "");
+            this.tedItemName.Enabled = false;
             this.tedItemName.Location = new System.Drawing.Point(536, 195);
             this.tedItemName.Name = "tedItemName";
+            this.tedItemName.Properties.AllowFocused = false;
             this.tedItemName.Properties.ReadOnly = true;
             this.tedItemName.Size = new System.Drawing.Size(293, 24);
             this.tedItemName.StyleController = this.layoutControl1;
@@ -162,8 +166,10 @@
             // tedColorCode
             // 
             this.SetBoundPropertyName(this.tedColorCode, "");
+            this.tedColorCode.Enabled = false;
             this.tedColorCode.Location = new System.Drawing.Point(132, 223);
             this.tedColorCode.Name = "tedColorCode";
+            this.tedColorCode.Properties.AllowFocused = false;
             this.tedColorCode.Properties.ReadOnly = true;
             this.tedColorCode.Size = new System.Drawing.Size(292, 24);
             this.tedColorCode.StyleController = this.layoutControl1;
@@ -172,8 +178,10 @@
             // tedItemCode
             // 
             this.SetBoundPropertyName(this.tedItemCode, "");
+            this.tedItemCode.Enabled = false;
             this.tedItemCode.Location = new System.Drawing.Point(132, 195);
             this.tedItemCode.Name = "tedItemCode";
+            this.tedItemCode.Properties.AllowFocused = false;
             this.tedItemCode.Properties.ReadOnly = true;
             this.tedItemCode.Size = new System.Drawing.Size(292, 24);
             this.tedItemCode.StyleController = this.layoutControl1;
@@ -252,7 +260,6 @@
             this.lookUpMaterial.Size = new System.Drawing.Size(697, 24);
             this.lookUpMaterial.StyleController = this.layoutControl1;
             this.lookUpMaterial.TabIndex = 12;
-            this.lookUpMaterial.EditValueChanged += new System.EventHandler(this.lookUpMaterial_EditValueChanged);
             // 
             // lookUpMixCode
             // 
@@ -264,11 +271,9 @@
             this.lookUpMixCode.Properties.NullText = "Select";
             this.lookUpMixCode.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.lookUpMixCode.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
-            this.lookUpMixCode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lookUpMixCode.Size = new System.Drawing.Size(697, 24);
             this.lookUpMixCode.StyleController = this.layoutControl1;
             this.lookUpMixCode.TabIndex = 9;
-            this.lookUpMixCode.EditValueChanged += new System.EventHandler(this.lookUpMixCode_EditValueChanged);
             // 
             // txtCrushMachine
             // 

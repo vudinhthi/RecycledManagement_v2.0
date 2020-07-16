@@ -148,6 +148,7 @@ namespace RecycledManagement
             #endregion
 
             grcCrush.DataSource = DbCrushing.Instance.GetDataGridView();
+            grvCrush.OptionsView.ColumnAutoWidth = true;
 
             //an cot gridView            
             grvCrush.Columns["ShiftId"].Visible = false;
@@ -173,23 +174,24 @@ namespace RecycledManagement
             grvCrush.Columns["Machine"].VisibleIndex = 10;
 
             //Set columns caption
-            //grvCrush.Columns["IncomingId"].Caption = "Id";
-            //grvCrush.Columns["CreatedDate"].Caption = "Date";
-            //grvCrush.Columns["ShiftName"].Caption = "Shift";
-            //grvCrush.Columns["LossTypeName"].Caption = "Type";
-            //grvCrush.Columns["IncomingCode"].Caption = "Incoming Lots ID";
-            //grvCrush.Columns["MixCode"].Caption = "Mixing Lots ID";
-            //grvCrush.Columns["WeightIncoming"].Caption = "Weight";
+            grvCrush.Columns["CrushId"].Caption = "Id";
+            grvCrush.Columns["CreatedDate"].Caption = "Date";
+            grvCrush.Columns["ShiftName"].Caption = "Shift";
+            grvCrush.Columns["OperatorName"].Caption = "Operator";
+            grvCrush.Columns["CrushedCode"].Caption = "Crush Lots ID";
+            grvCrush.Columns["MixCode"].Caption = "Mixing Lots ID";
+            grvCrush.Columns["WeightCrushed"].Caption = "Weight";
 
             //Set column's width of GridView
-            //grvCrush.Columns["IncomingId"].Width = 10;
-            //grvCrush.Columns["CreatedDate"].Width = 40;
-            //grvCrush.Columns["ShiftName"].Width = 10;
-            //grvCrush.Columns["LossTypeName"].Width = 30;
-            //grvCrush.Columns["IncomingCode"].Width = 70;
-            //grvCrush.Columns["MixCode"].Width = 70;
-            //grvCrush.Columns["MaterialCode"].Width = 30;
-            //grvCrush.Columns["WeightCrushed"].Width = 30;
+            grvCrush.Columns["CrushId"].Width = 10;
+            grvCrush.Columns["CreatedDate"].Width = 40;
+            grvCrush.Columns["ShiftName"].Width = 10;
+            grvCrush.Columns["OperatorName"].Width = 40;
+            grvCrush.Columns["CrushedCode"].Width = 70;
+            grvCrush.Columns["MixCode"].Width = 70;
+            grvCrush.Columns["ColorCode"].Width = 30;
+            grvCrush.Columns["WeightCrushed"].Width = 30;
+            grvCrush.Columns["Machine"].Width = 30;
 
             //Dinh dang thoi gian cot CreatedDate
             grvCrush.Columns["CreatedDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;

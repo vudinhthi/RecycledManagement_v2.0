@@ -40,12 +40,18 @@ namespace RecycledManagement
 
             this.SetBoundFieldName(this.txtCrushMachine, "Machine");
             this.SetBoundFieldName(this.txtNetWeight, "WeightCrushed");
-            
+
             this.SetBoundFieldName(this.tedItemName, "ItemName");
+           // this.SetBoundPropertyName(this.tedItemName, "EditValue");
+
             this.SetBoundFieldName(this.tedColorName, "ColorName");
-            this.SetBoundFieldName(this.tedItemCode, "ItemCode");
+          //  this.SetBoundPropertyName(this.tedColorName, "EditValue");
+            //this.SetBoundFieldName(this.tedItemCode, "ItemCode");
+            //this.SetBoundPropertyName(this.tedItemCode, "EditValue");
             this.SetBoundFieldName(this.tedColorCode, "ColorCode");
-            this.SetBoundFieldName(this.tedMaterialName, "MaterialCode");
+            //this.SetBoundPropertyName(this.tedColorCode, "EditValue");
+            //this.SetBoundFieldName(this.tedMaterialName, "materialname");
+            //this.SetBoundPropertyName(this.tedMaterialName, "EditValue");
         }
 
         #region PageLoad
@@ -98,8 +104,9 @@ namespace RecycledManagement
             lookUpMixCode.Properties.DisplayMember = "MixCode";
             //lookUpOrderId.Properties.Columns["OrderId"].Visible = false;
 
-            lookUpMixCode.Properties.Columns.Add(new LookUpColumnInfo("MixId", "MixId", 40));
-            lookUpMixCode.Properties.Columns.Add(new LookUpColumnInfo("MixCode", "MixCode", 120));
+            //lookUpMixCode.Properties.Columns.Add(new LookUpColumnInfo("MixId", "MixId", 40));
+            //lookUpMixCode.Properties.Columns.Add(new LookUpColumnInfo("MixCode", "MixCode", 120));
+            this.lookUpMixCode.EditValueChanged += new System.EventHandler(this.lookUpMixCode_EditValueChanged);
             #endregion
 
             #region get Material
@@ -109,6 +116,7 @@ namespace RecycledManagement
 
             lookUpMaterial.Properties.Columns.Add(new LookUpColumnInfo("materialcode", "Material Code", 40));
             lookUpMaterial.Properties.Columns.Add(new LookUpColumnInfo("materialname", "Material Name", 120));
+            this.lookUpMaterial.EditValueChanged += new System.EventHandler(this.lookUpMaterial_EditValueChanged);
             #endregion
 
             //đang ký sự kiện scaleValueChanged
@@ -146,21 +154,30 @@ namespace RecycledManagement
         private void lookUpMixCode_EditValueChanged(object sender, EventArgs e)
         {
             try
-            {                
-                if (!string.IsNullOrEmpty(lookUpMixCode.Text) && lookUpMixCode.Text != "Select")
-                {                    
-                    tedItemCode.EditValue = lookUpMixCode.GetColumnValue("ItemCode").ToString();                    
-                    tedColorCode.EditValue = lookUpMixCode.GetColumnValue("ColorCode").ToString(); ;
-                    tedItemName.EditValue = lookUpMixCode.GetColumnValue("ItemName").ToString(); ;
-                    tedColorName.EditValue = lookUpMixCode.GetColumnValue("ColorName").ToString(); ;                    
-                }
-                else
+            {     
+                if (GlobalVariable.isMixcode)
                 {
-                    tedItemCode.EditValue = null;
-                    tedItemName.EditValue = null;
-                    tedColorCode.EditValue = null;
-                    tedColorName.EditValue = null;
+                  
+                    LookUpEdit lookUpEdit = sender as LookUpEdit;
+                    if (!string.IsNullOrEmpty(lookUpEdit.EditValue?.ToString()))
+                    {
+                        tedItemCode.EditValue =  lookUpEdit.GetColumnValue("ItemCode").ToString();
+                        tedColorCode.EditValue = lookUpEdit.GetColumnValue("ColorCode").ToString();
+                        tedItemName.EditValue =  lookUpEdit.GetColumnValue("ItemName").ToString();
+                        tedColorName.EditValue = lookUpEdit.GetColumnValue("ColorName").ToString();
+                    }
+                    else
+                    {
+                        tedItemCode.EditValue = null;
+                        tedColorCode.EditValue =null;
+                        tedItemName.EditValue =null;
+                        tedColorName.EditValue =null;
+                    }
+
+                    //tedMaterialName.EditValue = null;
+
                 }
+               
             }
             catch
             {
@@ -171,15 +188,21 @@ namespace RecycledManagement
         private void lookUpMaterial_EditValueChanged(object sender, EventArgs e)
         {
             try
-            {
-                if (!string.IsNullOrEmpty(lookUpMaterial.Text) && lookUpMaterial.Text != "[EditValue is null]")
+            {           
+                if (!GlobalVariable.isMixcode)
                 {
-                    tedMaterialName.EditValue = lookUpMaterial.GetColumnValue("materialname").ToString();
+                    LookUpEdit lookUpEdit = sender as LookUpEdit;
+                    if (!string.IsNullOrEmpty(lookUpEdit.EditValue?.ToString()))
+                    {
+                        tedMaterialName.EditValue = lookUpMaterial.GetColumnValue("materialname");
+                    }
+                    else
+                    {
+                        tedMaterialName.EditValue = null;
+                    }
+                  
                 }
-                else
-                {
-                    tedMaterialName.EditValue = null;
-                }
+              
             }
             catch
             {
@@ -190,21 +213,30 @@ namespace RecycledManagement
         private void radType_SelectedIndexChanged(object sender, EventArgs e)
         {
             RadioGroup edit = sender as RadioGroup;
-            Debug.WriteLine($"radCrush Type: {edit.SelectedIndex}");
+            Debug.WriteLine($"radCrush Type: {edit}");
 
             if (edit.SelectedIndex == 0)
             {
                 lookUpMixCode.Enabled = true;
-
-                lookUpMaterial.Enabled = false;
+                GlobalVariable.isMixcode = true;
+                //lookUpMixCode.ItemIndex = 0;
                 lookUpMaterial.EditValue = null;
+                tedMaterialName.EditValue = null;
+                lookUpMaterial.Enabled = false;                                
             }
             else
             {
                 lookUpMaterial.Enabled = true;
-
-                lookUpMixCode.Enabled = false;
+                //lookUpMixCode.EditValue = null;
+                GlobalVariable.isMixcode = false;
+                //lookUpMaterial.ItemIndex = 0;
                 lookUpMixCode.EditValue = null;
+                tedItemCode.EditValue = "";
+                tedItemName.EditValue = "";
+                tedColorCode.EditValue = "";
+                tedColorName.EditValue = "";
+
+                lookUpMixCode.Enabled = false;                
             }
         }
         #endregion
@@ -276,8 +308,7 @@ namespace RecycledManagement
             string crushedCode = null;
             string mixId = null, shiftId = null, operatorId = null, materialCode = null, materialName = null, itemCode = null;
 
-            //chung
-            itemCode = tedItemCode.EditValue.ToString();
+            //chung            
             shiftId = lookUpShift.EditValue.ToString();
             operatorId = lookUpOperator.EditValue.ToString();
             string machine = txtCrushMachine.Text;
@@ -290,6 +321,7 @@ namespace RecycledManagement
             if (crushType == "0")//Recycle Material
             {
                 mixId = lookUpMixCode.EditValue.ToString();
+                itemCode = tedItemCode.EditValue.ToString();
                 crushedCode = $"RE|{DateTime.Now.ToString("yyyyMMdd")}|{itemCode}|{crushId}";
             }
             else
@@ -301,6 +333,18 @@ namespace RecycledManagement
 
             Debug.WriteLine($"Insrt Crushing: {DbCrushing.Instance.Insert(shiftId, operatorId, mixId, machine, materialCode, materialName, weightCrush, GlobalVariable.userId.ToString(), crushedCode, crushType)}");
             view.CloseEditForm();
+        }
+
+        private void lookUpMaterial_Properties_BeforePopup(object sender, EventArgs e)
+        {
+            //lookUpMixCode.EditValue = null;
+            //lookUpMaterial.EditValue = null;
+        }
+
+        private void lookUpMixCode_Properties_BeforePopup(object sender, EventArgs e)
+        {
+            //lookUpMixCode.EditValue = null;
+            //lookUpMaterial.EditValue = null;
         }
     }
 }
