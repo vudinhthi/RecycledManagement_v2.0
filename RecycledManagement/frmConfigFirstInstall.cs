@@ -107,7 +107,7 @@ namespace RecycledManagement
 
                 }
                 //khi cài chương trình chạy dầu tiên thì vào cấu hình DB server 
-                if (configFirstInstall == "False")
+                if (configFirstInstall == "True")
                 {
                     txtDbName.Enabled = true;
                     txtServerName.Enabled = true;

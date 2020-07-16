@@ -29,17 +29,26 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(userControlBookingOrder));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.grcOrder = new DevExpress.XtraGrid.GridControl();
             this.grvOrder = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -61,6 +70,7 @@
             this.txtMachine = new DevExpress.XtraEditors.TextEdit();
             this.lookUpTeamLeader = new DevExpress.XtraEditors.LookUpEdit();
             this.lookUpShift = new DevExpress.XtraEditors.LookUpEdit();
+            this.lookUpItemCode = new DevExpress.XtraEditors.LookUpEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -77,10 +87,10 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lookUpItemCode = new DevExpress.XtraEditors.LookUpEdit();
             this.layoutControl11 = new DevExpress.XtraLayout.LayoutControl();
             this.grcOrder1 = new DevExpress.XtraGrid.GridControl();
             this.grvOrder1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -118,7 +128,7 @@
             this.layoutControlItem111 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem121 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem11 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcOrder)).BeginInit();
@@ -135,6 +145,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpTeamLeader.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpShift.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -151,9 +162,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpItemCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl11)).BeginInit();
             this.layoutControl11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcOrder1)).BeginInit();
@@ -186,7 +197,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem111)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem121)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -246,6 +257,7 @@
             this.gridColumn1.Caption = "Size";
             this.gridColumn1.FieldName = "SizeName";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             // 
@@ -254,6 +266,7 @@
             this.gridColumn2.Caption = "Qty Pairs";
             this.gridColumn2.FieldName = "QtyPrs";
             this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             // 
@@ -262,6 +275,7 @@
             this.gridColumn3.Caption = "Weight (Kg)";
             this.gridColumn3.FieldName = "QtyKg";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "QtyKg", "Order Amount (Kg): {0:n3}", ((short)(1)))});
             this.gridColumn3.Visible = true;
@@ -277,20 +291,26 @@
             // repositoryItemBtnDelete
             // 
             this.repositoryItemBtnDelete.AutoHeight = false;
-            editorButtonImageOptions3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions3.SvgImage")));
-            editorButtonImageOptions3.SvgImageSize = new System.Drawing.Size(16, 16);
+            editorButtonImageOptions1.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions1.SvgImage")));
+            editorButtonImageOptions1.SvgImageSize = new System.Drawing.Size(16, 16);
             this.repositoryItemBtnDelete.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemBtnDelete.Name = "repositoryItemBtnDelete";
             this.repositoryItemBtnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemBtnDelete.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemBtnDelete_ButtonClick);
             // 
             // labMaxOrderSize
             // 
+            this.labMaxOrderSize.Appearance.BackColor = System.Drawing.Color.White;
+            this.labMaxOrderSize.Appearance.Font = new System.Drawing.Font("Arial Unicode MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labMaxOrderSize.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.labMaxOrderSize.Appearance.Options.UseBackColor = true;
+            this.labMaxOrderSize.Appearance.Options.UseFont = true;
+            this.labMaxOrderSize.Appearance.Options.UseForeColor = true;
             this.SetBoundPropertyName(this.labMaxOrderSize, "");
             this.labMaxOrderSize.Location = new System.Drawing.Point(190, 214);
             this.labMaxOrderSize.Name = "labMaxOrderSize";
-            this.labMaxOrderSize.Size = new System.Drawing.Size(20, 18);
+            this.labMaxOrderSize.Size = new System.Drawing.Size(26, 18);
             this.labMaxOrderSize.StyleController = this.layoutControl1;
             this.labMaxOrderSize.TabIndex = 21;
             this.labMaxOrderSize.Text = "-----";
@@ -326,6 +346,9 @@
             this.dateEditBook.Size = new System.Drawing.Size(540, 24);
             this.dateEditBook.StyleController = this.layoutControl1;
             this.dateEditBook.TabIndex = 19;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "This field is not blank!";
+            this.dxValidationProvider1.SetValidationRule(this.dateEditBook, conditionValidationRule1);
             // 
             // spinEditBook
             // 
@@ -382,6 +405,7 @@
             // btnAdd
             // 
             this.SetBoundPropertyName(this.btnAdd, "");
+            this.btnAdd.Enabled = false;
             this.btnAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.Image")));
             this.btnAdd.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(1136, 292);
@@ -399,6 +423,8 @@
             this.txtWeight.Enabled = false;
             this.txtWeight.Location = new System.Drawing.Point(942, 292);
             this.txtWeight.Name = "txtWeight";
+            this.txtWeight.Properties.Appearance.Font = new System.Drawing.Font("Arial Unicode MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWeight.Properties.Appearance.Options.UseFont = true;
             this.txtWeight.Properties.Appearance.Options.UseTextOptions = true;
             this.txtWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtWeight.Properties.DisplayFormat.FormatString = "{0:n3}";
@@ -416,7 +442,9 @@
             this.lookUpSize.Name = "lookUpSize";
             this.lookUpSize.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpSize.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.lookUpSize.Properties.NullText = "";
+            this.lookUpSize.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
+            this.lookUpSize.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.lookUpSize.Size = new System.Drawing.Size(334, 24);
             this.lookUpSize.StyleController = this.layoutControl1;
             this.lookUpSize.TabIndex = 9;
@@ -428,8 +456,10 @@
             this.lookUpItemName.Location = new System.Drawing.Point(190, 264);
             this.lookUpItemName.Name = "lookUpItemName";
             this.lookUpItemName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpItemName.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, false, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.lookUpItemName.Properties.ReadOnly = true;
+            this.lookUpItemName.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.OnlyInPopup;
+            this.lookUpItemName.Properties.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
             this.lookUpItemName.Size = new System.Drawing.Size(1250, 24);
             this.lookUpItemName.StyleController = this.layoutControl1;
             this.lookUpItemName.TabIndex = 7;
@@ -443,6 +473,10 @@
             this.txtMachine.Size = new System.Drawing.Size(540, 24);
             this.txtMachine.StyleController = this.layoutControl1;
             this.txtMachine.TabIndex = 6;
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "This field is not blank!";
+            conditionValidationRule2.ErrorType = DevExpress.XtraEditors.DXErrorProvider.ErrorType.Warning;
+            this.dxValidationProvider1.SetValidationRule(this.txtMachine, conditionValidationRule2);
             // 
             // lookUpTeamLeader
             // 
@@ -451,7 +485,9 @@
             this.lookUpTeamLeader.Name = "lookUpTeamLeader";
             this.lookUpTeamLeader.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpTeamLeader.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.lookUpTeamLeader.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.lookUpTeamLeader.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
+            this.lookUpTeamLeader.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.lookUpTeamLeader.Size = new System.Drawing.Size(540, 24);
             this.lookUpTeamLeader.StyleController = this.layoutControl1;
             this.lookUpTeamLeader.TabIndex = 5;
@@ -463,10 +499,30 @@
             this.lookUpShift.Name = "lookUpShift";
             this.lookUpShift.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpShift.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.lookUpShift.Properties.NullText = "Please Select Shift!";
             this.lookUpShift.Size = new System.Drawing.Size(540, 24);
             this.lookUpShift.StyleController = this.layoutControl1;
             this.lookUpShift.TabIndex = 4;
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "This field is not blank!";
+            this.dxValidationProvider1.SetValidationRule(this.lookUpShift, conditionValidationRule3);
+            // 
+            // lookUpItemCode
+            // 
+            this.SetBoundPropertyName(this.lookUpItemCode, "");
+            this.lookUpItemCode.Location = new System.Drawing.Point(190, 236);
+            this.lookUpItemCode.Name = "lookUpItemCode";
+            this.lookUpItemCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpItemCode.Properties.NullText = "";
+            this.lookUpItemCode.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.lookUpItemCode.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
+            this.lookUpItemCode.Size = new System.Drawing.Size(1250, 24);
+            this.lookUpItemCode.StyleController = this.layoutControl1;
+            this.lookUpItemCode.TabIndex = 7;
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "This field is not blank!";
+            this.dxValidationProvider1.SetValidationRule(this.lookUpItemCode, conditionValidationRule4);
             // 
             // Root
             // 
@@ -633,6 +689,17 @@
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.lookUpItemCode;
+            this.layoutControlItem15.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.layoutControlItem15.CustomizationFormText = "Item Name";
+            this.layoutControlItem15.Location = new System.Drawing.Point(0, 62);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(1420, 28);
+            this.layoutControlItem15.Text = "Item Code";
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(163, 18);
+            // 
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.btnSaveOrder;
@@ -653,18 +720,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // lookUpItemCode
-            // 
-            this.SetBoundPropertyName(this.lookUpItemCode, "");
-            this.lookUpItemCode.Location = new System.Drawing.Point(190, 236);
-            this.lookUpItemCode.Name = "lookUpItemCode";
-            this.lookUpItemCode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpItemCode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpItemCode.Size = new System.Drawing.Size(1250, 24);
-            this.lookUpItemCode.StyleController = this.layoutControl1;
-            this.lookUpItemCode.TabIndex = 7;
             // 
             // layoutControl11
             // 
@@ -751,17 +806,17 @@
             // repositoryItemBtnDelete1
             // 
             this.repositoryItemBtnDelete1.AutoHeight = false;
-            editorButtonImageOptions4.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions4.SvgImage")));
-            editorButtonImageOptions4.SvgImageSize = new System.Drawing.Size(16, 16);
+            editorButtonImageOptions3.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("editorButtonImageOptions3.SvgImage")));
+            editorButtonImageOptions3.SvgImageSize = new System.Drawing.Size(16, 16);
             this.repositoryItemBtnDelete1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemBtnDelete1.Name = "repositoryItemBtnDelete1";
             this.repositoryItemBtnDelete1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // labMaxOrderSize1
             // 
             this.SetBoundPropertyName(this.labMaxOrderSize1, "");
-            this.labMaxOrderSize1.Location = new System.Drawing.Point(199, 214);
+            this.labMaxOrderSize1.Location = new System.Drawing.Point(190, 214);
             this.labMaxOrderSize1.Name = "labMaxOrderSize1";
             this.labMaxOrderSize1.Size = new System.Drawing.Size(20, 18);
             this.labMaxOrderSize1.StyleController = this.layoutControl11;
@@ -771,9 +826,9 @@
             // txtNote1
             // 
             this.SetBoundPropertyName(this.txtNote1, "");
-            this.txtNote1.Location = new System.Drawing.Point(199, 101);
+            this.txtNote1.Location = new System.Drawing.Point(190, 101);
             this.txtNote1.Name = "txtNote1";
-            this.txtNote1.Size = new System.Drawing.Size(1241, 24);
+            this.txtNote1.Size = new System.Drawing.Size(1250, 24);
             this.txtNote1.StyleController = this.layoutControl11;
             this.txtNote1.TabIndex = 20;
             // 
@@ -781,7 +836,7 @@
             // 
             this.SetBoundPropertyName(this.dateEditBook1, "");
             this.dateEditBook1.EditValue = new System.DateTime(2020, 6, 27, 9, 38, 18, 285);
-            this.dateEditBook1.Location = new System.Drawing.Point(909, 73);
+            this.dateEditBook1.Location = new System.Drawing.Point(900, 73);
             this.dateEditBook1.Name = "dateEditBook1";
             this.dateEditBook1.Properties.Appearance.Options.UseTextOptions = true;
             this.dateEditBook1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -796,7 +851,7 @@
             this.dateEditBook1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dateEditBook1.Properties.Mask.EditMask = "G";
             this.dateEditBook1.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.dateEditBook1.Size = new System.Drawing.Size(531, 24);
+            this.dateEditBook1.Size = new System.Drawing.Size(540, 24);
             this.dateEditBook1.StyleController = this.layoutControl11;
             this.dateEditBook1.TabIndex = 19;
             // 
@@ -808,7 +863,7 @@
             0,
             0,
             0});
-            this.spinEditBook1.Location = new System.Drawing.Point(703, 236);
+            this.spinEditBook1.Location = new System.Drawing.Point(694, 236);
             this.spinEditBook1.Name = "spinEditBook1";
             this.spinEditBook1.Properties.Appearance.Options.UseTextOptions = true;
             this.spinEditBook1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -825,7 +880,7 @@
             0,
             0});
             this.spinEditBook1.Properties.Name = "spinEditBook";
-            this.spinEditBook1.Size = new System.Drawing.Size(69, 24);
+            this.spinEditBook1.Size = new System.Drawing.Size(78, 24);
             this.spinEditBook1.StyleController = this.layoutControl11;
             this.spinEditBook1.TabIndex = 17;
             // 
@@ -841,7 +896,7 @@
             // btnSaveOrder1
             // 
             this.SetBoundPropertyName(this.btnSaveOrder1, "");
-            this.btnSaveOrder1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnSaveOrder1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveOrder1.ImageOptions.Image")));
             this.btnSaveOrder1.Location = new System.Drawing.Point(734, 648);
             this.btnSaveOrder1.Name = "btnSaveOrder1";
             this.btnSaveOrder1.Size = new System.Drawing.Size(718, 36);
@@ -852,7 +907,7 @@
             // btnAdd1
             // 
             this.SetBoundPropertyName(this.btnAdd1, "");
-            this.btnAdd1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image1")));
+            this.btnAdd1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd1.ImageOptions.Image")));
             this.btnAdd1.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
             this.btnAdd1.Location = new System.Drawing.Point(1136, 236);
             this.btnAdd1.Name = "btnAdd1";
@@ -866,7 +921,7 @@
             this.SetBoundPropertyName(this.txtWeight1, "");
             this.txtWeight1.EditValue = "0.0";
             this.txtWeight1.Enabled = false;
-            this.txtWeight1.Location = new System.Drawing.Point(951, 236);
+            this.txtWeight1.Location = new System.Drawing.Point(942, 236);
             this.txtWeight1.Name = "txtWeight1";
             this.txtWeight1.Properties.Appearance.Options.UseTextOptions = true;
             this.txtWeight1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -874,52 +929,54 @@
             this.txtWeight1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtWeight1.Properties.Mask.EditMask = "{0:n3}";
             this.txtWeight1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtWeight1.Size = new System.Drawing.Size(181, 24);
+            this.txtWeight1.Size = new System.Drawing.Size(190, 24);
             this.txtWeight1.StyleController = this.layoutControl11;
             this.txtWeight1.TabIndex = 11;
             // 
             // lookUpSize1
             // 
             this.SetBoundPropertyName(this.lookUpSize1, "");
-            this.lookUpSize1.Location = new System.Drawing.Point(199, 236);
+            this.lookUpSize1.Location = new System.Drawing.Point(190, 236);
             this.lookUpSize1.Name = "lookUpSize1";
             this.lookUpSize1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpSize1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpSize1.Size = new System.Drawing.Size(325, 24);
+            this.lookUpSize1.Size = new System.Drawing.Size(334, 24);
             this.lookUpSize1.StyleController = this.layoutControl11;
             this.lookUpSize1.TabIndex = 9;
             // 
             // txtMachine1
             // 
             this.SetBoundPropertyName(this.txtMachine1, "");
-            this.txtMachine1.Location = new System.Drawing.Point(199, 73);
+            this.txtMachine1.Location = new System.Drawing.Point(190, 73);
             this.txtMachine1.Name = "txtMachine1";
-            this.txtMachine1.Size = new System.Drawing.Size(531, 24);
+            this.txtMachine1.Size = new System.Drawing.Size(540, 24);
             this.txtMachine1.StyleController = this.layoutControl11;
             this.txtMachine1.TabIndex = 6;
             // 
             // lookUpTeamLeader1
             // 
             this.SetBoundPropertyName(this.lookUpTeamLeader1, "");
-            this.lookUpTeamLeader1.Location = new System.Drawing.Point(909, 45);
+            this.lookUpTeamLeader1.Location = new System.Drawing.Point(900, 45);
             this.lookUpTeamLeader1.Name = "lookUpTeamLeader1";
+            this.lookUpTeamLeader1.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lookUpTeamLeader1.Properties.Appearance.Options.UseForeColor = true;
             this.lookUpTeamLeader1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpTeamLeader1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpTeamLeader1.Size = new System.Drawing.Size(531, 24);
+            this.lookUpTeamLeader1.Size = new System.Drawing.Size(540, 24);
             this.lookUpTeamLeader1.StyleController = this.layoutControl11;
             this.lookUpTeamLeader1.TabIndex = 5;
             // 
             // lookUpShift1
             // 
             this.SetBoundPropertyName(this.lookUpShift1, "");
-            this.lookUpShift1.Location = new System.Drawing.Point(199, 45);
+            this.lookUpShift1.Location = new System.Drawing.Point(190, 45);
             this.lookUpShift1.Name = "lookUpShift1";
             this.lookUpShift1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpShift1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.lookUpShift1.Size = new System.Drawing.Size(531, 24);
+            this.lookUpShift1.Size = new System.Drawing.Size(540, 24);
             this.lookUpShift1.StyleController = this.layoutControl11;
             this.lookUpShift1.TabIndex = 4;
             // 
@@ -1094,16 +1151,9 @@
             this.emptySpaceItem11.Size = new System.Drawing.Size(722, 40);
             this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlItem15
+            // dxValidationProvider1
             // 
-            this.layoutControlItem15.Control = this.lookUpItemCode;
-            this.layoutControlItem15.ControlAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.layoutControlItem15.CustomizationFormText = "Item Name";
-            this.layoutControlItem15.Location = new System.Drawing.Point(0, 62);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(1420, 28);
-            this.layoutControlItem15.Text = "Item Code";
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(163, 18);
+            this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Auto;
             // 
             // userControlBookingOrder
             // 
@@ -1129,6 +1179,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMachine.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpTeamLeader.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpShift.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -1145,9 +1196,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpItemCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl11)).EndInit();
             this.layoutControl11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcOrder1)).EndInit();
@@ -1180,7 +1231,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem111)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem121)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1266,5 +1317,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem111;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem121;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem11;
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
     }
 }

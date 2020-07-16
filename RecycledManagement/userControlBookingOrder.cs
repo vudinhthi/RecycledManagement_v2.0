@@ -16,6 +16,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Data;
 using System.Threading;
+using DevExpress.XtraReports.Native;
 
 namespace RecycledManagement
 {
@@ -53,12 +54,13 @@ namespace RecycledManagement
             this.SetBoundFieldName(this.lookUpTeamLeader, "OperatorId");
             this.SetBoundPropertyName(this.lookUpTeamLeader, "EditValue");
 
-            this.SetBoundFieldName(this.lookUpItemCode, "ItemCode");
+            // this.SetBoundFieldName(this.lookUpItemCode, "ItemCode");
+            //this.SetBoundPropertyName(this.lookUpItemCode, "Text");
             this.SetBoundFieldName(this.lookUpItemName, "ItemCode");
             this.SetBoundPropertyName(this.lookUpItemName, "EditValue");
 
-            this.SetBoundFieldName(this.radBookOrder, "OrderType");
-            this.SetBoundPropertyName(this.radBookOrder, "EditValue");
+            //this.SetBoundFieldName(this.radBookOrder, "OrderType");
+            //this.SetBoundPropertyName(this.radBookOrder, "EditValue");
 
             this.SetBoundFieldName(this.dateEditBook, "FinishDate");
             this.SetBoundFieldName(this.txtMachine, "Machine");
@@ -85,9 +87,10 @@ namespace RecycledManagement
             radBookOrder.Properties.Items.Add(radioItem);
             radioItem = new RadioGroupItem(1, "Urgent Order");
             radBookOrder.Properties.Items.Add(radioItem);
-
             radBookOrder.SelectedIndex = 0;//chọn mặc định hiển thị radio ban đầu
             radBookOrder.BorderStyle = BorderStyles.Style3D;
+            this.SetBoundFieldName(this.radBookOrder, "OrderType");
+            this.SetBoundPropertyName(this.radBookOrder, "EditValue");
             //radBookOrder.BackColor = Color.Green;
             #endregion
 
@@ -95,20 +98,41 @@ namespace RecycledManagement
             lookUpShift.Properties.DataSource = DbShift.Instance.GetShiftComming();
             lookUpShift.Properties.ValueMember = "ShiftId";
             lookUpShift.Properties.DisplayMember = "ShiftName";
+            lookUpShift.ItemIndex = 0;
             #endregion
 
             #region get ItemName
-            lookUpItemName.Properties.DataSource = DbBookingOrder.Instance.GetItemName();
+            lookUpItemName.Properties.DataSource = lookUpItemCode.Properties.DataSource = DbBookingOrder.Instance.GetItemName();
             lookUpItemName.Properties.ValueMember = "ItemCode";
             lookUpItemName.Properties.DisplayMember = "ItemName";
+            //lookUpItemName.ReadOnly = true;
+            lookUpItemCode.Properties.ValueMember = "ItemCode";
+            lookUpItemCode.Properties.DisplayMember = "ItemCode";
+            lookUpItemName.EditValue = lookUpItemCode.EditValue;
+            //lookUpItemCode.Properties.DataSource = DbBookingOrder.Instance.GetItemName();
+            //lookUpItemCode.Properties.ValueMember = "ItemName";
+            //lookUpItemCode.Properties.DisplayMember = "ItemCode";
+            lookUpItemCode.EditValueChanged += (s, o) =>
+            {
+                LookUpEdit lkeItemCode = s as LookUpEdit;
+                lookUpItemName.EditValue = lkeItemCode.EditValue;
+            };
+            #region Sự kiện thay đổi focusrowhandle của gridControl Order
+            grvOrder.FocusedRowChanged += (s, o) =>
+            {
+                GridView view = s as GridView;
+                lookUpSize.ItemIndex = o.FocusedRowHandle;
+            };
+            #endregion
             #endregion
 
             #region get TeamLeader
             lookUpTeamLeader.Properties.DataSource = DbBookingOrder.Instance.GetTeamLeader(3);
             lookUpTeamLeader.Properties.ValueMember = "OperatorId";
             lookUpTeamLeader.Properties.DisplayMember = "OperatorName";
+            lookUpTeamLeader.ItemIndex = 0;
             #endregion
-
+            //dateEditBook.Text = DateTime.Now.ToString();
             #region check nếu ko có quyền nhập thì disable các control đi
             if (GlobalVariable.importOrder == false)
             {
@@ -144,6 +168,11 @@ namespace RecycledManagement
                 //refesh lại GridView
                 grcOrder.DataSource = null;
                 grcOrder.DataSource = orderSizeList;
+                //Kiểm tra nếu không còn Size nào thì mở lại ookup ItemCode cho User chọn 
+                if (grvOrder.RowCount==0)
+                {
+                    lookUpItemCode.Enabled = true;
+                }
             }
         }
 
@@ -206,12 +235,14 @@ namespace RecycledManagement
         }
 
         //event LookupSize
+        bool isAlllowAdd = false;
         private void lookUpSize_EditValueChanged(object sender, EventArgs e)
         {
             //if (lookUpSize.Text != "[EditValue is null]" && !string.IsNullOrEmpty(lookUpSize.Text))
             //{
             //    shotWeight = float.Parse(lookUpSize.GetColumnValue("ShotWeight").ToString());
             //}
+            isAlllowAdd = true;
         }
 
         //event lookupItemName thay đổi
@@ -220,18 +251,18 @@ namespace RecycledManagement
             if (GlobalVariable.newOrUpdateOrderBook == true)
             {
                 //lookUpItemName.Properties.GetDisplayText(lookUpItemName.EditValue)--lấy DisplayMembers
-                Debug.WriteLine($"BookKing ItemEvent: DispalyMembers:{lookUpItemName.Text } | ValueMembers:{lookUpItemName.EditValue}|{lookUpItemName.GetColumnValue("ColorCode")}");
+                //Debug.WriteLine($"BookKing ItemEvent: DispalyMembers:{lookUpItemName.Text } | ValueMembers:{lookUpItemName.EditValue}|{lookUpItemName.GetColumnValue("ColorCode")}");
                 if (lookUpItemName.Text != "[EditValue is null]" && !string.IsNullOrEmpty(lookUpItemName.Text))
                 {
+                    //lookUpItemCode.EditValue= lookUpItemName.GetColumnValue("ColorName").ToString();
                     itemCode = lookUpItemName.EditValue.ToString();
                     itemName = lookUpItemName.Text;
                     colorCode = lookUpItemName.GetColumnValue("ColorCode").ToString();
                     colorName = lookUpItemName.GetColumnValue("ColorName").ToString();
-
                     #region get Size theo itemName
                     var _data = DbBookingOrder.Instance.GetOrdersize(lookUpItemName.EditValue.ToString());
                     lookUpSize.Properties.DataSource = _data;
-
+                   
                     //lay trung bình shotWeight va tinh maxOrderSize
                     if (_data != null && _data.Rows.Count > 0)
                     {
@@ -257,6 +288,7 @@ namespace RecycledManagement
                     }
                     lookUpSize.Properties.ValueMember = "ItemCode";
                     lookUpSize.Properties.DisplayMember = "Size";
+                    //lookUpSize.ItemIndex = 0;
                     #endregion
                 }
                 else
@@ -269,50 +301,59 @@ namespace RecycledManagement
         //save Order
         private void btnSaveOrder_Click(object sender, EventArgs e)
         {
+           
             if (!string.IsNullOrEmpty(lookUpShift.Text) && !string.IsNullOrEmpty(lookUpTeamLeader.Text) && !string.IsNullOrEmpty(txtMachine.Text) && !string.IsNullOrEmpty(dateEditBook.Text)
                 && !string.IsNullOrEmpty(itemCode) && !string.IsNullOrEmpty(itemName) && !string.IsNullOrEmpty(colorCode) && !string.IsNullOrEmpty(colorName))
             {
-                //tạo OrderCode theo format: OR-itemName-yyyyMMddOrderId
-                orderId = DbBookingOrder.Instance.GetMaxIdOrderBook() + 1;
-                orderCode = $"OR-{itemCode}-{DateTime.Now.ToString("yyyymmdd")}{orderId}";
-
-                if (DbBookingOrder.Instance.InsertOrderBook(orderCode, txtMachine.Text, itemCode, itemName, colorCode, colorName, orderAmount.ToString(), orderStatus, txtNote.Text, lookUpTeamLeader.GetColumnValue("OperatorId").ToString()
-                    , orderType, (DateTime)dateEditBook.EditValue, lookUpShift.GetColumnValue("ShiftId").ToString(), GlobalVariable.userId.ToString()) == 1)
+                if (grvOrder.RowCount == 0)
                 {
-                    //insert vao bang orderBookLog
-                    if (DbBookingOrder.Instance.InsertOrderBookLog(orderId.ToString(), "1", GlobalVariable.userId.ToString()) == 1)
+                    XtraMessageBox.Show("Order size is empty!");
+                }
+                else
+                {
+                    //tạo OrderCode theo format: OR-itemName-yyyyMMddOrderId
+                    orderId = DbBookingOrder.Instance.GetMaxIdOrderBook() + 1;
+                    orderCode = $"OR|{DateTime.Now.ToString("yyyymmdd")}|{itemCode}|{orderId}";
+
+                    if (DbBookingOrder.Instance.InsertOrderBook(orderCode, txtMachine.Text, itemCode, itemName, colorCode, colorName, orderAmount.ToString(), orderStatus, txtNote.Text, lookUpTeamLeader.GetColumnValue("OperatorId").ToString()
+                        , orderType, (DateTime)dateEditBook.EditValue, lookUpShift.GetColumnValue("ShiftId").ToString(), GlobalVariable.userId.ToString()) == 1)
                     {
-                        //update lai orderStatus cua bang orderBook 
-                        if (DbBookingOrder.Instance.UpdateOrderBook(DbBookingOrder.Instance.GetOrderBookLog1Line(orderId.ToString()).Rows[0][0].ToString(), orderId.ToString()) == 1)
+                        //insert vao bang orderBookLog
+                        if (DbBookingOrder.Instance.InsertOrderBookLog(orderId.ToString(), "1", GlobalVariable.userId.ToString()) == 1)
                         {
-                            //insert danh sach order vao bang tblOederBookSize
-                            foreach (var item in orderSizeList)
+                            //update lai orderStatus cua bang orderBook 
+                            if (DbBookingOrder.Instance.UpdateOrderBook(DbBookingOrder.Instance.GetOrderBookLog1Line(orderId.ToString()).Rows[0][0].ToString(), orderId.ToString()) == 1)
                             {
-                                DbBookingOrder.Instance.InsertOrderBookSize(orderId.ToString(), item.SizeName, item.QtyPrs.ToString(), item.QtyKg.ToString(), GlobalVariable.userId.ToString());
+                                //insert danh sach order vao bang tblOederBookSize
+                                foreach (var item in orderSizeList)
+                                {
+                                    DbBookingOrder.Instance.InsertOrderBookSize(orderId.ToString(), item.SizeName, item.QtyPrs.ToString(), item.QtyKg.ToString(), GlobalVariable.userId.ToString());
+                                }
+                                //XtraMessageBox.Show($"Successful!");
+                                //dong editform
+                                //OwnerForm.Close();
+                                view.CloseEditForm();//tăt editForm
                             }
-                            //XtraMessageBox.Show($"Successful!");
-                            //dong editform
-                            //OwnerForm.Close();
-                            view.CloseEditForm();//tăt editForm
+                            else
+                            {
+                                XtraMessageBox.Show($"Insert Databases Error!");
+                                //error, do somthing
+                            }
                         }
                         else
                         {
                             XtraMessageBox.Show($"Insert Databases Error!");
                             //error, do somthing
                         }
+
+
                     }
                     else
                     {
                         XtraMessageBox.Show($"Insert Databases Error!");
                         //error, do somthing
                     }
-
-
-                }
-                else
-                {
-                    XtraMessageBox.Show($"Insert Databases Error!");
-                    //error, do somthing
+                    lookUpItemCode.Enabled = true;
                 }
             }
             else
@@ -335,20 +376,40 @@ namespace RecycledManagement
         //add OrderList
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //đếm số lượng order trong list
-            numOfOrderSize = orderSizeList.Count + 1;
+            if (orderAmount + weight >= 25)
+            {
+                XtraMessageBox.Show("Order Amount is greater than 25 Kg");
+            }
+            else
+            {
+                //kiểm tra size đã tồn tại hay chưa
+                BookingOrderSizeModel ExistBookingOrderBook = orderSizeList.FirstOrDefault(ordersize => ordersize.SizeName == lookUpSize.Text);
+                if (ExistBookingOrderBook != null)
+                {
+                    //XtraMessageBox.Show("Value has already existed");
+                    //ExistBookingOrderBook.SizeName = lookUpSize.Text;
+                    ExistBookingOrderBook.QtyPrs = numOfPairs;
+                    ExistBookingOrderBook.QtyKg = weight;
+                }
+                else
+                {
+                    numOfOrderSize = orderSizeList.Count + 1;
 
-            //add Order vào list OrderSize
-            orderSizeModel = new BookingOrderSizeModel();
-            orderSizeModel.SizeName = lookUpSize.Text;
-            orderSizeModel.QtyPrs = numOfPairs;
-            orderSizeModel.QtyKg = weight;
-
-            orderSizeList.Add(orderSizeModel);
-
+                    //add Order vào list OrderSize
+                    orderSizeModel = new BookingOrderSizeModel();
+                    orderSizeModel.SizeName = lookUpSize.Text;
+                    orderSizeModel.QtyPrs = numOfPairs;
+                    orderSizeModel.QtyKg = weight;
+                    orderSizeList.Add(orderSizeModel);
+                }
+                
+            }
+            lookUpItemCode.Enabled = false;
             //hiển thị lên GridControl
             grcOrder.DataSource = null;
             grcOrder.DataSource = orderSizeList;
+            //đếm số lượng order trong list
+
         }
 
         //timer dùng để tính weight tự động khi chọn size và Qty(pairs)
@@ -380,7 +441,7 @@ namespace RecycledManagement
 
             #region xu ly khi add new hay xem order
             //add new order
-            if (GlobalVariable.newOrUpdateOrderBook == true && GlobalVariable.enableFlagOrderBook == true)
+            if (GlobalVariable.newOrUpdateOrderBook == true && GlobalVariable.enableFlagOrderBook == true & isAlllowAdd)
             {
                 //neu có quyền nhập
                 if (GlobalVariable.importOrder == true)
@@ -396,7 +457,6 @@ namespace RecycledManagement
                     labMaxOrderSize.Enabled = true;
                     radBookOrder.ReadOnly = false;
                     grvOrder.OptionsBehavior.ReadOnly = true;
-
                     btnAdd.Enabled = true;
                     btnSaveOrder.Enabled = true;
                     grcOrder.DataSource = null;
@@ -468,6 +528,7 @@ namespace RecycledManagement
                 #endregion
 
                 GlobalVariable.enableFlagOrderBook = true;
+               
             }
             #endregion
 
@@ -479,7 +540,8 @@ namespace RecycledManagement
             //{
             //    btnSaveOrder.Enabled = false;
             //}
-
+            //btnAdd.Enabled = false;
+           
             timer1.Enabled = true;
 
         }
