@@ -282,41 +282,46 @@ namespace RecycledManagement
         private void btnSave_Click(object sender, EventArgs e)
         {
             string mixId = null, shiftId = null, sourceId = null, reasonId = null, materialCode = null, materialName = null, leftOverCode = null, itemCode = null;
-            int incomingId = DbIncomingCrush.Instance.GetMaxIncomingId() + 1;//get gia tri Incoming lon nhat
-            string weightIncoming = txtNetWeight.Text;
-            string lossTypeId = radLossType.EditValue.ToString();
-            shiftId = lookUpShift.EditValue.ToString();
 
-            //LossType chon Runner/Defect/Contaminated
-            if (lookUpMixCode.Enabled == true && lookUpMaterial.Enabled == false && lookUpReason.Enabled == false && lookUpOtherSource.Enabled == false)
+            if (dxValidationProvider1.Validate())
             {
-                mixId = lookUpMixCode.EditValue.ToString();
+                int incomingId = DbIncomingCrush.Instance.GetMaxIncomingId() + 1;//get gia tri Incoming lon nhat
+                string weightIncoming = txtNetWeight.Text;
+                string lossTypeId = radLossType.EditValue.ToString();
+                shiftId = lookUpShift.EditValue.ToString();
+
+                //LossType chon Runner/Defect/Contaminated
+                if (lookUpMixCode.Enabled == true && lookUpMaterial.Enabled == false && lookUpReason.Enabled == false && lookUpOtherSource.Enabled == false)
+                {
+                    mixId = lookUpMixCode.EditValue.ToString();
+                }
+            
+                //LossType chọn Leftover
+                else if (lookUpMixCode.Enabled == true && lookUpMaterial.Enabled == false && lookUpReason.Enabled == true && lookUpOtherSource.Enabled == false)
+                {
+                    mixId = lookUpMixCode.EditValue.ToString();
+                    itemCode = lookUpMixCode.GetColumnValue("ItemCode").ToString();
+                    reasonId = lookUpReason.EditValue.ToString();
+                    leftOverCode = $"LO|{DateTime.Now.ToString("yyyyMMdd")}|{itemCode}|{incomingId}";
+                }
+            
+                //LossType chọn OtherSource
+                else if (lookUpMixCode.Enabled == false && lookUpMaterial.Enabled == true && lookUpReason.Enabled == false && lookUpOtherSource.Enabled == true)
+                {
+                    sourceId = lookUpOtherSource.EditValue.ToString();
+                    materialCode = lookUpMaterial.EditValue.ToString();
+                    materialName = lookUpMaterial.Text;
+                }
+
+                Debug.WriteLine($"ID cac bang: ShiftId={shiftId}|MixId:{mixId}|SourceId:{sourceId}|ReasonId:{reasonId}|MaterialCode:{materialCode}");
+
+                //goi method Insert tblIncomingCrush
+                DbIncomingCrush.Instance.InsertData(mixId, shiftId, lossTypeId, sourceId, reasonId, materialCode, materialName, weightIncoming,
+                    GlobalVariable.userId.ToString(), leftOverCode);
+
+                view.CloseEditForm();
             }
             
-            //LossType chọn Leftover
-            else if (lookUpMixCode.Enabled == true && lookUpMaterial.Enabled == false && lookUpReason.Enabled == true && lookUpOtherSource.Enabled == false)
-            {
-                mixId = lookUpMixCode.EditValue.ToString();
-                itemCode = lookUpMixCode.GetColumnValue("ItemCode").ToString();
-                reasonId = lookUpReason.EditValue.ToString();
-                leftOverCode = $"LO|{DateTime.Now.ToString("yyyyMMdd")}|{itemCode}|{incomingId}";
-            }
-            
-            //LossType chọn OtherSource
-            else if (lookUpMixCode.Enabled == false && lookUpMaterial.Enabled == true && lookUpReason.Enabled == false && lookUpOtherSource.Enabled == true)
-            {
-                sourceId = lookUpOtherSource.EditValue.ToString();
-                materialCode = lookUpMaterial.EditValue.ToString();
-                materialName = lookUpMaterial.Text;
-            }
-
-            Debug.WriteLine($"ID cac bang: ShiftId={shiftId}|MixId:{mixId}|SourceId:{sourceId}|ReasonId:{reasonId}|MaterialCode:{materialCode}");
-
-            //goi method Insert tblIncomingCrush
-            DbIncomingCrush.Instance.InsertData(mixId, shiftId, lossTypeId, sourceId, reasonId, materialCode, materialName, weightIncoming,
-                GlobalVariable.userId.ToString(), leftOverCode);
-
-            view.CloseEditForm();
         }
     }
 }

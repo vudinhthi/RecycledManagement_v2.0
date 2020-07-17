@@ -30,6 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CrushUserControl));
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.CompareAgainstControlValidationRule compareAgainstControlValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.CompareAgainstControlValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.CompareAgainstControlValidationRule compareAgainstControlValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.CompareAgainstControlValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule4 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.tedMaterialName = new DevExpress.XtraEditors.TextEdit();
             this.tedColorName = new DevExpress.XtraEditors.TextEdit();
@@ -66,6 +72,7 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tedMaterialName.Properties)).BeginInit();
@@ -101,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -246,6 +254,10 @@
             this.txtWeight.Size = new System.Drawing.Size(279, 24);
             this.txtWeight.StyleController = this.layoutControl1;
             this.txtWeight.TabIndex = 14;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Greater;
+            conditionValidationRule1.ErrorText = "This value is not valid";
+            conditionValidationRule1.Value1 = "0";
+            this.dxValidationProvider1.SetValidationRule(this.txtWeight, conditionValidationRule1);
             this.txtWeight.TextChanged += new System.EventHandler(this.txtWeight_TextChanged);
             // 
             // lookUpMaterial
@@ -255,11 +267,16 @@
             this.lookUpMaterial.Name = "lookUpMaterial";
             this.lookUpMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpMaterial.Properties.NullText = "Select";
             this.lookUpMaterial.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.lookUpMaterial.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.lookUpMaterial.Size = new System.Drawing.Size(697, 24);
             this.lookUpMaterial.StyleController = this.layoutControl1;
             this.lookUpMaterial.TabIndex = 12;
+            compareAgainstControlValidationRule1.CompareControlOperator = DevExpress.XtraEditors.DXErrorProvider.CompareControlOperator.NotEquals;
+            compareAgainstControlValidationRule1.Control = this.lookUpMixCode;
+            compareAgainstControlValidationRule1.ErrorText = "This value is not valid";
+            this.dxValidationProvider1.SetValidationRule(this.lookUpMaterial, compareAgainstControlValidationRule1);
             // 
             // lookUpMixCode
             // 
@@ -274,6 +291,10 @@
             this.lookUpMixCode.Size = new System.Drawing.Size(697, 24);
             this.lookUpMixCode.StyleController = this.layoutControl1;
             this.lookUpMixCode.TabIndex = 9;
+            compareAgainstControlValidationRule2.CompareControlOperator = DevExpress.XtraEditors.DXErrorProvider.CompareControlOperator.NotEquals;
+            compareAgainstControlValidationRule2.Control = this.lookUpMaterial;
+            compareAgainstControlValidationRule2.ErrorText = "This value is not valid";
+            this.dxValidationProvider1.SetValidationRule(this.lookUpMixCode, compareAgainstControlValidationRule2);
             // 
             // txtCrushMachine
             // 
@@ -283,6 +304,9 @@
             this.txtCrushMachine.Size = new System.Drawing.Size(91, 24);
             this.txtCrushMachine.StyleController = this.layoutControl1;
             this.txtCrushMachine.TabIndex = 6;
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "Nhập tên máy Crush";
+            this.dxValidationProvider1.SetValidationRule(this.txtCrushMachine, conditionValidationRule2);
             // 
             // lookUpOperator
             // 
@@ -291,11 +315,15 @@
             this.lookUpOperator.Name = "lookUpOperator";
             this.lookUpOperator.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpOperator.Properties.NullText = "";
             this.lookUpOperator.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
             this.lookUpOperator.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest;
             this.lookUpOperator.Size = new System.Drawing.Size(253, 24);
             this.lookUpOperator.StyleController = this.layoutControl1;
             this.lookUpOperator.TabIndex = 5;
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "Chọn operator";
+            this.dxValidationProvider1.SetValidationRule(this.lookUpOperator, conditionValidationRule3);
             // 
             // lookUpShift
             // 
@@ -304,9 +332,13 @@
             this.lookUpShift.Name = "lookUpShift";
             this.lookUpShift.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpShift.Properties.NullText = "";
             this.lookUpShift.Size = new System.Drawing.Size(129, 24);
             this.lookUpShift.StyleController = this.layoutControl1;
             this.lookUpShift.TabIndex = 4;
+            conditionValidationRule4.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule4.ErrorText = "Chọn ca làm việc";
+            this.dxValidationProvider1.SetValidationRule(this.lookUpShift, conditionValidationRule4);
             // 
             // Root
             // 
@@ -511,6 +543,10 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // dxValidationProvider1
+            // 
+            this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
+            // 
             // CrushUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -554,6 +590,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -596,5 +633,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraEditors.TextEdit tedMaterialName;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
+        private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
     }
 }
