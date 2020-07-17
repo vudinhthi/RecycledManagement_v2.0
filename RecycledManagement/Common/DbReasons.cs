@@ -38,6 +38,11 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("exec sp_getReasonType @ReasonType", new object[] { reasonType });
         }
 
+        public DataTable GetReasonId(string reasonId)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_getReasonId @ReasonId", new object[] { reasonId });
+        }
+
         //Insert data
         public int InsertData(string reasonName, string reasonType, bool isActive, string createBy)
         {

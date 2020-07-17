@@ -47,6 +47,11 @@ namespace RecycledManagement.Common
         {
             return DataProvider.Instance.ExecuteQuery("sp_MixMaterialScalesGetMixId @MixId", new object[] { mixId });
         }
+        
+        //public DataTable GetRecycledCsalesGetMixId(string mixId)
+        //{
+        //    return DataProvider.Instance.ExecuteQuery("sp_MixRecycleScaledGetMixId @MixId", new object[] { mixId });
+        //}
 
         public List<MixingOrderModel> GetAllMixedList()
         {
@@ -103,9 +108,9 @@ namespace RecycledManagement.Common
         /// </summary>
         /// <param name="crushLike"> @CrushedCode='RE|R%'.</param>
         /// <returns>DataTable.</returns>
-        public DataTable GetCrushingCode(string crushLike)
+        public DataTable GetCrushingCode(string crushedType)
         {
-            return DataProvider.Instance.ExecuteQuery("sp_CrushingGetCrushedCode @CrushedCode", new object[] { crushLike });
+            return DataProvider.Instance.ExecuteQuery("sp_CrushingGetCrushedCode @CrushedType", new object[] { crushedType });
         }
 
         /// <summary>
@@ -117,6 +122,24 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("sp_IncomingGetIncomingCode");
         }
 
+        public List<MixRecycleScaledModel> GetRecycledCsalesGetMixId(string mixId)
+        {
+            List<MixRecycleScaledModel> result = new List<MixRecycleScaledModel>();
+
+            DataTable data = DataProvider.Instance.ExecuteQuery("sp_MixRecycleScaledGetMixId @MixId", new object[] { mixId });
+
+            foreach (DataRow item in data.Rows)
+            {
+                result.Add(new MixRecycleScaledModel(item));
+            }
+
+            return result;
+        }
+
+        public DataTable GetMaterialRange()
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_MixMaterialRangeGetAll");
+        }
 
     }
 }

@@ -17,6 +17,7 @@ using DevExpress.XtraGrid;
 using DevExpress.Data;
 using System.Threading;
 using DevExpress.XtraEditors.Controls;
+using System.Net.Mail;
 
 namespace RecycledManagement
 {
@@ -25,6 +26,10 @@ namespace RecycledManagement
         int status = 0;//xet xem trạng thái của đơn hàng đang ở công đoạn nào để chọn cân cho phù hợp
         double totalMaterialConsumtion = 0, totalRecycle = 0, total = 0;
         double weightRecycle1 = 0, weightRecycle2 = 0, weightCompound = 0, weightClearRecycle = 0, weightFramapur = 0, weightLeftover = 0;
+
+        double rangeColor = 0, rangePlastic = 0;
+
+        MailHelper mailHelper;
 
         MixingOrderModel orderInfo;
         List<MixProductWinlineModel> productMixList;
@@ -187,23 +192,23 @@ namespace RecycledManagement
             lookUpReason.Properties.DisplayMember = "ReasonName";
             #endregion
 
-            lookUpRecycle1.Properties.DataSource = DbMixCode.Instance.GetCrushingCode("RE|BOM%");
+            lookUpRecycle1.Properties.DataSource = DbMixCode.Instance.GetCrushingCode("0");
             lookUpRecycle1.Properties.ValueMember = "CrushId";
             lookUpRecycle1.Properties.DisplayMember = "CrushedCode";
 
-            lookUpRecycle2.Properties.DataSource = DbMixCode.Instance.GetCrushingCode("RE|BOM%");
+            lookUpRecycle2.Properties.DataSource = DbMixCode.Instance.GetCrushingCode("0");
             lookUpRecycle2.Properties.ValueMember = "CrushId";
             lookUpRecycle2.Properties.DisplayMember = "CrushedCode";
 
-            lookUpCompound.Properties.DataSource = DbMixCode.Instance.GetCrushingCode("RE|R%");
+            lookUpCompound.Properties.DataSource = DbMixCode.Instance.GetCrushingCode("1");
             lookUpCompound.Properties.ValueMember = "CrushId";
             lookUpCompound.Properties.DisplayMember = "CrushedCode";
 
-            lookUpClearRecycle.Properties.DataSource = DbMixCode.Instance.GetCrushingCode("RE|R%");
+            lookUpClearRecycle.Properties.DataSource = DbMixCode.Instance.GetCrushingCode("1");
             lookUpClearRecycle.Properties.ValueMember = "CrushId";
             lookUpClearRecycle.Properties.DisplayMember = "CrushedCode";
 
-            lookUpFramapur.Properties.DataSource = DbMixCode.Instance.GetCrushingCode("RE|R%");
+            lookUpFramapur.Properties.DataSource = DbMixCode.Instance.GetCrushingCode("1");
             lookUpFramapur.Properties.ValueMember = "CrushId";
             lookUpFramapur.Properties.DisplayMember = "CrushedCode";
 
@@ -243,6 +248,7 @@ namespace RecycledManagement
             productMixList = DbMixCode.Instance.GetProductWinline(orderInfo.ItemCode, orderInfo.OrderAmount);
             status = Convert.ToInt32(orderInfo.Status);
 
+            //color scales
             if (status == 1) //new order-->cân màu
             {
                 lookUpRecycle1.Enabled = false;
@@ -258,15 +264,25 @@ namespace RecycledManagement
                 txtWeightClearRecycle.Enabled = false;
                 txtWeightFramapur.Enabled = false;
                 txtWeightLeftover.Enabled = false;
+                txtTotalRecycleWeight.Enabled = false;
 
                 lookUpReason.Enabled = false;
                 checkBoxUsingRecycle.Enabled = false;
-                txtTotalRecycleWeight.Enabled = false;
 
                 grcMaterialConsumption.DataSource = productMixList;//hiển thị danh sách Product lên gridView Material Consumption
             }
-            else if (status == 2)//--> Cân nhựa
+            //plastic scales
+            else if (status == 2)//--> Cân nhựa va Recycle
             {
+                GlobalVariable.selectScale = "ScalePlastic";//set chon can nhựa vì trạng thái order đang ở cân recycle
+
+                lookUpShift.Text = orderInfo.MixShiftName;
+                lookUpOperator.Text = orderInfo.MixOperatorName;
+                txtMixNote.Text = orderInfo.MixNote;
+
+                lookUpShift.ReadOnly = true;
+                lookUpOperator.ReadOnly = true;
+
                 lookUpRecycle1.Enabled = false;
                 lookUpRecycle2.Enabled = false;
                 lookUpCompound.Enabled = false;
@@ -280,30 +296,23 @@ namespace RecycledManagement
                 txtWeightClearRecycle.Enabled = false;
                 txtWeightFramapur.Enabled = false;
                 txtWeightLeftover.Enabled = false;
-
-                lookUpReason.Enabled = false;
-                checkBoxUsingRecycle.Enabled = false;
                 txtTotalRecycleWeight.Enabled = false;
 
-                lookUpShift.Text = orderInfo.MixShiftName;
-                lookUpOperator.Text = orderInfo.MixOperatorName;
+                lookUpReason.Enabled = true;
+                checkBoxUsingRecycle.Enabled = true;
 
-                lookUpShift.ReadOnly = true;
-                lookUpOperator.ReadOnly = true;
+                #region get material scales color
+                DataTable dataMaterialScales = DbMixCode.Instance.GetMaterialCsalesColor(orderInfo.MixId);//get color material trong tblMixMaterialScale theo MixId 
 
-                #region get color scales
-                DataTable dataColorScales = DbMixCode.Instance.GetMaterialCsalesColor(orderInfo.MixId);
-                if (dataColorScales != null && dataColorScales.Rows.Count > 0)
+                if (dataMaterialScales != null && dataMaterialScales.Rows.Count > 0)
                 {
-                    foreach (DataRow item in dataColorScales.Rows)
+                    foreach (var item1 in productMixList)
                     {
-                        foreach (var item1 in productMixList)
+                        if (dataMaterialScales.Select($"MaterialCode='{item1.MaterialCode}'").Count() > 0)
                         {
-                            if (item1.MaterialCode == item[1].ToString())
-                            {
-                                item1.ActualUsage = item[7].ToString();
-                            }
+                            item1.ActualUsage = dataMaterialScales.Select($"MaterialCode='{item1.MaterialCode}'")[0][7].ToString();
                         }
+
                     }
                 }
                 #endregion
@@ -311,40 +320,109 @@ namespace RecycledManagement
                 grcMaterialConsumption.DataSource = productMixList;//hiển thị danh sách Product lên gridView Material Consumption
 
             }
-            else if (status == 3)//cân recycle
+            else if (status == 3)//Finish
             {
-                lookUpShift.ReadOnly = true;
-                lookUpOperator.ReadOnly = true;
-
                 lookUpShift.Text = orderInfo.MixShiftName;
                 lookUpOperator.Text = orderInfo.MixOperatorName;
+                txtMixNote.Text = orderInfo.MixNote;
 
-                GlobalVariable.selectScale = "ScalePlastic";//set chon can nhựa vì trạng thái order đang ở cân recycle
+                lookUpShift.ReadOnly = true;
+                lookUpOperator.ReadOnly = true;
+                txtMixNote.ReadOnly = true;
 
-                grcMaterialConsumption.Enabled = false;
+                GlobalVariable.selectScale = "";//set chon can nhựa vì trạng thái order đang ở cân recycle
 
-                txtWeightRecycle1.Enabled = false;
-                txtWeightRecycle2.Enabled = false;
-                txtWeightCompound.Enabled = false;
-                txtWeightClearRecycle.Enabled = false;
-                txtWeightFramapur.Enabled = false;
-                txtWeightLeftover.Enabled = false;
+                //grcMaterialConsumption.Enabled = false;
+                //grvMaterialConsumption.OptionsBehavior.ReadOnly = true;               
 
-                #region get color scales
-                DataTable dataColorScales = DbMixCode.Instance.GetMaterialCsalesGetMixId(orderInfo.MixId);
-                if (dataColorScales != null && dataColorScales.Rows.Count > 0)
+
+
+                #region get material scales
+                DataTable dataMaterialScales = DbMixCode.Instance.GetMaterialCsalesGetMixId(orderInfo.MixId);
+                if (dataMaterialScales != null && dataMaterialScales.Rows.Count > 0)
                 {
-                    foreach (DataRow item in dataColorScales.Rows)
+                    foreach (var item1 in productMixList)
                     {
-                        foreach (var item1 in productMixList)
-                        {
-                            if (item1.MaterialCode == item[1].ToString())
-                            {
-                                item1.ActualUsage = item[7].ToString();
-                            }
-                        }
+                        item1.ActualUsage = dataMaterialScales.Select($"MaterialCode='{item1.MaterialCode}'")[0][7].ToString();
                     }
                 }
+                #endregion
+
+                #region get Recycle scales
+                List<MixRecycleScaledModel> dataRecycleScales = DbMixCode.Instance.GetRecycledCsalesGetMixId(orderInfo.MixId);
+                if (dataRecycleScales != null && dataRecycleScales.Count > 0)//using recycle
+                {
+                    foreach (var item in dataRecycleScales)
+                    {
+                        if (item.RecycleName == "Recycle 1 Id")
+                        {
+                            weightRecycle1 = Convert.ToDouble(item.WeightReScaled);
+                            txtWeightRecycle1.Text = weightRecycle1.ToString();
+
+                            lookUpRecycle1.Text = item.RecycleCode;
+                        }
+                        else if (item.RecycleName == "Recycle 2 Id")
+                        {
+                            weightRecycle2 = Convert.ToDouble(item.WeightReScaled);
+                            txtWeightRecycle2.Text = weightRecycle2.ToString();
+
+                            lookUpRecycle2.Text = item.RecycleCode;
+                        }
+                        else if (item.RecycleName == "Compound Id")
+                        {
+                            weightCompound = Convert.ToDouble(item.WeightReScaled);
+                            txtWeightCompound.Text = weightCompound.ToString();
+
+                            lookUpCompound.Text = item.RecycleCode;
+                        }
+                        else if (item.RecycleName == "Clear Recycle Id")
+                        {
+                            weightClearRecycle = Convert.ToDouble(item.WeightReScaled);
+                            txtWeightClearRecycle.Text = weightClearRecycle.ToString();
+
+                            lookUpClearRecycle.Text = item.RecycleCode;
+                        }
+                        else if (item.RecycleName == "Framapur Id")
+                        {
+                            weightFramapur = Convert.ToDouble(item.WeightReScaled);
+                            txtWeightFramapur.Text = weightFramapur.ToString();
+
+                            lookUpFramapur.Text = item.RecycleCode;
+                        }
+                        else if (item.RecycleName == "Leftover Id")
+                        {
+                            weightLeftover = Convert.ToDouble(item.WeightReScaled);
+                            txtWeightLeftover.Text = weightLeftover.ToString();
+
+                            lookUpLeftover.Text = item.RecycleCode;
+                        }
+                    }
+                    checkBoxUsingRecycle.Checked = true;
+                    lookUpReason.Enabled = false;
+                }
+                else//don't using recycle
+                {
+                    checkBoxUsingRecycle.Checked = false;
+                    lookUpReason.Text = DbReasons.Instance.GetReasonId(orderInfo.ReasonId).Rows[0][1].ToString();
+
+                    lookUpReason.ReadOnly = true;
+
+                    txtWeightRecycle1.Enabled = false;
+                    txtWeightRecycle2.Enabled = false;
+                    txtWeightCompound.Enabled = false;
+                    txtWeightClearRecycle.Enabled = false;
+                    txtWeightFramapur.Enabled = false;
+                    txtWeightLeftover.Enabled = false;
+                    txtTotalRecycleWeight.Enabled = false;
+
+                    lookUpRecycle1.Enabled = false;
+                    lookUpRecycle2.Enabled = false;
+                    lookUpCompound.Enabled = false;
+                    lookUpClearRecycle.Enabled = false;
+                    lookUpFramapur.Enabled = false;
+                    lookUpLeftover.Enabled = false;
+                }
+                checkBoxUsingRecycle.Enabled = false;
                 #endregion
 
                 grcMaterialConsumption.DataSource = productMixList;//hiển thị danh sách Product lên gridView Material Consumption
@@ -353,69 +431,109 @@ namespace RecycledManagement
 
             #endregion
 
+            #region doc gia tri sai so cho phep
+            DataTable rangeTable = DbMixCode.Instance.GetMaterialRange();
+            if (rangeTable != null && rangeTable.Rows.Count > 0)
+            {
+                rangePlastic = Convert.ToDouble(rangeTable.Rows[0][2].ToString());
+                rangeColor = Convert.ToDouble(rangeTable.Rows[1][2].ToString());
+            }
+            #endregion
 
-            //đang ký sự kiện scaleValueChanged
+
+            #region đang ký sự kiện scaleValueChanged
             GlobalVariable.myEvent.ScaleValueChanged += (s, o) =>
             {
                 string materialCodeSub;
+                double maxWeight = 0;
                 Debug.WriteLine($"Mixing event write: {o.ScaleValue} | Allow Focus: {grvControlTextEdit.AllowFocused} | Appearance Focus: ");
 
-                //grvMaterialConsumption.SetFocusedValue(o.ScaleValue);
-                if (status == 1 || status == 2)
+                if (status == 1)
                 {
-
-                    //grvMaterialConsumption.SetFocusedValue(o.ScaleValue);
                     try
                     {
                         materialCodeSub = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "MaterialCode").ToString().Substring(0, 3);
-
-
+                        maxWeight = Convert.ToDouble(grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "Total").ToString());
                         if (status == 1 && (materialCodeSub == "RCP" || materialCodeSub == "RMB" || materialCodeSub == "REX" || materialCodeSub == "RAD"))//can mau
                         {
                             grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue);
-                        }
-                        else if (status == 2 && (materialCodeSub == "RPM" || materialCodeSub == "RCM" || materialCodeSub == "RRE" || materialCodeSub == "RMX"))//can nhua
-                        {
-                            grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue - GlobalVariable.boxWeightMixingMaterial);
+                            if (o.ScaleValue > (maxWeight + rangeColor))
+                            {
+                                mailHelper.Body = $"ALARM. MaxWeight = {maxWeight}. RangeWeight = {rangeColor}. ActualUsage = {o.ScaleValue}";
+                                Task<bool> task = new Task<bool>(() => mailHelper.SendEmail());
+                                task.Start();
+                                task.ContinueWith(t => XtraMessageBox.Show(t.Result.ToString()));
+                            }
                         }
                     }
                     catch { }
                 }
-                else if (status == 3)//can Recycle
+                else if (status == 2)//can color & Recycle
                 {
-                    if (txtWeightRecycle1.ContainsFocus)
+                    if (txtWeightRecycle1.ContainsFocus || txtWeightRecycle2.ContainsFocus || txtWeightCompound.ContainsFocus || txtWeightClearRecycle.ContainsFocus || txtWeightFramapur.ContainsFocus || txtWeightLeftover.ContainsFocus)
                     {
-                        weightRecycle1 = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
-                        txtWeightRecycle1.Text = weightRecycle1.ToString();
+                        if (txtWeightRecycle1.ContainsFocus)
+                        {
+                            weightRecycle1 = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
+                            txtWeightRecycle1.Text = weightRecycle1.ToString();
+                        }
+                        else if (txtWeightRecycle2.ContainsFocus)
+                        {
+                            weightRecycle2 = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
+                            txtWeightRecycle2.Text = weightRecycle2.ToString();
+                        }
+                        else if (txtWeightCompound.ContainsFocus)
+                        {
+                            weightCompound = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
+                            txtWeightCompound.Text = weightCompound.ToString();
+                        }
+                        else if (txtWeightClearRecycle.ContainsFocus)
+                        {
+                            weightClearRecycle = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
+                            txtWeightClearRecycle.Text = weightClearRecycle.ToString();
+                        }
+                        else if (txtWeightFramapur.ContainsFocus)
+                        {
+                            weightFramapur = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
+                            txtWeightFramapur.Text = weightFramapur.ToString();
+                        }
+                        else if (txtWeightLeftover.ContainsFocus)
+                        {
+                            weightLeftover = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
+                            txtWeightLeftover.Text = weightLeftover.ToString();
+                        }
                     }
-                    else if (txtWeightRecycle2.ContainsFocus)
+                    else
                     {
-                        weightRecycle2 = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
-                        txtWeightRecycle2.Text = weightRecycle2.ToString();
-                    }
-                    else if (txtWeightCompound.ContainsFocus)
-                    {
-                        weightCompound = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
-                        txtWeightCompound.Text = weightCompound.ToString();
-                    }
-                    else if (txtWeightClearRecycle.ContainsFocus)
-                    {
-                        weightClearRecycle = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
-                        txtWeightClearRecycle.Text = weightClearRecycle.ToString();
-                    }
-                    else if (txtWeightFramapur.ContainsFocus)
-                    {
-                        weightFramapur = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
-                        txtWeightFramapur.Text = weightFramapur.ToString();
-                    }
-                    else if (txtWeightLeftover.ContainsFocus)
-                    {
-                        weightLeftover = o.ScaleValue - GlobalVariable.boxWeightMixingRecycle;
-                        txtWeightLeftover.Text = weightLeftover.ToString();
+                        materialCodeSub = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "MaterialCode").ToString().Substring(0, 3);
+
+                        if (status == 2 && (materialCodeSub == "RPM" || materialCodeSub == "RCM" || materialCodeSub == "RRE" || materialCodeSub == "RMX"))//can nhua
+                        {
+                            grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue - GlobalVariable.boxWeightMixingMaterial);
+                        }
                     }
                 }
             };
+            #endregion
 
+            #region khởi tạo đối tượng sendEmail
+            mailHelper = new MailHelper()
+            {
+                FromMailAddress = new MailAddress("fvn-itsupport@framas.com"),
+                Host = "smtp.office365.com",
+                Password = "fvnIT23",
+                Port = "587",
+
+                ToMailAddress = "cong.nguyen@framas.com,thi.vu@framas.com",
+                CCMailAddress = "tuan.le@framas.com,sang.nguyen@framas.com",
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                EnalbleSsl = true,
+                isBodyHtml = false,
+                UseDefaultCredentials = false,
+                Subject = "Test",
+                Body = "This is email to test"
+            };
+            #endregion
 
             //khoi tao timer
             nTimer.Interval = 500;
@@ -450,41 +568,59 @@ namespace RecycledManagement
         //CheckBox Recycle Event
         private void checkBoxUsingRecycle_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxUsingRecycle.Checked == true)
+            if (status != 3)
             {
-                lookUpRecycle1.Enabled = true;
-                lookUpRecycle2.Enabled = true;
-                lookUpCompound.Enabled = true;
-                lookUpClearRecycle.Enabled = true;
-                lookUpFramapur.Enabled = true;
-                lookUpLeftover.Enabled = true;
+                if (checkBoxUsingRecycle.Checked == true)
+                {
+                    lookUpRecycle1.Enabled = true;
+                    lookUpRecycle2.Enabled = true;
+                    lookUpCompound.Enabled = true;
+                    lookUpClearRecycle.Enabled = true;
+                    lookUpFramapur.Enabled = true;
+                    lookUpLeftover.Enabled = true;
 
-                //txtWeightRecycle1.Enabled = true;
-                //txtWeightRecycle2.Enabled = true;
-                //txtWeightCompound.Enabled = true;
-                //txtWeightClearRecycle.Enabled = true;
-                //txtWeightFramapur.Enabled = true;
-                //txtWeightLeftover.Enabled = true;
+                    txtTotalRecycleWeight.Enabled = true;
 
-                lookUpReason.Enabled = false;
+                    lookUpReason.Enabled = false;
+                }
+                else
+                {
+                    lookUpRecycle1.Enabled = false;
+                    lookUpRecycle2.Enabled = false;
+                    lookUpCompound.Enabled = false;
+                    lookUpClearRecycle.Enabled = false;
+                    lookUpFramapur.Enabled = false;
+                    lookUpLeftover.Enabled = false;
+
+                    txtWeightRecycle1.Enabled = false;
+                    txtWeightRecycle2.Enabled = false;
+                    txtWeightCompound.Enabled = false;
+                    txtWeightClearRecycle.Enabled = false;
+                    txtWeightFramapur.Enabled = false;
+                    txtWeightLeftover.Enabled = false;
+
+                    txtTotalRecycleWeight.Enabled = false;
+
+                    lookUpReason.Enabled = true;
+                }
             }
-            else
+            else if (status == 3 && checkBoxUsingRecycle.Checked == true)
             {
-                lookUpRecycle1.Enabled = false;
-                lookUpRecycle2.Enabled = false;
-                lookUpCompound.Enabled = false;
-                lookUpClearRecycle.Enabled = false;
-                lookUpFramapur.Enabled = false;
-                lookUpLeftover.Enabled = false;
+                lookUpRecycle1.ReadOnly = true;
+                lookUpRecycle2.ReadOnly = true;
+                lookUpCompound.ReadOnly = true;
+                lookUpClearRecycle.ReadOnly = true;
+                lookUpFramapur.ReadOnly = true;
+                lookUpLeftover.ReadOnly = true;
 
-                txtWeightRecycle1.Enabled = false;
-                txtWeightRecycle2.Enabled = false;
-                txtWeightCompound.Enabled = false;
-                txtWeightClearRecycle.Enabled = false;
-                txtWeightFramapur.Enabled = false;
-                txtWeightLeftover.Enabled = false;
+                txtWeightRecycle1.ReadOnly = true;
+                txtWeightRecycle2.ReadOnly = true;
+                txtWeightCompound.ReadOnly = true;
+                txtWeightClearRecycle.ReadOnly = true;
+                txtWeightFramapur.ReadOnly = true;
+                txtWeightLeftover.ReadOnly = true;
 
-                lookUpReason.Enabled = true;
+                txtTotalRecycleWeight.ReadOnly = true;
             }
         }
 
@@ -496,43 +632,249 @@ namespace RecycledManagement
             if (status == 1)//lưu cân màu
             {
                 //insert New Mix to tblMixed table
-                listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixedInsert @MixCode , @OrderId , @ShiftId , @OperatorId , @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal", Parametter = new object[] { $"MI|{DateTime.Now.ToString("yyyyyMMdd")}|{orderInfo.ItemCode}|", orderInfo.OrderId, lookUpShift.EditValue, lookUpOperator.EditValue, total, null, txtMixNote.Text, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle } });
+                listQuery.Add(new SqlTransactionQueryList()
+                {
+                    Query = "sp_MixedInsert @MixCode , @OrderId , @ShiftId , @OperatorId , @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal",
+                    Parametter = new object[] { $"MI|{DateTime.Now.ToString("yyyyyMMdd")}|{orderInfo.ItemCode}|", orderInfo.OrderId, lookUpShift.EditValue, lookUpOperator.EditValue, total, null, txtMixNote.Text, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle }
+                });
 
                 //insert product to tblMaterialScale
                 foreach (var item in productMixList)
                 {
                     if (item.MaterialCode.Contains("RCP") || item.MaterialCode.Contains("RMB") || item.MaterialCode.Contains("REX") || item.MaterialCode.Contains("RAD"))
                     {
-                        listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixMaterialScaledInsertColor @MaterialCode , @WeightMaxScaled , @CreatedBy , @MaterialName , @WeightMacEdited", Parametter = new object[] { item.MaterialCode, item.Total, GlobalVariable.userId, item.MaterialName, item.ActualUsage } });
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixMaterialScaledInsertColor @MaterialCode , @WeightMaxScaled , @CreatedBy , @MaterialName , @WeightMacEdited",
+                            Parametter = new object[] { item.MaterialCode, item.Total, GlobalVariable.userId, item.MaterialName, item.ActualUsage }
+                        });
                     }
                 }
 
                 //insert status order to tblOrderLog
-                listQuery.Add(new SqlTransactionQueryList() { Query = "sp_OrderBookLogInsert @OrderId , @Status , @CreatedBy", Parametter = new object[] { orderInfo.OrderId, "2", GlobalVariable.userId.ToString() } });
+                listQuery.Add(new SqlTransactionQueryList()
+                {
+                    Query = "sp_OrderBookLogInsert @OrderId , @Status , @CreatedBy",
+                    Parametter = new object[] { orderInfo.OrderId, "2", GlobalVariable.userId.ToString() }
+                });
 
                 //get OrderLogId flow OrderId--> update status field in tblMixing table
-                listQuery.Add(new SqlTransactionQueryList() { Query = "sp_OrderBookUpdateOrderStatusMix @OrderId", Parametter = new object[] { orderInfo.OrderId } });
-
+                listQuery.Add(new SqlTransactionQueryList()
+                {
+                    Query = "sp_OrderBookUpdateOrderStatusMix @OrderId",
+                    Parametter = new object[] { orderInfo.OrderId }
+                });
             }
-            else if (status == 2)//lưu cân nhựa
+            else if (status == 2)//lưu cân nhựa va can recycle
             {
-                //listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixedInsert @OrderId , @ShiftId , @OperatorId , @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal", Parametter = new object[] { orderInfo.OrderId, lookUpShift.EditValue, lookUpOperator.EditValue, total, null, null, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle } });
+                if (checkBoxUsingRecycle.Checked)//có dùng recycle
+                {
+                    //Update to tblMixed table
+                    listQuery.Add(new SqlTransactionQueryList()
+                    {
+                        Query = "sp_MixedUpdate @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal , @MixId",
+                        Parametter = new object[] { total, null, txtMixNote.Text, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle, orderInfo.MixId }
+                    });
 
+                    #region insert recycleScales
+                    //Recycle 1
+                    if (weightRecycle1 > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightRecycle1.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpRecycle1.GetColumnValue("CrushedCode"), "Recycle 1 Id" }
+                        });
+                    }
+
+                    //Recycle 2
+                    if (weightRecycle2 > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightRecycle2.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpRecycle2.GetColumnValue("CrushedCode"), "Recycle 2 Id" }
+                        });
+                    }
+
+                    //Compound
+                    if (weightCompound > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightCompound.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpCompound.GetColumnValue("CrushedCode"), "Compound Id" }
+                        });
+                    }
+
+                    //Clear Recycle
+                    if (weightClearRecycle > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightClearRecycle.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpClearRecycle.GetColumnValue("CrushedCode"), "Clear Recycle Id" }
+                        });
+                    }
+
+                    //Framapur
+                    if (weightFramapur > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightFramapur.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpFramapur.GetColumnValue("CrushedCode"), "Framapur Id" }
+                        });
+                    }
+
+                    //leftOver
+                    if (weightLeftover > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightLeftover.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpLeftover.GetColumnValue("IncomingCode"), "Leftover Id" }
+                        });
+                    }
+                    #endregion
+                }
+                else//không dùng recycle
+                {
+                    //Update to tblMixed table
+                    listQuery.Add(new SqlTransactionQueryList()
+                    {
+                        Query = "sp_MixedUpdate @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal , @MixId",
+                        Parametter = new object[] { total, lookUpReason.EditValue.ToString(), txtMixNote.Text, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle, orderInfo.MixId }
+                    });
+                }
+
+                #region color scales
                 foreach (var item in productMixList)
                 {
                     if (item.MaterialCode.Contains("RPM") || item.MaterialCode.Contains("RCM") || item.MaterialCode.Contains("RRE") || item.MaterialCode.Contains("RMX"))
                     {
-                        listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixMaterialScaledInsert @MaterialCode , @WeightMaxScaled , @MixId , @CreatedBy , @MaterialName , @WeightMacEdited", Parametter = new object[] { } });
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixMaterialScaledInsertPlastic @MaterialCode , @WeightMaxScaled , @MixId , @CreatedBy , @MaterialName , @WeightMacEdited",
+                            Parametter = new object[] { item.MaterialCode, item.Total, orderInfo.MixId, GlobalVariable.userId, item.MaterialName, item.ActualUsage }
+                        });
                     }
                 }
+                #endregion
+
+                //insert status order to tblOrderLog
+                listQuery.Add(new SqlTransactionQueryList()
+                {
+                    Query = "sp_OrderBookLogInsert @OrderId , @Status , @CreatedBy",
+                    Parametter = new object[] { orderInfo.OrderId, "3", GlobalVariable.userId.ToString() }
+                });
+
+                //get OrderLogId flow OrderId--> update status field in tblMixing table
+                listQuery.Add(new SqlTransactionQueryList()
+                {
+                    Query = "sp_OrderBookUpdateOrderStatusMix @OrderId",
+                    Parametter = new object[] { orderInfo.OrderId }
+                });
             }
             else if (status == 3)//lưu cân recycle
             {
-                //listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixedInsert @OrderId , @ShiftId , @OperatorId , @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal", Parametter = new object[] { orderInfo.OrderId, lookUpShift.EditValue, lookUpOperator.EditValue, total, null, null, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle } });
-                listQuery.Add(new SqlTransactionQueryList() { Query = "sp_MixRecycledScaledInsert @WeightReScaled , @WeightReTotal , @MixId , @CreatedBy , @RecycledCode", Parametter = new object[] { } });
+                //Update to tblMixed table
+                if (checkBoxUsingRecycle.Checked == true)
+                {
+                    listQuery.Add(new SqlTransactionQueryList()
+                    {
+                        Query = "sp_MixedUpdate @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal , @MixId",
+                        Parametter = new object[] { total, null, txtMixNote.Text, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle, orderInfo.MixId }
+                    });
+
+                    #region insert recycleScales
+                    //Recycle 1
+                    if (weightRecycle1 > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightRecycle1.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpRecycle1.GetColumnValue("CrushedCode"), "Recycle 1 Id" }
+                        });
+                    }
+
+                    //Recycle 2
+                    if (weightRecycle2 > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightRecycle2.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpRecycle2.GetColumnValue("CrushedCode"), "Recycle 2 Id" }
+                        });
+                    }
+
+                    //Compound
+                    if (weightCompound > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightCompound.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpCompound.GetColumnValue("CrushedCode"), "Compound Id" }
+                        });
+                    }
+
+                    //Clear Recycle
+                    if (weightClearRecycle > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightClearRecycle.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpClearRecycle.GetColumnValue("CrushedCode"), "Clear Recycle Id" }
+                        });
+                    }
+
+                    //Framapur
+                    if (weightFramapur > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightFramapur.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpFramapur.GetColumnValue("CrushedCode"), "Framapur Id" }
+                        });
+                    }
+
+                    //leftOver
+                    if (weightLeftover > 0)
+                    {
+                        listQuery.Add(new SqlTransactionQueryList()
+                        {
+                            Query = "sp_MixRecycledScaledInsert @WeightReScaled , @MixId , @CreatedBy , @RecycledCode , @RecycledName",
+                            Parametter = new object[] { weightLeftover.ToString(), orderInfo.MixId, GlobalVariable.userId.ToString(), lookUpLeftover.GetColumnValue("IncomingCode"), "Leftover Id" }
+                        });
+                    }
+                    #endregion
+                }
+                else
+                {
+                    listQuery.Add(new SqlTransactionQueryList()
+                    {
+                        Query = "sp_MixedUpdate @WeightMixTotal , @ReasonId , @Note , @CreatedBy , @WeightMaterialTotal , @WeightRecycledTotal , @MixId",
+                        Parametter = new object[] { total, lookUpReason.EditValue.ToString(), txtMixNote.Text, GlobalVariable.userId, totalMaterialConsumtion, totalRecycle, orderInfo.MixId }
+                    });
+                }
+
+
+                //insert status order to tblOrderLog
+                listQuery.Add(new SqlTransactionQueryList()
+                {
+                    Query = "sp_OrderBookLogInsert @OrderId , @Status , @CreatedBy",
+                    Parametter = new object[] { orderInfo.OrderId, "4", GlobalVariable.userId.ToString() }
+                });
+
+                //get OrderLogId flow OrderId--> update status field in tblMixing table
+                listQuery.Add(new SqlTransactionQueryList()
+                {
+                    Query = "sp_OrderBookUpdateOrderStatusMix @OrderId",
+                    Parametter = new object[] { orderInfo.OrderId }
+                });
             }
 
-
+            //goi method truy van DB
             if (DbMixCode.Instance.CreatedMix(listQuery) > 0)
             {
                 GlobalVariable.myEvent.ShowMixingEditor = false;
@@ -569,15 +911,15 @@ namespace RecycledManagement
                     e.Cancel = true;
                 }
             }
-            //else if (status == 3)//Process--> Cân Recycle
-            //{
-            //    GlobalVariable.selectScale = "ScalePlastic";
-            //    e.Cancel = true;
-            //}
-            //else if (status == 4)//finish
-            //{
-            //    e.Cancel = true;
-            //}
+            else if (status == 3)//Process--> Cân Recycle
+            {
+                GlobalVariable.selectScale = "ScalePlastic";
+                e.Cancel = true;
+            }
+            else if (status == 4)//Finish
+            {
+                e.Cancel = true;
+            }
         }
 
         //CustomSumaryCalculate Event GridView
