@@ -322,6 +322,7 @@ namespace RecycledManagement
             }
             else if (status == 3)//Finish
             {
+                btnSave.Enabled = false;
                 lookUpShift.Text = orderInfo.MixShiftName;
                 lookUpOperator.Text = orderInfo.MixOperatorName;
                 txtMixNote.Text = orderInfo.MixNote;
@@ -452,24 +453,29 @@ namespace RecycledManagement
                 {
                     try
                     {
-                        materialCodeSub = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "MaterialCode").ToString().Substring(0, 3);
+                        string materialCode = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "MaterialCode").ToString();
+                        materialCodeSub = materialCode.Substring(0, 3);
                         maxWeight = Convert.ToDouble(grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "Total").ToString());
                         if (status == 1 && (materialCodeSub == "RCP" || materialCodeSub == "RMB" || materialCodeSub == "REX" || materialCodeSub == "RAD"))//can mau
                         {
                             grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue);
                             if (o.ScaleValue > (maxWeight + rangeColor))
                             {
-                                mailHelper.Body = $"ALARM. MaxWeight = {maxWeight}. RangeWeight = {rangeColor}. ActualUsage = {o.ScaleValue}";
+                                mailHelper.Subject = "Recycled Management System - Scale color material over standar weight";
+                                mailHelper.Body = $"Material code '{materialCode}'{Environment.NewLine}Max weight = {maxWeight}{Environment.NewLine}Range weight = {rangeColor}{Environment.NewLine}Actual usage = {o.ScaleValue}{Environment.NewLine}Over wieght = {o.ScaleValue - maxWeight}";
+
                                 Task<bool> task = new Task<bool>(() => mailHelper.SendEmail());
                                 task.Start();
                                 task.ContinueWith(t => XtraMessageBox.Show(t.Result.ToString()));
                             }
+                            grvMaterialConsumption.FocusedRowHandle += 1;
                         }
                     }
                     catch { }
                 }
-                else if (status == 2)//can color & Recycle
+                else if (status == 2)//can Plastic & Recycle
                 {
+                    //scale recycle
                     if (txtWeightRecycle1.ContainsFocus || txtWeightRecycle2.ContainsFocus || txtWeightCompound.ContainsFocus || txtWeightClearRecycle.ContainsFocus || txtWeightFramapur.ContainsFocus || txtWeightLeftover.ContainsFocus)
                     {
                         if (txtWeightRecycle1.ContainsFocus)
@@ -503,13 +509,14 @@ namespace RecycledManagement
                             txtWeightLeftover.Text = weightLeftover.ToString();
                         }
                     }
-                    else
+                    else//scale plastic 
                     {
                         materialCodeSub = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "MaterialCode").ToString().Substring(0, 3);
 
                         if (status == 2 && (materialCodeSub == "RPM" || materialCodeSub == "RCM" || materialCodeSub == "RRE" || materialCodeSub == "RMX"))//can nhua
                         {
                             grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue - GlobalVariable.boxWeightMixingMaterial);
+                            grvMaterialConsumption.FocusedRowHandle += 1;
                         }
                     }
                 }
@@ -524,8 +531,8 @@ namespace RecycledManagement
                 Password = "fvnIT23",
                 Port = "587",
 
-                ToMailAddress = "cong.nguyen@framas.com,thi.vu@framas.com",
-                CCMailAddress = "tuan.le@framas.com,sang.nguyen@framas.com",
+                ToMailAddress = "cong.nguyen@framas.com",
+                CCMailAddress = "sang.nguyen@framas.com",
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 EnalbleSsl = true,
                 isBodyHtml = false,

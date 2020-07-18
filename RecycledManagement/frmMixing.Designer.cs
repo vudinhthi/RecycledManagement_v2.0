@@ -264,7 +264,7 @@
             this.txtTotalMaterialWeight.Name = "txtTotalMaterialWeight";
             this.txtTotalMaterialWeight.Properties.Appearance.Options.UseTextOptions = true;
             this.txtTotalMaterialWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtTotalMaterialWeight.Properties.Mask.EditMask = "n3";
+            this.txtTotalMaterialWeight.Properties.Mask.EditMask = "###,###,###,##0.000;";
             this.txtTotalMaterialWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtTotalMaterialWeight.Properties.ReadOnly = true;
             this.txtTotalMaterialWeight.Size = new System.Drawing.Size(486, 24);
@@ -278,7 +278,7 @@
             this.txtTotalRecycleWeight.Name = "txtTotalRecycleWeight";
             this.txtTotalRecycleWeight.Properties.Appearance.Options.UseTextOptions = true;
             this.txtTotalRecycleWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtTotalRecycleWeight.Properties.Mask.EditMask = "n3";
+            this.txtTotalRecycleWeight.Properties.Mask.EditMask = "###,###,###,##0.000;";
             this.txtTotalRecycleWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtTotalRecycleWeight.Properties.ReadOnly = true;
             this.txtTotalRecycleWeight.Size = new System.Drawing.Size(424, 24);
@@ -491,6 +491,8 @@
             // 
             // gridColumn3
             // 
+            this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn3.Caption = "Quantity";
             this.gridColumn3.DisplayFormat.FormatString = "{0:n3}";
             this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -503,6 +505,8 @@
             // 
             // gridColumn4
             // 
+            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn4.Caption = "Total";
             this.gridColumn4.DisplayFormat.FormatString = "{0:n3}";
             this.gridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -515,6 +519,8 @@
             // 
             // gridColumn6
             // 
+            this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn6.Caption = "Range";
             this.gridColumn6.DisplayFormat.FormatString = "{0:n3}";
             this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -527,6 +533,8 @@
             // 
             // gridColumn5
             // 
+            this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn5.Caption = "Actual Usage";
             this.gridColumn5.ColumnEdit = this.grvControlTextEdit;
             this.gridColumn5.DisplayFormat.FormatString = "{0:n3}";
@@ -545,7 +553,7 @@
             this.grvControlTextEdit.AutoHeight = false;
             this.grvControlTextEdit.DisplayFormat.FormatString = "{0:n3}";
             this.grvControlTextEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.grvControlTextEdit.Mask.EditMask = "n3";
+            this.grvControlTextEdit.Mask.EditMask = "###,###,###,##0.000;";
             this.grvControlTextEdit.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.grvControlTextEdit.Name = "grvControlTextEdit";
             // 
@@ -590,8 +598,11 @@
             this.txtWeightRecycle1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtWeightRecycle1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.txtWeightRecycle1.Properties.Mask.EditMask = "n3";
+            this.txtWeightRecycle1.Properties.EditFormat.FormatString = "###,###,###,##0.000;";
+            this.txtWeightRecycle1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtWeightRecycle1.Properties.Mask.EditMask = "###,###,###,##0.000;";
             this.txtWeightRecycle1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtWeightRecycle1.Properties.Name = "txtWeightRecycle1";
             this.txtWeightRecycle1.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightRecycle1_Properties_ButtonClick);
             this.txtWeightRecycle1.Size = new System.Drawing.Size(109, 24);
             this.txtWeightRecycle1.StyleController = this.layoutControl2;
@@ -606,6 +617,8 @@
             this.txtWeightRecycle2.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtWeightRecycle2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightRecycle2.Properties.Mask.EditMask = "###,###,###,##0.000;";
+            this.txtWeightRecycle2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWeightRecycle2.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightRecycle2_Properties_ButtonClick);
             this.txtWeightRecycle2.Size = new System.Drawing.Size(109, 24);
             this.txtWeightRecycle2.StyleController = this.layoutControl2;
@@ -620,6 +633,8 @@
             this.txtWeightCompound.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtWeightCompound.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightCompound.Properties.Mask.EditMask = "###,###,###,##0.000;";
+            this.txtWeightCompound.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWeightCompound.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightCompound_Properties_ButtonClick);
             this.txtWeightCompound.Size = new System.Drawing.Size(109, 24);
             this.txtWeightCompound.StyleController = this.layoutControl2;
@@ -634,6 +649,8 @@
             this.txtWeightClearRecycle.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtWeightClearRecycle.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightClearRecycle.Properties.Mask.EditMask = "###,###,###,##0.000;";
+            this.txtWeightClearRecycle.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWeightClearRecycle.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightClearRecycle_Properties_ButtonClick);
             this.txtWeightClearRecycle.Size = new System.Drawing.Size(109, 24);
             this.txtWeightClearRecycle.StyleController = this.layoutControl2;
@@ -648,6 +665,8 @@
             this.txtWeightFramapur.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtWeightFramapur.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.txtWeightFramapur.Properties.Mask.EditMask = "###,###,###,##0.000;";
+            this.txtWeightFramapur.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWeightFramapur.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightFramapur_Properties_ButtonClick);
             this.txtWeightFramapur.Size = new System.Drawing.Size(109, 24);
             this.txtWeightFramapur.StyleController = this.layoutControl2;
@@ -662,7 +681,7 @@
             this.txtWeightLeftover.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtWeightLeftover.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
-            this.txtWeightLeftover.Properties.Mask.EditMask = "n3";
+            this.txtWeightLeftover.Properties.Mask.EditMask = "###,###,###,##0.000;";
             this.txtWeightLeftover.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtWeightLeftover.Properties.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtWeightLeftover_Properties_ButtonClick);
             this.txtWeightLeftover.Size = new System.Drawing.Size(109, 24);
