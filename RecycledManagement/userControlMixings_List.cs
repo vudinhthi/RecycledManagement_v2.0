@@ -12,6 +12,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using RecycledManagement.Common;
 using System.Diagnostics;
 using RecycledManagement.Models;
+using DevExpress.Utils;
 
 namespace RecycledManagement
 {
@@ -58,61 +59,61 @@ namespace RecycledManagement
         //        e.Appearance.BackColor = Color.Orange;
         //}
 
-        private void grvMixing_RowStyle(object sender, RowStyleEventArgs e)
-        {
-            #region thay đổi backround color cho nguyen 1 row theo 1 điều kiện nào đó
-            GridView view = sender as GridView;
-            #region Cách 1, dùng properties mặc định trả về của sự kiện
-            //DataRowView data = view.GetRow(e.RowHandle) as DataRowView;
-            //if (data != null)
-            //{
+        //private void grvMixing_RowStyle(object sender, RowStyleEventArgs e)
+        //{
+        //    #region thay đổi backround color cho nguyen 1 row theo 1 điều kiện nào đó
+        //    GridView view = sender as GridView;
+        //    #region Cách 1, dùng properties mặc định trả về của sự kiện
+        //    //DataRowView data = view.GetRow(e.RowHandle) as DataRowView;
+        //    //if (data != null)
+        //    //{
 
-            //    if (data.Row.ItemArray[27].ToString() == "1")
-            //    {
-            //        e.Appearance.BackColor = Color.Red;
-            //    }
-            //    else if (data.Row.ItemArray[27].ToString() == "2")
-            //    {
-            //        e.Appearance.BackColor = Color.Yellow;
-            //    }
-            //    else if (data.Row.ItemArray[27].ToString() == "3")
-            //    {
-            //        e.Appearance.BackColor = Color.SkyBlue;
-            //    }
-            //    else if (data.Row.ItemArray[27].ToString() == "4")
-            //    {
-            //        e.Appearance.BackColor = Color.Green;
-            //    }
-            //}
-            #endregion
+        //    //    if (data.Row.ItemArray[27].ToString() == "1")
+        //    //    {
+        //    //        e.Appearance.BackColor = Color.Red;
+        //    //    }
+        //    //    else if (data.Row.ItemArray[27].ToString() == "2")
+        //    //    {
+        //    //        e.Appearance.BackColor = Color.Yellow;
+        //    //    }
+        //    //    else if (data.Row.ItemArray[27].ToString() == "3")
+        //    //    {
+        //    //        e.Appearance.BackColor = Color.SkyBlue;
+        //    //    }
+        //    //    else if (data.Row.ItemArray[27].ToString() == "4")
+        //    //    {
+        //    //        e.Appearance.BackColor = Color.Green;
+        //    //    }
+        //    //}
+        //    #endregion
 
-            #region Cách 2. dùng model
-            MixingOrderModel data = view.GetRow(e.RowHandle) as MixingOrderModel;
+        //    #region Cách 2. dùng model
+        //    MixingOrderModel data = view.GetRow(e.RowHandle) as MixingOrderModel;
 
-            if (data != null)
-            {
-                view.OptionsBehavior.Editable = false;//khoa ko cho nhap tren GridView, khoa toan bo gridView
+        //    if (data != null)
+        //    {
+        //        view.OptionsBehavior.Editable = false;//khoa ko cho nhap tren GridView, khoa toan bo gridView
 
-                if (data.Status == "1")
-                {
-                    e.Appearance.BackColor = Color.Red;
-                }
-                else if (data.Status == "2")
-                {
-                    e.Appearance.BackColor = Color.Yellow;
-                }
-                else if (data.Status == "3")
-                {
-                    e.Appearance.BackColor = Color.Magenta;
-                }
-                else if (data.Status == "4")
-                {
-                    e.Appearance.BackColor = Color.Green;
-                }
-            }
-            #endregion
-            #endregion
-        }
+        //        if (data.Status == "1")
+        //        {
+        //            e.Appearance.BackColor = Color.Red;
+        //        }
+        //        else if (data.Status == "2")
+        //        {
+        //            e.Appearance.BackColor = Color.Yellow;
+        //        }
+        //        else if (data.Status == "3")
+        //        {
+        //            e.Appearance.BackColor = Color.Magenta;
+        //        }
+        //        else if (data.Status == "4")
+        //        {
+        //            e.Appearance.BackColor = Color.Green;
+        //        }
+        //    }
+        //    #endregion
+        //    #endregion
+        //}
 
         private void grvMixing_DoubleClick(object sender, EventArgs e)
         {
@@ -122,6 +123,33 @@ namespace RecycledManagement
             //gán giá trị cho biến ShowMixingEditor để tạo sự kiện
             //GlobalVariable.myEvent.ShowMixingEditor = false;
             GlobalVariable.myEvent.ShowMixingEditor = true;
+
+        }
+
+        private void grvMixing_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+
+            
+            int status = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "Status"));
+
+            if (e.Column.FieldName == "Status")
+            {
+                switch (status)
+                {
+                    case 1:
+                        e.Appearance.BackColor = Color.Red;
+                        break;
+                    case 2:
+                        e.Appearance.BackColor = Color.Yellow;
+                        break;
+                    case 3:
+                        e.Appearance.BackColor = Color.Green;
+                        break;
+                    default:
+                        break;
+                }
+            }
 
         }
     }

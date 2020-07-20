@@ -50,6 +50,7 @@ namespace RecycledManagement.Common
         public static string ccEmailAddress = "thi.vu@framas.com";
         public static string emailHost = "smtp.office365.com";
         public static string emailPort = "587";
-        
+
+        public static bool isMixcode = false;
     }
 }

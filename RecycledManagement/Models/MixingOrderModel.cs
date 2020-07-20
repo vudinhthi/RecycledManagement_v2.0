@@ -13,43 +13,49 @@ namespace RecycledManagement.Models
 
         public MixingOrderModel(DataRow row)
         {
-            this.mixId = row[0].ToString();
-            this.mixCode = row[1].ToString();
-            this.mixShiftId = row[2].ToString();
-            this.mixShiftName = row[3].ToString();
-            this.mixOperatorId = row[4].ToString();
-            this.mixOperatorName = row[5].ToString();
-            this.weightMixTotal = row[6].ToString();
-            this.reasonId = row[7].ToString();
-            this.mixNote = row[8].ToString();
-            this.mixCreatedDate = row[9].ToString();
+            this.mixId = row["MixId"].ToString();
+            this.mixCode = row["MixCode"].ToString();
+            this.mixShiftId = row["MixShiftId"].ToString();
+            this.mixShiftName = row["MixShiftName"].ToString();
+            this.mixOperatorId = row["MixOperatorId"].ToString();
+            this.mixOperatorName = row["MixOperatorName"].ToString();
+            this.weightMixTotal = row["WeightMixTotal"].ToString();
+            this.reasonId = row["ReasonId"].ToString();
+            this.mixNote = row["MixNote"].ToString();
+            this.mixCreatedDate = row["MixCreatedDate"].ToString();
 
-            this.createdBy = row[10].ToString();
-            this.weightMaterialTotal = row[11].ToString();
-            this.weightRecycleTotal = row[12].ToString();
+            this.createdBy = row["CreatedBy"].ToString();
+            this.weightMaterialTotal = row["WeightMaterialTotal"].ToString();
+            this.weightRecycleTotal = row["WeightRecycledTotal"].ToString();
 
 
-            this.orderId = row[13].ToString();
-            this.orderCode = row[14].ToString();
-            this.machine = row[15].ToString();
-            this.itemCode = row[16].ToString();
-            this.itemName = row[17].ToString();
-            this.colorCode = row[18].ToString();
-            this.colorName = row[19].ToString();
-            this.orderAmount = row[20].ToString();
-            this.orderStatus = row[21].ToString();
-            this.orderCreatedDate = row[22].ToString();
-            this.orderNote = row[23].ToString();
-            this.orderOperatorId = row[24].ToString();
-            this.orderOperatorName = row[25].ToString();
-            this.orderType = row[26].ToString();
-            this.finishDate = row[27].ToString();
-            this.orderShiftId = row[28].ToString();
+            this.orderId = row["OrderId"].ToString();
+            this.orderCode = row["OrderCode"].ToString();
+            this.machine = row["Machine"].ToString();
+            this.itemCode = row["ItemCode"].ToString();
+            this.itemName = row["ItemName"].ToString();
+            this.colorCode = row["ColorCode"].ToString();
+            this.colorName = row["ColorName"].ToString();
+            this.orderAmount = row["OrderAmount"].ToString();
+            this.orderStatus = row["OrderStatus"].ToString();
+            this.orderCreatedDate = row["OrderCreatedDate"].ToString();
+            this.orderNote = row["OrderNote"].ToString();
+            this.orderOperatorId = row["OrderOperatorId"].ToString();
+            this.orderOperatorName = row["OrderOperatorName"].ToString();
+            this.orderType = row["OrderType"].ToString();
+            this.finishDate = row["FinishDate"].ToString();
+            this.orderShiftId = row["OrderShiftId"].ToString();
 
-            this.orderLogId = row[29].ToString();
-            this.status = row[30].ToString();
+            this.orderLogId = row["OrderLogId"].ToString();
+            this.status = row["Status"].ToString();
 
         }
+
+        private string orderLogId;
+        public string OrderLogId { get => orderLogId; set => orderLogId = value; }
+
+        private string status;
+        public string Status { get => status; set => status = value; }
 
         #region Mix
         private string mixId;
@@ -142,10 +148,6 @@ namespace RecycledManagement.Models
         public string OrderShiftId { get => orderShiftId; set => orderShiftId = value; }
         #endregion
 
-        private string orderLogId;
-        public string OrderLogId { get => orderLogId; set => orderLogId = value; }
-
-        private string status;
-        public string Status { get => status; set => status = value; }
+       
     }
 }

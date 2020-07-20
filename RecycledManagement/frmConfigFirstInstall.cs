@@ -148,14 +148,16 @@ namespace RecycledManagement
                     GlobalVariable.emailHost = txtHost.Text;
                     GlobalVariable.emailPort = txtPort.Text;
 
-                    if (userConfig!=null)
+                    if (userConfig != null)
                     {
-                        GlobalVariable.toEmailAddress = userConfig.ToMailAddress;
-                        GlobalVariable.ccEmailAddress = userConfig.CCMailAddress;
-                        GlobalVariable.boxWeightMixingMaterial=Convert.ToDouble(userConfig.Mixing_Material_BoxWeight )   ;
-                        GlobalVariable.boxWeightMixingRecycle = Convert.ToDouble(userConfig.Mixing_Recycle_BoxWeight);
-                        GlobalVariable.boxWeightIncoming = Convert.ToDouble(userConfig.Incoming_BoxWeight) ;
-                        GlobalVariable.boxWeightCrushing = Convert.ToDouble(userConfig.Crushing_BoxWeight);
+                        GlobalVariable.toEmailAddress = EncodeMD5.DecryptString(userConfig.ToMailAddress, "ITFramasBDVN");
+                        GlobalVariable.ccEmailAddress = EncodeMD5.DecryptString(userConfig.CCMailAddress, "ITFramasBDVN");
+                        GlobalVariable.boxWeightMixingMaterial = Convert.ToDouble(EncodeMD5.DecryptString(userConfig.Mixing_Material_BoxWeight, "ITFramasBDVN"));
+                        GlobalVariable.boxWeightMixingRecycle = Convert.ToDouble(EncodeMD5.DecryptString(userConfig.Mixing_Recycle_BoxWeight, "ITFramasBDVN"));
+                        GlobalVariable.boxWeightIncoming = Convert.ToDouble(EncodeMD5.DecryptString(userConfig.Incoming_BoxWeight, "ITFramasBDVN"));
+                        GlobalVariable.boxWeightCrushing = Convert.ToDouble(EncodeMD5.DecryptString(userConfig.Crushing_BoxWeight, "ITFramasBDVN"));
+
+
 
                     }
 
