@@ -452,6 +452,7 @@ namespace RecycledManagement
                 if (status == 1)
                 {
                     try
+
                     {
                         string materialCode = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "MaterialCode").ToString();
                         materialCodeSub = materialCode.Substring(0, 3);

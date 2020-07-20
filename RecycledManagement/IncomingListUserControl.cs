@@ -163,8 +163,9 @@ namespace RecycledManagement
 
             grcIncoming.DataSource = DbIncomingCrush.Instance.GetDataGridView();
 
-            //an cot gridView
-            grvIncoming.Columns["IncomingId"].Visible = false;
+            grvIncoming.OptionsView.ColumnAutoWidth = true;
+
+            //an cot gridView            
             grvIncoming.Columns["MixId"].Visible = false;
             grvIncoming.Columns["OrderId"].Visible = false;
             grvIncoming.Columns["ShiftId"].Visible = false;
@@ -175,6 +176,43 @@ namespace RecycledManagement
             grvIncoming.Columns["SourceName"].Visible = false;
             grvIncoming.Columns["ItemCode"].Visible = false;
             grvIncoming.Columns["CreatedBy"].Visible = false;
+
+            //set thu thu cac columns trong GridView
+            grvIncoming.Columns["IncomingId"].VisibleIndex = 0;
+            grvIncoming.Columns["CreatedDate"].VisibleIndex = 1;
+            grvIncoming.Columns["ShiftName"].VisibleIndex = 2;
+            grvIncoming.Columns["LossTypeName"].VisibleIndex = 3;
+            grvIncoming.Columns["IncomingCode"].VisibleIndex = 4;
+            grvIncoming.Columns["MixCode"].VisibleIndex = 5;
+            grvIncoming.Columns["ItemName"].VisibleIndex = 6;
+            grvIncoming.Columns["MaterialCode"].VisibleIndex = 7;
+            grvIncoming.Columns["MaterialName"].VisibleIndex = 8;
+            grvIncoming.Columns["WeightIncoming"].VisibleIndex = 9;
+
+            //Set columns caption
+            grvIncoming.Columns["IncomingId"].Caption = "Id";
+            grvIncoming.Columns["CreatedDate"].Caption = "Date";            
+            grvIncoming.Columns["ShiftName"].Caption = "Shift";
+            grvIncoming.Columns["LossTypeName"].Caption = "Type";
+            grvIncoming.Columns["IncomingCode"].Caption = "Incoming Lots ID";
+            grvIncoming.Columns["MixCode"].Caption = "Mixing Lots ID";
+            grvIncoming.Columns["WeightIncoming"].Caption = "Weight";
+
+            //Set column's width of GridView
+            grvIncoming.Columns["IncomingId"].Width = 10;
+            grvIncoming.Columns["CreatedDate"].Width = 40;            
+            grvIncoming.Columns["ShiftName"].Width = 10;            
+            grvIncoming.Columns["LossTypeName"].Width = 30;
+            grvIncoming.Columns["IncomingCode"].Width = 70;
+            grvIncoming.Columns["MixCode"].Width = 70;            
+            grvIncoming.Columns["MaterialCode"].Width = 30;
+            grvIncoming.Columns["WeightIncoming"].Width = 30;
+
+            //Dinh dang thoi gian cot CreatedDate
+            grvIncoming.Columns["CreatedDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            grvIncoming.Columns["CreatedDate"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
+            grvIncoming.Columns["WeightIncoming"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            grvIncoming.Columns["WeightIncoming"].DisplayFormat.FormatString = "{0:n2}";
         }
 
         private void grvIncoming_RowClick(object sender, RowClickEventArgs e)
