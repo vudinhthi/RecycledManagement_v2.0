@@ -229,6 +229,7 @@
     <Compile Include="Models\LossTypeModel.cs" />
     <Compile Include="Models\MixingOrderModel.cs" />
     <Compile Include="Models\MixProductWinlineModel.cs" />
+    <Compile Include="Models\MixRecycleScaledModel.cs" />
     <Compile Include="Models\OperatorModel.cs" />
     <Compile Include="Models\OperatroRoleModel.cs" />
     <Compile Include="Models\OtherSourceModel.cs" />
@@ -443,6 +444,7 @@
     <EmbeddedResource Include="userControlShifts.resx">
       <DependentUpon>userControlShifts.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include=".editorconfig" />
     <None Include="App.config" />
     <None Include="bin\Debug\RecycledManagement.exe.config" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />

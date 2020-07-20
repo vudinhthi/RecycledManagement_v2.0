@@ -218,7 +218,7 @@ namespace RecycledManagement
 
                     //lưu lại trạng thái cấu hình là đã cấu hình rồi vào settings
                     //mã hóa MD5 rồi mới lưu xuống textFile
-                    configFirstInstall = "False";
+                    configFirstInstall = "True";
                     WriteFile(pathApp, $"serverName:{EncodeMD5.EncryptString(serverName, "ITFramasBDVN")}|dbName:{EncodeMD5.EncryptString(dbName, "ITFramasBDVN")}" +
                         $"|userName:{EncodeMD5.EncryptString(userName, "ITFramasBDVN")}|password:{EncodeMD5.EncryptString(password, "ITFramasBDVN")}|configFirstInstall:{configFirstInstall}");
                     //Save Mail Config
