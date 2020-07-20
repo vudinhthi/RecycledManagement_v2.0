@@ -28,8 +28,6 @@ namespace RecycledManagement
             lookUpUserName.Properties.DataSource = _data;
             lookUpUserName.Properties.ValueMember = "id";
             lookUpUserName.Properties.DisplayMember = "useName";
-
-
         }
 
         //reset ve pass mac dinh "11111"
@@ -39,42 +37,53 @@ namespace RecycledManagement
             {
                 if (DbAccount.Instance.UpdateAccountUser(lookUpUserName.EditValue.ToString(), lookUpUserName.Text, EncodeMD5.EncryptString("11111", "ITFramasBDVN")) > 0)
                 {
-                    MessageBox.Show($"Reset password successfull.");
+                    XtraMessageBox.Show($"Reset password successfull.");
                 }
                 else
                 {
-                    MessageBox.Show($"Fail, please try again!");
+                    XtraMessageBox.Show($"Fail, please try again!");
                 }
             }
             else
             {
-                MessageBox.Show($"Fail, please try again!");
+                XtraMessageBox.Show($"Fail, please try again!");
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtFullName.Text) && !string.IsNullOrEmpty(txtUserName.Text))
+            if (dxValidationProvider1.Validate())
             {
-                if (DbAccount.Instance.InsertAccount(txtUserName.Text, txtFullName.Text, EncodeMD5.EncryptString("11111", "ITFramasBDVN"), "2") > 0)
+                if (!string.IsNullOrEmpty(txtFullName.Text) && !string.IsNullOrEmpty(txtUserName.Text))
                 {
-                    int _id = DbAccount.Instance.GetMaxIdAccount();
-                    string order = $"{checkEditImportOrder.Checked}|{checkEditPrintOrder.Checked}|{checkEditScaleOrder.Checked}";
-                    string mixing = $"{checkEditImportMixing.Checked}|{checkEditPrintMixing.Checked}|{checkEditScaleMixing.Checked}";
-                    string incoming = $"{checkEditImportIncoming.Checked}|{checkEditPrintIncoming.Checked}|{checkEditScaleIncoming.Checked}";
-                    string crush = $"{checkEditImportCrush.Checked}|{checkEditPrintCrush.Checked}|{checkEditScaleCrush.Checked}";
-                    DbAccount.Instance.InsertOperatorRole(_id.ToString(), order, mixing, incoming, crush);
+                    int Count = Convert.ToInt32(DbAccount.Instance.OperatorRoleCheck(txtUserName.Text, "2").Rows[0][0]);
+                    if (Count > 0)
+                    {
+                        XtraMessageBox.Show("User is exists!");
+                    }
+                    else
+                    {
+                        if (DbAccount.Instance.InsertAccount(txtUserName.Text, txtFullName.Text, EncodeMD5.EncryptString("11111", "ITFramasBDVN"), "2") > 0)
+                        {
+                            int _id = DbAccount.Instance.GetMaxIdAccount();
+                            string order = $"{checkEditImportOrder.Checked}|{checkEditPrintOrder.Checked}|{checkEditScaleOrder.Checked}";
+                            string mixing = $"{checkEditImportMixing.Checked}|{checkEditPrintMixing.Checked}|{checkEditScaleMixing.Checked}";
+                            string incoming = $"{checkEditImportIncoming.Checked}|{checkEditPrintIncoming.Checked}|{checkEditScaleIncoming.Checked}";
+                            string crush = $"{checkEditImportCrush.Checked}|{checkEditPrintCrush.Checked}|{checkEditScaleCrush.Checked}";
+                            DbAccount.Instance.InsertOperatorRole(_id.ToString(), order, mixing, incoming, crush);
 
-                    //refresh laij danh sach user
-                    DataTable _data = DbAccount.Instance.GetUserReset();
-                    lookUpUserName.Properties.DataSource = _data;
+                            //refresh laij danh sach user
+                            DataTable _data = DbAccount.Instance.GetUserReset();
+                            lookUpUserName.Properties.DataSource = _data;
 
-                    MessageBox.Show($"Successfull.");
+                            XtraMessageBox.Show($"Successfull.");
+                        }
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show($"Fail, please try again!");
+                else
+                {
+                    XtraMessageBox.Show($"Fail, please try again!");
+                }
             }
         }
 

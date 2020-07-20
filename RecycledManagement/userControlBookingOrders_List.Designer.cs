@@ -49,6 +49,7 @@
             // 
             this.grvBookingOrder.GridControl = this.grcBookingOrder;
             this.grvBookingOrder.Name = "grvBookingOrder";
+            this.grvBookingOrder.OptionsView.BestFitMode = DevExpress.XtraGrid.Views.Grid.GridBestFitMode.Full;
             this.grvBookingOrder.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.grvBookingOrder_ShowingEditor);
             // 
             // userControlBookingOrders_List

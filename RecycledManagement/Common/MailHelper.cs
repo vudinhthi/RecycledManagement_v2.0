@@ -35,7 +35,7 @@ namespace RecycledManagement.Common
         
         public bool SendEmail()
         {
-            try
+            //try
             {
                 message = new MailMessage();
                 smtp = new SmtpClient();
@@ -54,10 +54,10 @@ namespace RecycledManagement.Common
                 smtp.Send(message);
                 return true;
             }
-            catch
-            {
-                return false;
-            }
+            //catch
+            //{
+            //    return false;
+            //}
             
         }
     }

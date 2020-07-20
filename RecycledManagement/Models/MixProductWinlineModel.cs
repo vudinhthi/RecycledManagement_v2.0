@@ -34,9 +34,9 @@ namespace RecycledManagement.Models
 
         public string MaterialCode { get => materialCode; set => materialCode = value; }
         public string MaterialName { get => materialName; set => materialName = value; }
-        public string Quantity { get => quantity; set => quantity = value; }
-        public string Total { get => total; set => total = value; }
-        public string ActualUsage { get => actualUsage; set => actualUsage = value; }
-        public string Range { get => range; set => range = value; }
+        public string Quantity { get => quantity; set => quantity = value; }//don't save
+        public string Total { get => total; set => total = value; }//Column WeightMaxScales
+        public string ActualUsage { get => actualUsage; set => actualUsage = value; }//column WeightMaxEditor
+        public string Range { get => range; set => range = value; }//don't save
     }
 }

@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using RecycledManagement.Common;
 using System.Diagnostics;
+using DevExpress.Utils.Filtering.Internal;
 
 namespace RecycledManagement
 {
@@ -64,6 +65,26 @@ namespace RecycledManagement
             //grvBookingOrder.Columns["MixId"].Visible = false;
             //grvBookingOrder.Columns["CreatedBy"].Visible = false;
             //grvBookingOrder.Columns["CrushedType"].Visible = false;
+            //grvBookingOrder.PopulateColumns();
+
+            grvBookingOrder.Columns["Id"].Width = 10;
+            grvBookingOrder.Columns["Date"].Width = 40;
+            grvBookingOrder.Columns["Shift"].Width = 15;
+            grvBookingOrder.Columns["Operator"].Width = 40;
+            grvBookingOrder.Columns["Amount"].Width = 30;
+            grvBookingOrder.Columns["Machine"].Width = 30;
+            grvBookingOrder.Columns["ColorCode"].Width = 30;
+            grvBookingOrder.Columns["ItemId"].Width = 50;
+            grvBookingOrder.Columns["OrderLotsId"].Width = 90;
+            grvBookingOrder.Columns["FinishDate"].Width = 40;
+            //grvBookingOrder.Columns["Date"].Width = 50;
+            grvBookingOrder.Columns["Date"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            grvBookingOrder.Columns["Date"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
+            grvBookingOrder.Columns["FinishDate"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            grvBookingOrder.Columns["FinishDate"].DisplayFormat.FormatString = "MM/dd/yyyy HH:mm:ss";
+            grvBookingOrder.Columns["CreatedBy"].Visible = false;
+            grvBookingOrder.Columns["Note"].Visible = false;
+            grvBookingOrder.Columns["OrderType"].Visible = false;
         }
 
         private void grvBookingOrder_ShowingEditor(object sender, CancelEventArgs e)
@@ -72,7 +93,7 @@ namespace RecycledManagement
 
             if (grvBookingOrder.FocusedRowHandle >= 0)
             {
-                GlobalVariable.idSelect = (int)grvBookingOrder.GetRowCellValue(grvBookingOrder.FocusedRowHandle, "OrderId");
+                GlobalVariable.idSelect = (int)grvBookingOrder.GetRowCellValue(grvBookingOrder.FocusedRowHandle, "Id");
                 GlobalVariable.newOrUpdateOrderBook = GlobalVariable.enableFlagOrderBook = false;
             }
             else

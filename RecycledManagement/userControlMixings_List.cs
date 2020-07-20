@@ -122,6 +122,7 @@ namespace RecycledManagement
             //gán giá trị cho biến ShowMixingEditor để tạo sự kiện
             //GlobalVariable.myEvent.ShowMixingEditor = false;
             GlobalVariable.myEvent.ShowMixingEditor = true;
+
         }
     }
 }

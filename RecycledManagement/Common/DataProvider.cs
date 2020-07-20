@@ -237,6 +237,7 @@ namespace RecycledManagement.Common
                 connection.Open();
 
                 SqlCommand command = connection.CreateCommand();
+                //SqlCommand command = new SqlCommand();
                 SqlTransaction transaction;
 
                 // Start a local transaction.
@@ -251,8 +252,33 @@ namespace RecycledManagement.Common
                 {
                     foreach (SqlTransactionQueryList item in listQuery)
                     {
-                        this.ExecuteNonQuery(item.Query,item.Parametter);
+                        command.Parameters.Clear();
+                        command.CommandText = item.Query;
+
+                        if (item.Parametter != null)
+                        {
+                            int i = 0;
+                            string[] arrayParas = item.Query.Split(' ');
+                            foreach (string item1 in arrayParas)
+                            {
+                                if (item1.Contains("@"))
+                                {
+                                    if (item.Parametter[i] != null)
+                                    {
+                                        command.Parameters.AddWithValue(item1, item.Parametter[i]);
+                                    }
+                                    else
+                                    {
+                                        command.Parameters.AddWithValue(item1, DBNull.Value);
+                                    }
+                                    i++;
+                                }
+                            }
+                        }
+
+                        command.ExecuteNonQuery();
                     }
+
                     // Attempt to commit the transaction.
                     transaction.Commit();
                     Debug.WriteLine("Both records are written to database.");

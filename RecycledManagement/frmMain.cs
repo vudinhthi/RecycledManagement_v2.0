@@ -20,7 +20,8 @@ namespace RecycledManagement
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        int value = 10;
+        double value = 0;
+        ScaleHelper _ScaleHelper;
 
         //XtraUserControl shiftUserControl;
         //XtraUserControl reasonUserControl;
@@ -52,6 +53,9 @@ namespace RecycledManagement
             nf.TextUser = "";
             nf.TextPass = "";
             nf.TextCombo = "Operator";
+
+            _ScaleHelper.CloseConnection();
+
             this.Hide();
             nf.ShowDialog();
         }
@@ -83,16 +87,16 @@ namespace RecycledManagement
                 //check Roe
                 DataTable _data = DbOperatorRole.Instance.GetOperatorRole(GlobalVariable.userId.ToString());
                 if (_data.Rows.Count > 0)
-                {                   
+                {
                     GlobalVariable.importOrder = Convert.ToBoolean(_data.Rows[0]["booking"].ToString().Split('|')[0]);
 
-                    
+
                     GlobalVariable.importMixing = Convert.ToBoolean(_data.Rows[0]["mixing"].ToString().Split('|')[0]);
 
-                    
+
                     GlobalVariable.importIncoming = Convert.ToBoolean(_data.Rows[0]["incoming"].ToString().Split('|')[0]);
 
-                    
+
                     GlobalVariable.importCrush = Convert.ToBoolean(_data.Rows[0]["crushing"].ToString().Split('|')[0]);
 
                     GlobalVariable.print = Convert.ToBoolean(_data.Rows[0]["crushing"].ToString().Split('|')[1]);
@@ -128,12 +132,27 @@ namespace RecycledManagement
             }
             #endregion
 
+            //dang ky scale
+            _ScaleHelper = new ScaleHelper()
+            {
+                IPServer = "192.168.1.236",
+                PortServer = 23,
+                _Value = 0,
+                isAllowScale = true
+            };
+            _ScaleHelper.DataChanged += (s, o) => {
+
+                value = Math.Round(Convert.ToDouble(o.ToString()), 3);//get khoi  lượng từ class cân
+                
+            };
+            Task.Factory.StartNew(new Action(() => _ScaleHelper.ReadData()));//cho chạy method cân
+
             GlobalVariable.myEvent.ShowMixingEditorChanged += MyEvent_ShowMixingEditorChanged;//đăng ký event để MixingEditor
         }
 
         private void MyEvent_ShowMixingEditorChanged(object sender, ScaleValueChangedEventArgs e)
         {
-            if (e.ShowMixingEditor==true)
+            if (e.ShowMixingEditor == true)
             {
                 frmMixing nf = new frmMixing();
                 tabbedView.AddDocument(nf);
@@ -142,7 +161,6 @@ namespace RecycledManagement
 
         private void barbtnScale_ItemClick(object sender, ItemClickEventArgs e)
         {
-            value = value + 1;
             GlobalVariable.myEvent.ScaleValue = value;
             Debug.WriteLine($"Main write ScaleValue={GlobalVariable.myEvent.ScaleValue} | Select Scale: {GlobalVariable.selectScale}");
         }

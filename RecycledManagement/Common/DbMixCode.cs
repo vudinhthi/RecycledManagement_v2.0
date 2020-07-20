@@ -38,6 +38,21 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteQuery("sp_MixedGetAll");
         }
 
+        public DataTable GetMaterialCsalesColor(string mixId)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_MixMaterialScalesColor @MixId", new object[] { mixId });
+        }
+
+        public DataTable GetMaterialCsalesGetMixId(string mixId)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_MixMaterialScalesGetMixId @MixId", new object[] { mixId });
+        }
+        
+        //public DataTable GetRecycledCsalesGetMixId(string mixId)
+        //{
+        //    return DataProvider.Instance.ExecuteQuery("sp_MixRecycleScaledGetMixId @MixId", new object[] { mixId });
+        //}
+
         public List<MixingOrderModel> GetAllMixedList()
         {
             List<MixingOrderModel> result = new List<MixingOrderModel>();
@@ -87,5 +102,44 @@ namespace RecycledManagement.Common
         {
             return DataProvider.Instance.ExecuteNonQuery_GetIdIdentity("sp_MixedGetMaxId");
         }
+
+        /// <summary>
+        /// get CrushingCode de fill vao cac lookupEdit cua recycle.
+        /// </summary>
+        /// <param name="crushLike"> @CrushedCode='RE|R%'.</param>
+        /// <returns>DataTable.</returns>
+        public DataTable GetCrushingCode(string crushedType)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_CrushingGetCrushedCode @CrushedType", new object[] { crushedType });
+        }
+
+        /// <summary>
+        /// Get incomingCode from IncomingCrush table. Fill to lookupEdit Leftover.
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetIncomingCode()
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_IncomingGetIncomingCode");
+        }
+
+        public List<MixRecycleScaledModel> GetRecycledCsalesGetMixId(string mixId)
+        {
+            List<MixRecycleScaledModel> result = new List<MixRecycleScaledModel>();
+
+            DataTable data = DataProvider.Instance.ExecuteQuery("sp_MixRecycleScaledGetMixId @MixId", new object[] { mixId });
+
+            foreach (DataRow item in data.Rows)
+            {
+                result.Add(new MixRecycleScaledModel(item));
+            }
+
+            return result;
+        }
+
+        public DataTable GetMaterialRange()
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_MixMaterialRangeGetAll");
+        }
+
     }
 }
