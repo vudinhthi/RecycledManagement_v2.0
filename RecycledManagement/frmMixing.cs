@@ -512,12 +512,25 @@ namespace RecycledManagement
                     }
                     else//scale plastic 
                     {
-                        materialCodeSub = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "MaterialCode").ToString().Substring(0, 3);
-
-                        if (status == 2 && (materialCodeSub == "RPM" || materialCodeSub == "RCM" || materialCodeSub == "RRE" || materialCodeSub == "RMX"))//can nhua
+                        try
                         {
-                            grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue - GlobalVariable.boxWeightMixingMaterial);
-                            grvMaterialConsumption.FocusedRowHandle += 1;
+                            materialCodeSub = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "MaterialCode").ToString().Substring(0, 3);
+
+                            if (status == 2 && (materialCodeSub == "RPM" || materialCodeSub == "RCM" || materialCodeSub == "RRE" || materialCodeSub == "RMX"))//can nhua
+                            {
+                                grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue - GlobalVariable.boxWeightMixingMaterial);
+                                grvMaterialConsumption.FocusedRowHandle += 1;
+                            }
+                        }
+                        catch
+                        {
+                            materialCodeSub = grvMaterialConsumption.GetRowCellValue(grvMaterialConsumption.FocusedRowHandle, "MaterialCode").ToString().Substring(0, 3);
+
+                            if (status == 2 && (materialCodeSub == "RPM" || materialCodeSub == "RCM" || materialCodeSub == "RRE" || materialCodeSub == "RMX"))//can nhua
+                            {
+                                grvMaterialConsumption.SetFocusedRowCellValue("ActualUsage", o.ScaleValue - GlobalVariable.boxWeightMixingMaterial);
+                                grvMaterialConsumption.FocusedRowHandle += 1;
+                            }
                         }
                     }
                 }

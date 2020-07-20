@@ -66,7 +66,9 @@
             // 
             this.grvMixing.GridControl = this.grcMixing;
             this.grvMixing.Name = "grvMixing";
-            this.grvMixing.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.grvMixing_RowStyle);
+            this.grvMixing.OptionsBehavior.Editable = false;
+            this.grvMixing.OptionsView.ShowGroupPanel = false;
+            this.grvMixing.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvMixing_RowCellStyle);
             this.grvMixing.DoubleClick += new System.EventHandler(this.grvMixing_DoubleClick);
             // 
             // Root
