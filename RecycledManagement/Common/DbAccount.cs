@@ -127,5 +127,10 @@ namespace RecycledManagement.Common
             return DataProvider.Instance.ExecuteNonQuery("sp_OperatorRoleInsert @userId , @booking , @mixing , @incoming , @crushing"
                 , new object[] { userId, booking, mixing, incoming, crush });
         }
+        public DataTable OperatorRoleCheck(string userName, string role)
+        {
+            return DataProvider.Instance.ExecuteQuery("sp_OperatorRoleCheck @UserName , @Role"
+                , new object[] {userName,role });
+        }
     }
 }

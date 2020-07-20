@@ -20,15 +20,18 @@ using System.IO.Ports;
 using Newtonsoft.Json;
 using System.Net.Mail;
 using DevExpress.Utils.Menu;
+using RecycledManagement.Models;
 
 namespace RecycledManagement
 {
     public partial class frmConfigFirstInstall : DevExpress.XtraEditors.XtraForm
     {
-        string pathApp, pathComConfig, pathMailserverConfig;
+        string pathApp, pathScaleConfig, pathMailserverConfig,pathUserConfig;
         string[] dataArr = new string[5];
         string serverName, dbName, userName, password, configFirstInstall;
         MailConfig mailConfig;
+        ScaleConfig scaleConfig;
+        UserConfigModel userConfig;
         public frmConfigFirstInstall()
         {
             InitializeComponent();
@@ -61,7 +64,7 @@ namespace RecycledManagement
         {
             //try
             {
-                GetComPort();
+               // GetComPort();
                 #region đọc textFile để lấy thông số cấu hình
                 pathApp = $"{ Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\Files\\DbServerParametter.txt";//get path
                 // Debug.WriteLine(pathApp);
@@ -106,8 +109,29 @@ namespace RecycledManagement
                     mailConfig.Port = txtPort.Text = "587";
 
                 }
+
+                //Cấu hình Scale IP
+                    pathScaleConfig = @"./Files/ScaleConfig.json";
+                if (File.Exists(pathScaleConfig))
+                {
+                    scaleConfig = JsonConvert.DeserializeObject<ScaleConfig>(File.ReadAllText(pathScaleConfig));
+                    txtScaleIP.Text = scaleConfig.ScaleIP = EncodeMD5.DecryptString(scaleConfig.ScaleIP, "ITFramasBDVN");
+                    txtScalePort.Text = scaleConfig.ScalePort = EncodeMD5.DecryptString(scaleConfig.ScalePort, "ITFramasBDVN");
+                }
+                else
+                {
+                    scaleConfig = new ScaleConfig();
+                    scaleConfig.ScaleIP = txtScaleIP.Text = "192.168.1.236";
+                    scaleConfig.ScalePort = txtScalePort.Text = "23";
+                }
+                //Đọc cấu hình của User 
+                pathUserConfig = @"./Files/UserConfig.json";
+                if (File.Exists(pathUserConfig))
+                {
+                    userConfig = JsonConvert.DeserializeObject<UserConfigModel>(File.ReadAllText(pathUserConfig));
+                }
                 //khi cài chương trình chạy dầu tiên thì vào cấu hình DB server 
-                if (configFirstInstall == "False")
+                if (configFirstInstall == "True")
                 {
                     txtDbName.Enabled = true;
                     txtServerName.Enabled = true;
@@ -117,6 +141,27 @@ namespace RecycledManagement
                 }
                 else//
                 {
+                    //Đẩy dữ liệu vào biến toàn cục
+
+                    GlobalVariable.fromEmailAddress = txtFromMailAddress.Text;
+                    GlobalVariable.fromEmailPass = txtPassword.Text;
+                    GlobalVariable.emailHost = txtHost.Text;
+                    GlobalVariable.emailPort = txtPort.Text;
+
+                    if (userConfig!=null)
+                    {
+                        GlobalVariable.toEmailAddress = userConfig.ToMailAddress;
+                        GlobalVariable.ccEmailAddress = userConfig.CCMailAddress;
+                        GlobalVariable.boxWeightMixingMaterial=Convert.ToDouble(userConfig.Mixing_Material_BoxWeight )   ;
+                        GlobalVariable.boxWeightMixingRecycle = Convert.ToDouble(userConfig.Mixing_Recycle_BoxWeight);
+                        GlobalVariable.boxWeightIncoming = Convert.ToDouble(userConfig.Incoming_BoxWeight) ;
+                        GlobalVariable.boxWeightCrushing = Convert.ToDouble(userConfig.Crushing_BoxWeight);
+
+                    }
+
+                    GlobalVariable.ipScale = txtScaleIP.Text;
+                    GlobalVariable.portScale = txtScalePort.Text;
+
                     SplashScreenManager.ShowForm(this, typeof(frmProcessing), true, true, false);
                     SplashScreenManager.Default.SetWaitFormCaption("Check database server...");
                     var checkConnectDB = DataProvider.Instance.ExecuteScalar("select count(*) from tblAccount");//kiểm tra kết nối đến DB server
@@ -178,6 +223,8 @@ namespace RecycledManagement
                         $"|userName:{EncodeMD5.EncryptString(userName, "ITFramasBDVN")}|password:{EncodeMD5.EncryptString(password, "ITFramasBDVN")}|configFirstInstall:{configFirstInstall}");
                     //Save Mail Config
                     SaveMailConfig();
+                    //Save Scale Config
+                    SaveScaleConfig();
                     //vao form Login
                     frmLogin newForm = new frmLogin();
                     this.Hide();
@@ -244,15 +291,15 @@ namespace RecycledManagement
         }
         #endregion
         #region Sang's Method
-        private void GetComPort()
-        {
-            string[] portNames = SerialPort.GetPortNames();     //<-- Reads all available comPorts
-            foreach (var portName in portNames)
-            {
-                cbbComPort.Properties.Items.Add(portName);                  //<-- Adds Ports to combobox
-            }
-            cbbComPort.SelectedIndex = 0;
-        }
+        //private void GetComPort()
+        //{
+        //    string[] portNames = SerialPort.GetPortNames();     //<-- Reads all available comPorts
+        //    foreach (var portName in portNames)
+        //    {
+        //        cbbComPort.Properties.Items.Add(portName);                  //<-- Adds Ports to combobox
+        //    }
+        //    cbbComPort.SelectedIndex = 0;
+        //}
         
         
         private void SaveMailConfig()
@@ -263,6 +310,12 @@ namespace RecycledManagement
             mailConfig.Port = EncodeMD5.EncryptString(txtPort.Text, "ITFramasBDVN");
             string json = JsonConvert.SerializeObject(mailConfig, Formatting.Indented);
             File.WriteAllText(pathMailserverConfig, json);
+        }private void SaveScaleConfig()
+        {
+            scaleConfig.ScaleIP = EncodeMD5.EncryptString(txtScaleIP.Text, "ITFramasBDVN");
+            scaleConfig.ScalePort = EncodeMD5.EncryptString(txtScalePort.Text, "ITFramasBDVN");
+            string json = JsonConvert.SerializeObject(scaleConfig, Formatting.Indented);
+            File.WriteAllText(pathScaleConfig, json);
         }
         #endregion
     }
@@ -272,7 +325,10 @@ namespace RecycledManagement
         public string Password { get; set; }
         public string Host { get; set; }
         public string Port { get; set; }
-       
-
+    }
+    class ScaleConfig
+    {
+        public string ScaleIP { get; set; }
+        public string ScalePort { get; set; }
     }
 }

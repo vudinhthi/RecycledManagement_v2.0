@@ -22,6 +22,8 @@ namespace RecycledManagement.Common
 
         public bool isAllowScale { get; set; }
         public event DataRecieveHandler DataChanged;
+
+        public static  bool isFailed;
         public decimal _Value
         {
             get { return _value; }
@@ -74,7 +76,8 @@ namespace RecycledManagement.Common
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+
+                isFailed = true;
             }
             //_client.Close();
 

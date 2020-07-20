@@ -13,7 +13,7 @@ namespace RecycledManagement.Models
         public string Mixing_Material_BoxWeight { get; set; }
         public string Mixing_Recycle_BoxWeight { get; set; }
         public string Incoming_BoxWeight { get; set; }
-        public string Crushing_BoxWeight{ get; set; }
+        public string Crushing_BoxWeight { get; set; }
 
     }
 }

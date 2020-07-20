@@ -35,9 +35,21 @@ namespace RecycledManagement.Common
 
 
         //Biến lưu các giá trị trừ bì
-        public static double boxWeightIncoming = 2.1966,boxWeightCrushing = 1.14, boxWeightMixingMaterial = 0.16, boxWeightMixingRecycle = 1.14;
+        public static double boxWeightIncoming = 2.1966, boxWeightCrushing = 1.14, boxWeightMixingMaterial = 0.16, boxWeightMixingRecycle = 1.14;
 
         public static GlobalEvent myEvent = new GlobalEvent();//tạo đối tượng để nhận event tag scaleValueChanged
-        public static bool isMixcode = false;
+
+                                                              //biến cấu hình cân
+
+        public static string ipScale = "192.168.1.236";
+        public static string portScale = "23";
+        //biến Email
+        public static string fromEmailAddress = "fvn-itsupport@framas.com";
+        public static string fromEmailPass = "fvnIT23";
+        public static string toEmailAddress = "thi.vu@framas.com";
+        public static string ccEmailAddress = "thi.vu@framas.com";
+        public static string emailHost = "smtp.office365.com";
+        public static string emailPort = "587";
+        
     }
 }
